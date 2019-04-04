@@ -3,9 +3,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import MainPage from "./MainPage";
 class Login extends Component {
   state = {
-    workid: ""
+    workid: "",
+    page: "login"
   };
 
   onChange = event => {
@@ -17,6 +19,9 @@ class Login extends Component {
   onClick = event => {
     console.log(this.state.workid);
     //posting the things to the backend
+    this.setState({
+      page: "main"
+    });
   };
 
   styles = {
@@ -33,7 +38,12 @@ class Login extends Component {
     }
   };
 
-  render() {
+  Logout = () => {
+    this.setState({
+      page: "login"
+    });
+  };
+  renderLogin = () => {
     return (
       <Grid style={this.styles.container} container>
         <Grid style={this.styles.grid}>
@@ -64,6 +74,30 @@ class Login extends Component {
         </Grid>
       </Grid>
     );
+  };
+
+  clearUser = () => {
+    this.setState({
+      workid: ""
+    });
+  };
+
+  renderMain = () => {
+    return (
+      <MainPage
+        Logout={this.Logout}
+        workid={this.state.workid}
+        clearUser={this.clearUser}
+      />
+    );
+  };
+
+  render() {
+    if (this.state.page === "login") {
+      return this.renderLogin();
+    } else if (this.state.page === "main") {
+      return this.renderMain();
+    }
   }
 }
 
