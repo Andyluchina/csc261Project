@@ -8,19 +8,27 @@ import {
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-
+import axios from "axios";
 const styles = {
   dropdown: {
     marginTop: "30px"
   }
 };
-class App extends Component {
+class ViewPage extends Component {
+  async componentWillMount() {
+    const res = await axios.post("/~mswanso2/view_route.php", {
+      workid: "123",
+      tablename: "MISSION"
+    });
+    console.log(res.body);
+  }
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      tablename: ""
     };
   }
 
@@ -29,6 +37,13 @@ class App extends Component {
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
+
+  onClickMission = event => {
+    this.setState({
+      tablename: "MISSON"
+    });
+    //  console.log("mission");
+  };
   render() {
     return (
       <Grid>
@@ -41,7 +56,7 @@ class App extends Component {
             Choose What you would like to see
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>Mission</DropdownItem>
+            <DropdownItem onClick={this.onClickMission}>Mission</DropdownItem>
             <DropdownItem>Project</DropdownItem>
             <DropdownItem>Works_on</DropdownItem>
             <DropdownItem>Employee</DropdownItem>
@@ -54,4 +69,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default ViewPage;
