@@ -16,7 +16,7 @@ const styles = {
 };
 class ViewPage extends Component {
   async componentWillMount() {
-    const res = await axios.post("/~mswanso2/view_route.php", {
+    const res = await axios.post("/~mswanso2/public_html/view_route.php", {
       workid: "123",
       tablename: "MISSION"
     });
