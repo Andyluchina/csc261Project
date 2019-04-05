@@ -63,6 +63,9 @@ class ViewPage extends Component {
       tablename: this.state.tablename
     });
     console.log(res);
+    if (res.status === "rejected") {
+      return [];
+    }
     return res.data;
   };
   render() {
