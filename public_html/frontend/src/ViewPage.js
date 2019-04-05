@@ -16,11 +16,14 @@ const styles = {
 };
 class ViewPage extends Component {
   async componentWillMount() {
-    const res = await axios.post("/~mswanso2/view_route.php", {
-      workid: "123",
-      tablename: "MISSION"
-    });
-    console.log(res.body);
+    const res = await axios.post(
+      "http://betaweb.csug.rochester.edu/~mswanso2/view_route.php",
+      {
+        workid: "123",
+        tablename: "MISSION"
+      }
+    );
+    console.log(res);
   }
   constructor(props) {
     super(props);
