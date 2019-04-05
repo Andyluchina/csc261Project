@@ -11,7 +11,7 @@
 
     $data=json_decode($data);
 
-    $sql= "SELECT WORK_ID FROM ".$data->workid;
+    $sql= "SELECT * FROM ".$data->tablename;
     $result = $conn->query($sql);
     $row = $result->fetchAll();
     echo $row;
