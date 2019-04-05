@@ -665,3 +665,44 @@ git commit -am "added employee.csv"
 git push origin master
 ls
 logout
+mysql -u mswanso2 -p mswanso2_1
+ls
+cd ..
+ls
+cd tmp
+ls
+mv employee2.csv /home/mswanso2/taskB
+cp employee2.csv /home/mswanso2/taskB
+ls
+rm -f employee.csv
+cd ..
+ls
+cd home
+ls
+cd mswanso2
+ls
+cd taskB
+ls
+rm employee.csv
+mv employee2.csv employee.csv
+ls
+cd ..
+git push origin master
+git add .
+git commit -am "fixed stuff"
+git push origin master
+logout
+ls
+logout
+mysql -u mswanso2 -p mswanso2_1
+logout
+ls
+mysql -u mswanso2 -p mswanso2_1
+ls
+cd public_html
+ls
+nano db_setup.php
+nano missions.php
+nano view_route.php
+nano missions.php
+nano view_route.php
