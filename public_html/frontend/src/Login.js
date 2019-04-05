@@ -9,7 +9,7 @@ class Login extends Component {
   state = {
     workid: "",
     page: "login",
-    workerinfo: ""
+    workerinfo: {}
   };
 
   onChange = event => {
@@ -28,6 +28,9 @@ class Login extends Component {
     if (res.data[0] === "error") {
       alert("illegal workid");
     } else {
+      this.setState({
+        workerinfo: res.data[0]
+      });
       this.setState({
         page: "main"
       });
@@ -50,7 +53,9 @@ class Login extends Component {
 
   Logout = () => {
     this.setState({
-      page: "login"
+      page: "login",
+      workid: "",
+      workerinfo: {}
     });
   };
   renderLogin = () => {
@@ -98,6 +103,7 @@ class Login extends Component {
         Logout={this.Logout}
         workid={this.state.workid}
         clearUser={this.clearUser}
+        workerinfo={this.state.workerinfo}
       />
     );
   };

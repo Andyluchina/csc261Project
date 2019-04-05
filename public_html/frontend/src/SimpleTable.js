@@ -33,37 +33,45 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9)
 ];
 
-function SimpleTable(props) {
-  const { classes } = props;
+class SimpleTable extends React.Component {
+  renderElements = row => {
+    return row.map(ele => {
+      return <TableCell align="right">{ele}</TableCell>;
+    });
+  };
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat (g)</TableCell>
-            <TableCell align="right">Carbs (g)</TableCell>
-            <TableCell align="right">Protein (g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+  render() {
+    const { classes } = this.props;
+    const data = this.props.data;
+    if (data[0] === "NA") {
+      return (
+        <p>
+          There is no data for you to view given your Administrative privilege
+        </p>
+      );
+    }
+    const attributes = Object.keys(data[0]);
+    return (
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              {attributes.map(attr => {
+                return <TableCell align="right">{attr}</TableCell>;
+              })}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+          </TableHead>
+          <TableBody>
+            {data.map(row => {
+              return (
+                <TableRow>{this.renderElements(Object.values(row))}</TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
 }
 
 SimpleTable.propTypes = {
@@ -71,3 +79,16 @@ SimpleTable.propTypes = {
 };
 
 export default withStyles(styles)(SimpleTable);
+
+// <TableCell>Dessert (100g serving)</TableCell>
+// <TableCell align="right">Calories</TableCell>
+// <TableCell align="right">Fat (g)</TableCell>
+// <TableCell align="right">Carbs (g)</TableCell>
+// <TableCell align="right">Protein (g)</TableCell>
+
+// <TableRow>
+//   <TableCell align="right">{row.calories}</TableCell>
+//   <TableCell align="right">{row.fat}</TableCell>
+//   <TableCell align="right">{row.carbs}</TableCell>
+//   <TableCell align="right">{row.protein}</TableCell>
+// </TableRow>;

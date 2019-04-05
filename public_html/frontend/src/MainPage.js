@@ -79,7 +79,7 @@ class MainPage extends React.Component {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={styles.grow}>
-              {this.props.workid}
+              {this.props.workerinfo.FNAME}
             </Typography>
             <Button
               color="inherit"
@@ -121,7 +121,14 @@ class MainPage extends React.Component {
             </Grid>
           </Toolbar>
         </AppBar>
-
+        <Grid>
+          <h3>Your info: </h3>
+          <p>{this.props.workerinfo.WORK_ID}</p>
+          <p>
+            {this.props.workerinfo.FNAME} {this.props.workerinfo.LNAME}
+          </p>
+          <p>{this.props.workerinfo.PHONE_NUM}</p>
+        </Grid>
         <Grid container style={styles.content}>
           {this.renderContent()}
         </Grid>

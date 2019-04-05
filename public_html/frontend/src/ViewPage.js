@@ -33,7 +33,7 @@ class ViewPage extends Component {
     this.state = {
       dropdownOpen: false,
       tablename: "",
-      data: []
+      data: ["NA"]
     };
   }
 
