@@ -42,8 +42,11 @@ class App extends Component {
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Mission</DropdownItem>
-            <DropdownItem>Projects</DropdownItem>
-            <DropdownItem>Engineers</DropdownItem>
+            <DropdownItem>Project</DropdownItem>
+            <DropdownItem>Works_on</DropdownItem>
+            <DropdownItem>Employee</DropdownItem>
+            <DropdownItem>Contractor</DropdownItem>
+            <DropdownItem>Supplies</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Grid>
