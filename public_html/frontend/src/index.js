@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 // import { BrowserRouter, Route, Link } from "react-router-dom";
 // import { Switch } from "react-router";
 import Login from "./Login";
+import "bootstrap/dist/css/bootstrap.css";
 
 import * as serviceWorker from "./serviceWorker";
 
