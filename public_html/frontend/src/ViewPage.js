@@ -48,7 +48,7 @@ class ViewPage extends Component {
     this.setState({
       tablename
     });
-    // console.log(tablename);
+    //  console.log(this.state.tablename);
     // console.log(this.props.workid);
     const data = this.requestBackend(tablename);
     this.setState({
@@ -62,7 +62,7 @@ class ViewPage extends Component {
       workid: this.props.workid,
       tablename: this.state.tablename
     });
-    console.log(res);
+    console.log(res.status);
     if (res.status === "rejected") {
       return [];
     }
