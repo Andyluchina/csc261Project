@@ -35,7 +35,8 @@ class MainPage extends React.Component {
     super(props);
 
     this.state = {
-      viewStatus: "View"
+      viewStatus: "View",
+      workid: this.props.workid
     };
     //   this.toggle = this.toggle.bind(this);
     //   this.state = {
@@ -62,7 +63,7 @@ class MainPage extends React.Component {
   };
   renderContent = () => {
     if (this.state.viewStatus === "View") {
-      return <ViewPage />;
+      return <ViewPage workid={this.state.workid} />;
     } else if (this.state.viewStatus === "Add") {
       return <p>This is Add page</p>;
     } else if (this.state.viewStatus === "Delete") {

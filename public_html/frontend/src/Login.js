@@ -4,10 +4,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import MainPage from "./MainPage";
+import axios from "axios";
 class Login extends Component {
   state = {
     workid: "",
-    page: "login"
+    page: "login",
+    workerinfo: ""
   };
 
   onChange = event => {
@@ -16,12 +18,20 @@ class Login extends Component {
     });
   };
 
-  onClick = event => {
+  onClick = async event => {
     console.log(this.state.workid);
     //posting the things to the backend
-    this.setState({
-      page: "main"
+    const res = await axios.post("/~mswanso2/info_route.php", {
+      workid: this.state.workid
     });
+    console.log(res);
+    if (res.data === "error") {
+      alert("illegal workid");
+    } else {
+      this.setState({
+        page: "main"
+      });
+    }
   };
 
   styles = {
