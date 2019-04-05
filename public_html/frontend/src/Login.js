@@ -25,7 +25,7 @@ class Login extends Component {
       workid: this.state.workid
     });
     console.log(res);
-    if (res.data === "error") {
+    if (res.data[0] === "error") {
       alert("illegal workid");
     } else {
       this.setState({
