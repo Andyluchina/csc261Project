@@ -62,6 +62,7 @@ class ViewPage extends Component {
       workid: this.props.workid,
       tablename: this.state.tablename
     });
+    console.log(res);
     return res.data;
   };
   render() {
