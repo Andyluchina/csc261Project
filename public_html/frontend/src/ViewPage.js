@@ -62,11 +62,11 @@ class ViewPage extends Component {
       workid: this.props.workid,
       tablename: this.state.tablename
     });
-    console.log(res.status);
-    if (res.status === "rejected") {
+    console.log(res.data.status);
+    if (res.data.status === "rejected") {
       return [];
     }
-    return res.data;
+    return res.data.result;
   };
   render() {
     return (
