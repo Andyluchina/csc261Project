@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import ViewPage from "./ViewPage";
 import DeletePage from "./DeletePage";
+import AddPage from "./AddPage";
 const styles = {
   root: {
     flexGrow: 1
@@ -66,7 +67,7 @@ class MainPage extends React.Component {
     if (this.state.viewStatus === "View") {
       return <ViewPage workid={this.state.workid} />;
     } else if (this.state.viewStatus === "Add") {
-      return <p>This is Add page</p>;
+      return <AddPage workid={this.state.workid} />;
     } else if (this.state.viewStatus === "Delete") {
       return <DeletePage workid={this.state.workid} />;
     } else if (this.state.viewStatus === "Update") {
