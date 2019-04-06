@@ -54,6 +54,7 @@ class ViewPage extends Component {
     this.setState({
       data
     });
+    console.log("the state of the data: ");
     console.log(data);
   };
 
@@ -62,11 +63,12 @@ class ViewPage extends Component {
       workid: this.props.workid,
       tablename: this.state.tablename
     });
-    console.log(res.data.status);
+    console.log("immediate result after request Mission");
+    console.log(res);
     if (res.data.status === "rejected") {
       return [];
     }
-    return res.data.result;
+    return res.data;
   };
   render() {
     return (
