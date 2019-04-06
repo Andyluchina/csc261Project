@@ -45,8 +45,9 @@ class ViewPage extends Component {
 
   onClick = event => {
     const tablename = event.target.innerHTML.toUpperCase();
+    console.log(tablename);
     this.setState({
-      tablename
+      tablename: tablename
     });
     //  console.log(this.state.tablename);
     // console.log(this.props.workid);
@@ -61,11 +62,11 @@ class ViewPage extends Component {
   requestBackend = async tablename => {
     console.log({
       workid: this.props.workid,
-      tablename: this.state.tablename
+      tablename: tablename
     });
     const res = await axios.post("/~mswanso2/view_route.php", {
       workid: this.props.workid,
-      tablename: this.state.tablename
+      tablename: tablename
     });
     console.log("immediate result after request Mission");
     console.log(res);

@@ -35,6 +35,9 @@ class Login extends Component {
         page: "main"
       });
     }
+    // this.setState({
+    //   page: "main"
+    // });
   };
 
   styles = {
