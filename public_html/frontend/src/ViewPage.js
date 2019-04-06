@@ -59,6 +59,10 @@ class ViewPage extends Component {
   };
 
   requestBackend = async tablename => {
+    console.log({
+      workid: this.props.workid,
+      tablename: this.state.tablename
+    });
     const res = await axios.post("/~mswanso2/view_route.php", {
       workid: this.props.workid,
       tablename: this.state.tablename
