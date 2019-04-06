@@ -11,6 +11,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import ViewPage from "./ViewPage";
+import DeletePage from "./DeletePage";
 const styles = {
   root: {
     flexGrow: 1
@@ -67,7 +68,7 @@ class MainPage extends React.Component {
     } else if (this.state.viewStatus === "Add") {
       return <p>This is Add page</p>;
     } else if (this.state.viewStatus === "Delete") {
-      return <p>This is Delete page</p>;
+      return <DeletePage workid={this.state.workid} />;
     } else if (this.state.viewStatus === "Update") {
       return <p>This is Update page</p>;
     }
