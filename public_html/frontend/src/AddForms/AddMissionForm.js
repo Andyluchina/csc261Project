@@ -45,7 +45,7 @@ class AddMissionForm extends React.Component {
       mlid: this.state.mlid,
       workid: this.props.workid
     });
-    const res = await axios.post("/~mswanso2/addMis_route.php", {
+    const res = await axios.post("/~mswanso2/addMIS_route.php", {
       mname: this.state.mname,
       mlid: this.state.mlid,
       workid: this.props.workid
