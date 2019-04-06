@@ -43,7 +43,7 @@ class ViewPage extends Component {
     }));
   }
 
-  onClick = event => {
+  onClick = async event => {
     const tablename = event.target.innerHTML.toUpperCase();
     console.log(tablename);
     this.setState({
@@ -51,7 +51,7 @@ class ViewPage extends Component {
     });
     //  console.log(this.state.tablename);
     // console.log(this.props.workid);
-    const data = this.requestBackend(tablename);
+    const data = await this.requestBackend(tablename);
     this.setState({
       data
     });
