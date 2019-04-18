@@ -1,183 +1,3 @@
-ls
-pwq
-pwd
-passwd
-mysql -u mswanso2 -p mswanso2_1
-ls
-pwd
-ls
-mysql -u mswanso2 -p mswanso2_1
-ls
-nano create.sql
-mysql -u mswanso2 -p mswanso2_1
-nano load.sql
-mysql -u mswanso2 -p mswanso2_1
-nano load.sql
-mysql -u mswanso2 -p mswanso2_1
-nano load.sql
-mysql -u mswanso2 -p mswanso2_1
-nano load.sql
-mysql -u mswanso2 -p mswanso2_1
-nano load.sql
-mysql -u mswanso2 -p mswanso2_1
-ls
-cd ..
-ls
-cd ..
-ls
-pwd
-cd ..
-ls
-cd /home/mswanso2
-ls
-mysql -u mswanso2 -p mswanso2_1
-ls
-cd ..
-ls
-cd tmp
-ls
-cd lost+found
-ls
-cd ..
-cd /home/mswanso2
-mysql -u mswanso2 -p mswanso2_1
-ls
-cd .
-cd ..
-ls
-cd ..
-ls
-cd tmp
-ls
-cp employee.csv /home/mswanso2
-ls
-cd /home/mswanso2
-ls
-nano employee.csv
-mysql -u mswanso2 -p mswanso2_1
-cd ..
-ls
-cd tmp
-ls
-rm employee.csv
-cp employee1.csv /home/mswanso2
-cd /home/mswanso2
-ls
-rm employee.csv
-ls
-mv employee1.csv employee.csv
-ls
-nano README.txt
-ls
-apt-get
-nano taskC.html
-ls
-nano taskC.html
-ls
-mkdir public_html
-ls
-mv taskC.html public_html
-ls
-cd public_html
-ls
-chmod a+x `
-
-\c
-q
-ls
-quit
-chmod a+x ~
-chmod a+x ~/public_html
-chmod a+x ~/public_html/taskC.html
-ls
-chmod a+r ~/public_html/taskC.html
-chmod a+rx ~/public_html
-ls
-cd ..
-ls
-pwd
-ls
-cd public_html
-ls
-nano taskC.html
-nano employee.html
-ls
-chmod a+r ~/public_html/employee.html
-ls
-chmod a+rx ~/public_html/employee.html
-ls
-nano taskC.html
-ls
-nano taskC.html
-ls
-cd ..
-ls
-mkdir example
-cd example
-cp ~csc261/proj3/p1m3_example .
-ls
-pwd
-cp ~csc261/proj3/p1m3_example .
-cp -r ~csc261/proj3/p1m3_example .
-ls
-cd p1m3_example
-ls
-nano db_setup.php
-nano find_stu.html
-nano welcome.html
-cd ..
-ls
-cd ..
-ls
-cd public_html
-ls
-nano employee.html
-ls
-chmod a+rx ~/public_html/employee.php
-ls
-cd taskC.html
-nano taskC.html
-rm employee.html
-ls
-cd ..
-ls
-cd example
-ls
-cd p1m3_example
-ls
-nano db_setup.php
-cd /home/mswanso2/public_html
-ls
-nano employee.php
-cd /home/mswanso2/public_html
-ls
-/home/mswanso2/example
-ls
-cd /home/mswanso2/example
-ls
-cd p1m3_example
-ls
-nano welcome.html
-nano select_stu.php
-cd /home/mswanso2/public_html
-ls
-nano db_setup.php
-cd /home/mswanso2/example/p1m3_example
-ls
-nano db_setup
-nano db_setup.php
-cd /home/mswanso2/public_html
-ls
-nano db_setup.php
-chmod a+rx ~/public_html/db_setup.php
-ls
-cd employee.php
-nano employee.php
-ls
-cd /home/mswanso2/example/p1m3_example
-ls
-nano welcome.html
-nano select_stu.php
 cd /home/mswanso2/public_html
 nano employee.php
 ls
@@ -706,3 +526,475 @@ nano missions.php
 nano view_route.php
 nano missions.php
 nano view_route.php
+ls
+cd example
+ls
+cd p1m3_example
+ls
+nano select_stu.php
+nano find_stu.php
+ls
+cd ..
+ls
+cd ..
+ls
+cd public_html
+ls
+nano employee.php
+nano view_route.php
+ls
+rm view_route.php.save
+ls
+git add .
+git commit -am "test view"
+git push origin master
+git pull origin master
+ls
+git push origin master
+ls
+pwd
+nano view_route.php
+git add .
+git commit -am "test view"
+git push origin master
+nano view_route.php
+git pull origin master
+ls
+pwd
+nano db_setup.php
+nano view_route.php
+chmod a+r ~/public_html/view_route.php
+git pull origin master
+ls
+nano employee.php
+nano view_route.php
+git pull origin master
+ls
+nano view_route.php
+nano db_setup.php
+nano view_route.php
+git pull origin master
+nano view_route.php
+nano db_setup.php
+git add .
+git commit -am "test"
+git push origin master
+nano view_route.php
+nano db_setup.php
+nano view_route.php
+ls
+cd ..
+ls
+cd taskB
+ls
+nano create.sql
+ls
+cd ..
+ls
+cd public_html
+;s
+ls
+nano info_route.php
+nano view_route.php
+nano info_route.php
+cd ..
+ls
+cd example
+ls
+cd p1m3_example/
+ls
+cd find_stu.php
+nano find_stu.php
+cd ..
+ls
+cd public_html
+ls
+nano view_route.php
+cd ..
+ls
+cd example
+ls
+cd p1m3_example/
+cd ..
+l
+sls
+ls
+cd ..
+ls
+cd public_html
+ls
+nano info_route.php
+ls
+cd ..
+ls
+cd example
+ls
+cd p1m3_example/
+ls
+nano find_stu.php
+cd ..
+ls
+cd ..
+ls
+cd public_html
+ls
+nano info_route.php
+git pull origin master
+nano info_route.php
+git pull origin master
+ls
+cd frontend
+ls
+cd build
+ls
+cd static
+cd js
+ls
+cd..
+cd ..
+l;s
+ls
+cd ..
+ls
+nano info_route.php
+ls
+cd ..
+ls
+nano info_route.php
+nano view_route.php
+git pull
+git pull origin master
+nano view_route.php
+nano info_route.php
+nano view_route.php
+nano info_route.php
+nano view_route.php
+nano info_route.php
+nano add_route.php
+nano view_route.php
+git pull origin master
+nano view_route.php
+git pull origin master
+nano view_route.php
+git pull origin master
+nano view_route.php
+git pull origin master
+nano view_route.php
+git pull origin master
+nano view_route.php
+nano info_route.php
+nano db_setup.php
+nano view_route.php
+nano info_route.php
+nano view_route.php
+nano db_setup.php
+ls
+nano view_route.php
+nano add_route.php
+ls
+cd ..
+ls
+cd e
+cd example/
+ls
+cd p1m3_example/
+ls
+nano add_stu.php
+cd ..
+ls
+cd ..
+ls
+cd public_html
+ls
+cd ..
+ls
+cd public_html
+ls
+nano add_route.php
+mysql -u mswanso2 -p mswanso2_1
+ls
+cd ..
+ls
+cd example
+ls
+cd p1m3_example/
+ls
+nano del_stu.php
+cd ..
+ls
+cd ..
+ls
+cd public_html
+ls
+nano del_route.php
+ls
+cd ..
+ls
+cd taskB
+ls
+cd ..
+ls
+mkdir milestone3
+cd milestone3
+ls
+pwd
+ls
+mv "Relations to BCNF.pdf" taskA.pdf
+ls
+cp -r ~mswanso2/taskB .
+ls
+cd taskB
+ls
+cd ..
+ls
+nano taskC.txt
+ls
+nano taskD.txt
+mysql -u mswanso2 -p mswanso2_1
+nano taskD.txt
+ls
+cd ..
+ls
+cd public_html
+ls
+nano view_route.php
+cd ..
+ls
+cd milestone3
+ls
+nano taskD.txt
+ls
+cd ..
+ls
+cd public_html
+ls
+mv add_route.php addEMP_route.php
+mv del_route.php delEMP_route.php
+nano addMIS_route.php
+nano addEMP_route.php 
+nano addMIS_route.php
+ls
+cd public_html
+ls
+rm addMIS_route.php 
+ls
+nano addMIS_route.php
+nano addEMP_route.php
+nano delEMP_route.php
+nano delMIS_route.php
+cd ..
+ls
+cd milestone3
+ls
+nano taskD.txt
+mysql -u mswanso2 -p mswanso2_1
+ls
+cd ..
+ls
+git pull origin master
+ls
+cd public_html
+ls
+cd view_route.php
+nano view_route.php
+ls
+cd ll
+cd ..
+ls
+cd milestone3
+ls
+nano taskB
+cd taskB
+ls
+nano create.sql
+ls
+cd ..
+ls
+cd ..
+ls
+cd public_html
+ls
+nano view_route.php
+git pull origin master
+nano view_route.php
+
+ls
+nano delMIS_route.php
+nano delEMP_route.php
+ls
+cd ..
+ls
+cd example/
+ls
+cd p1m3_example/
+ls
+nano find_stu.php
+ls
+ls ..
+cd ..
+ls
+cd ..
+ls
+cd public_html/
+ls
+nano srchMIS_route.php
+mysql -u mswanso2 -p mswanso2_1
+nano srchMIS_route.php
+ls
+nano view_route
+nano view_route.php
+nano srchMIS_route.php
+ls
+nano addEMP_route.php 
+nano delEMP_route.php 
+nano srchMIS_route.php
+mysql -u mswanso2 -p mswanso2_1
+ls
+cd ..
+ls
+cd milestone3
+ls
+cd taskB
+ls
+nano README.txt
+ls
+cd ..
+ls
+cd ..
+ls
+cd milestone3
+ls
+cd ..
+ls
+cd public_html
+ls
+nano delMIS_route.php 
+mysql -u mswanso2 -p mswanso2_1
+ls
+git pull origin master
+ls
+nano addEMP_route.php
+nano addMIS_route.php
+nano delEMP_route.php
+nano delPRJ_route.php
+nano delCON_route.php
+ls
+nano addEMP_route.php
+nano addPRJ_route.php
+nano addCON_route.php
+nano addEMP_route.php
+mysql -u mswanso2 -p mswanso2_1
+nano addEMP_route.php
+nano addMIS_route.php
+nano addCON_route.php
+nano addMIS_route.php
+nano addEMP_route.php
+nano addCON_route.php
+nano addPRJ_route.php
+ls
+cd ..
+ls
+cd milestone3
+ls
+nano taskD.txt
+nano taskC.txt
+git pull origin master
+ls
+cd ..
+ls
+cd public_html
+ls
+nano addEMP_route.php 
+mysql -u mswanso2 -p mswanso2_1
+nano addEMP_route.php 
+nano addMIS_route.php 
+nano addEMP_route.php 
+mysql -u mswanso2 -p mswanso2_1
+nano addEMP_route.php 
+ls
+cd ..
+ls
+cd example/
+cd p1m3_example/
+ls
+nano add_stu.
+nano add_stu.html
+nano add_stu.php
+cd ..
+ls
+cd ..
+ls
+cd public_html/
+ls
+nano addEMP_route.php 
+nano missions.php
+nano addEMP_route.php 
+mysql -u mswanso2 -p mswanso2_1
+nano addEMP_route.php 
+nano addMIS_route.php 
+mysql -u mswanso2 -p mswanso2_1
+nano addMIS_route.php 
+mysql -u mswanso2 -p mswanso2_1
+nano addMIS_route.php 
+nano addEMP_route.php 
+nano addMIS_route.php 
+ls
+cd .
+cd ..
+ls
+cd milestone3
+ls
+cd ..
+ls
+git pull origin master
+cd ..
+ls
+cd mswanso2
+ls
+cd milestone3
+ls
+nano taskC.txt
+ls
+cd ..
+ls
+cd public_html
+tar -cvf milestone3.tar milestone3
+ls
+cd ..
+git pull origin master
+ls
+tar -cvf milestone3.tar milestone3
+ls
+cd milestone3
+ls
+cd taskC.txt
+nano taskC.txt
+ls
+cd ..
+ls
+cd public_html
+tar -cvf milestone3.tar milestone3
+git pull origin master
+ls
+nano addMIS_route.php 
+ls
+cd ..
+ls
+tar -cvf milestone3.tar milestone3
+~csc261/submit p1m3 milestone3.tar
+ls
+cd milestone3
+ls
+nano taskD.txt
+ls
+cd public_html/
+ls
+cd ..
+ls
+cd milestone3
+ls
+nano taskD.txt 
+ls
+cd milestone3
+ls
+pwd

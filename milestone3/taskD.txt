@@ -1,0 +1,9 @@
+URL:http://betaweb.csug.rochester.edu/~mswanso2/frontend/build/
+
+you will only be able to log in if you use an accurate work_id.
+Admin ID=2020021 (should be able to view all data from tables and add and delete on employee relation and mission relation)
+Mission leader id=2020975(should not be able to view employee table or works_on table and cannot add or delete employee)
+Project Leader id=2020453(should not be able to view employee table, works on table, supplies table, or mission table, and cannot add or delete employee)
+Engineer id=2020025(should only be able to view own info, cannot add or delete)
+
+We would have implemented more funcitonalities but the team mate in charge of completeing taskD waited until the last day to work on this.
