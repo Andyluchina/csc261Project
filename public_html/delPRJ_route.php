@@ -1,6 +1,6 @@
-<?php
+    <?php
 
-   require_once('db_setup.php');
+    require_once('db_setup.php');
 
     $sql = "USE mswanso2_1;";
     if ($conn->query($sql) === TRUE) {
@@ -10,34 +10,34 @@
     }
 
     $json=file_get_contents('php://input');
-        $stuff=array();
+    $stuff=array();
     $data=json_decode($json);
-$sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
-$result2 = $conn->query($sql);
-$check = $result2->fetch_assoc();
+    $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
+    $result2 = $conn->query($sql);
+    $check = $result2->fetch_assoc();
 
-$pid=$data->pid;
+    $pid=$data->pid;
 
 
-if($check['TITLE']=='Administrator'){
+    if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
         $sql= "DELETE FROM PROJECT WHERE PROJ_ID=$pid;";
 
         $result = $conn->query($sql);
         if ($result === TRUE) {
-        $stuff[]="success";
-    echo json_encode($stuff);
+            $stuff[]="Succesfuly deleted!";
+            echo json_encode($stuff);
         } else {
-        $stuff[]="error";
-    echo json_encode($stuff);
+            $stuff[]="Error with deletion.";
+            echo json_encode($stuff);
         }
 
 
 
-}
-else{
-     	$string=["NA"];
+    }
+    else{
+      $string=["NA"];
 
-        echo json_encode($string);
-}
-$conn->close();
-?>
+      echo json_encode($string);
+  }
+  $conn->close();
+  ?>
