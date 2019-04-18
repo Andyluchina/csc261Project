@@ -6,7 +6,7 @@ $sql = "USE mswanso2_1;";
 if ($conn->query($sql) === TRUE) {
          // echo "using Database mswanso2_1";
 } else {
-	//echo "Error using  database: " . $conn->error;
+    //echo "Error using  database: " . $conn->error;
 }
 
 $json=file_get_contents('php://input');
@@ -16,14 +16,14 @@ $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result2 = $conn->query($sql);
 $check = $result2->fetch_assoc();
 
-$workid=$data->workid1;
+$pid=$data->pid;
 
 
-if($check['TITLE']=='Administrator'){
-	$sql= "DELETE FROM EMPLOYEE WHERE WORK_ID=$workid;";
+if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
+    $sql= "DELETE FROM SUPPLIES WHERE PROJ_ID=$pid;";
 
-	$result = $conn->query($sql);
-	if ($result === TRUE) {
+    $result = $conn->query($sql);
+    if ($result === TRUE) {
         $stuff[]="Succesfuly deleted!";
         echo json_encode($stuff);
     } else {
@@ -32,11 +32,12 @@ if($check['TITLE']=='Administrator'){
     }
 
 
+
 }
 else{
-	$string=["NA"];
+  $string=["NA"];
 
-	echo json_encode($string);
+  echo json_encode($string);
 }
 $conn->close();
 ?>
