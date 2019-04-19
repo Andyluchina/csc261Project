@@ -34,7 +34,7 @@ else{
 		$sql= "INSERT INTO EMPLOYEE VALUES('$fname','$mi','$lname','$pnum',$num,'$title');";
 
 		$result = $conn->query($sql);
-		if ($result === TRUE) {
+		if ($result === TRUE && ($conn->affected_rows > 0)) {
 			$stuff[]="Succesfully added!";
 			echo json_encode($stuff);
 		} else {
