@@ -25,7 +25,7 @@ if($check['TITLE']=='Engineer'){
 }
 elseif($check['TITLE']=='Project Leader'){
 	$sql= "SELECT * FROM ".$data->tablename;
-	if($data->tablename=="MISSION" || $data->tablename=="EMPLOYEE"||$data->tablename=="SUPPLIES"||$data->tablename=="WORKS_ON"){
+	if($data->tablename=="MISSION" || $data->tablename=="EMPLOYEE"||$data->tablename=="WORKS_ON"){
        $string=["NA"];
 
        echo json_encode($string);
