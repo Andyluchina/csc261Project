@@ -21,31 +21,37 @@ $mi=$data->mi;
 $lname=$data->lname;
 $pnum=$data->pnum;
 $title=$data->title;
-
-
-if($check['TITLE']=='Administrator'){
-	$sql="SELECT MAX(WORK_ID) FROM EMPLOYEE;";
-	$result3 = $conn->query($sql);
-	$row=$result3->fetch_assoc();
-	$num=$row['MAX(WORK_ID)']+1;
-	$sql= "INSERT INTO EMPLOYEE VALUES('$fname','$mi','$lname','$pnum',$num,'$title');";
-
-	$result = $conn->query($sql);
-	if ($result === TRUE) {
-		$stuff[]="Succesfully added!";
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Add not successful.";
-		echo json_encode($stuff);
-	}
-
-	
-
+if($fname==''||$lname==''||$title==''){
+	$stuff[]="Please enter a non empty name and/or employee title.";
+	echo json_encode($stuff);
 }
 else{
-	$string=["NA"];
+	if($check['TITLE']=='Administrator'){
+		$sql="SELECT MAX(WORK_ID) FROM EMPLOYEE;";
+		$result3 = $conn->query($sql);
+		$row=$result3->fetch_assoc();
+		$num=$row['MAX(WORK_ID)']+1;
+		$sql= "INSERT INTO EMPLOYEE VALUES('$fname','$mi','$lname','$pnum',$num,'$title');";
 
-	echo json_encode($string);
+		$result = $conn->query($sql);
+		if ($result === TRUE) {
+			$stuff[]="Succesfully added!";
+			echo json_encode($stuff);
+		} else {
+			$stuff[]="Add not successful.";
+			echo json_encode($stuff);
+		}
+
+
+
+	}
+	else{
+		$string=["NA"];
+
+		echo json_encode($string);
+	}
+
 }
+
 $conn->close();
 ?>

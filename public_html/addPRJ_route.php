@@ -19,9 +19,12 @@ $check = $result2->fetch_assoc();
 $pname=$data->pname;
 $mid=$data->mid;
 $plid=$data->plid;
-
-
-if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
+if($pname==''||$mid==''||$plid==''){
+  $stuff[]="Values must not be empty. Please re-enter.";
+  echo json_encode($stuff);
+}
+else{
+  if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
     $sql="SELECT MAX(PROJ_ID) FROM PROJECT;";
     $result3 = $conn->query($sql);
     $row=$result3->fetch_assoc();
@@ -29,17 +32,22 @@ if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
     $sql= "INSERT INTO PROJECT values('$pname',$num,$mid,$plid);";
 
     $result = $conn->query($sql);
-    if ($result === TRUE) {
-        $stuff[]="Succesfully added!";
-        echo json_encode($stuff);
+    if ($result === TRUE && ($conn->affected_rows > 0)) {
+      $stuff[]="Succesfully added!";
+      echo json_encode($stuff);
     } else {
-        $stuff[]="Add not successful.";
-        echo json_encode($stuff);
+      $stuff[]="Add not successful.";
+      echo json_encode($stuff);
     }
     else{
       $string=["NA"];
 
       echo json_encode($string);
+    }
+
   }
+
+
+
   $conn->close();
   ?>

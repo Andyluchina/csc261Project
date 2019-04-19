@@ -21,30 +21,38 @@ $check = $result2->fetch_assoc();
 $mname=$data->mname;
 $mlid=$data->mlid;
 
-
-if($check['TITLE']=='Administrator'){
-    $sql="SELECT MAX(MISSION_ID) FROM MISSION;";
-    $result3 = $conn->query($sql);
-    $row=$result3->fetch_assoc();
-    $num=$row['MAX(MISSION_ID)']+1;
-    $sql= "INSERT INTO MISSION VALUES('$mname',$num,$mlid,TRUE);";
-
-    $result = $conn->query($sql);
-    if ($result == TRUE) {
-        $stuff[]="Succesfully added!";
-        echo json_encode($stuff);
-    } else {
-        $stuff[]="Add not successful.";
-        echo json_encode($stuff);
-    }
-
-
-
+if($mlid==''||$mname==''){
+    $stuff[]="Mission name and/or mission leader ID must not be empty. Please re-enter values.";
+    echo json_encode($stuff);
 }
 else{
-    $string=["NA"];
+    if($check['TITLE']=='Administrator'){
+        $sql="SELECT MAX(MISSION_ID) FROM MISSION;";
+        $result3 = $conn->query($sql);
+        $row=$result3->fetch_assoc();
+        $num=$row['MAX(MISSION_ID)']+1;
+        $sql= "INSERT INTO MISSION VALUES('$mname',$num,$mlid,TRUE);";
 
-    echo json_encode($string);
+        $result = $conn->query($sql);
+        if ($result == TRUE && ($conn->affected_rows > 0)) {
+            $stuff[]="Succesfully added!";
+            echo json_encode($stuff);
+        } else {
+            $stuff[]="Add not successful.";
+            echo json_encode($stuff);
+        }
+
+
+    }
+    else{
+        $string=["NA"];
+
+        echo json_encode($string);
+    }
+
 }
+
+
+
 $conn->close();
 ?>

@@ -19,34 +19,42 @@ $check = $result2->fetch_assoc();
 $pid=$data->pid;
 $cid=$data->cid;
 $budget=$data->budget;
+if($pid==''||$cid==''){
+    $stuff[]="Project ID and/or Contractor ID cannot be empty. Please re-enter.";
+    echo json_encode($stuff);    
+}
+else{
+    if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
+        $sql="SELECT PROJ_ID FROM SUPPLIES WHERE PROJ_ID=$pid;";
+        $result3 = $conn->query($sql);
+        if($result3==TRUE && mysql_num_rows($result3)!=0){
+            $sql= "INSERT INTO SUPPLIES VALUES($pid,$cid,NULL);";
+            $result = $conn->query($sql);
+            if ($result == TRUE && ($conn->affected_rows > 0)) {
+                $stuff[]="Succesfully added!";
+                echo json_encode($stuff);
+            } else {
+                $stuff[]="Add not successful.";
+                echo json_encode($stuff);
+            }
+        }
+        else{
+            $stuff[]="PROJ_ID present. Either delete project from supplies table and re-assign or update entry.";
+            echo json_encode($stuff);
+
+        }
+
+    }
+    else{
+        $string=["NA"];
+
+        echo json_encode($string);
+    }
+
+}
 
 //checks if project already has supplier.
 
-if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
-    $sql="SELECT PROJ_ID FROM SUPPLIES WHERE PROJ_ID=$pid;";
-    $result3 = $conn->query($sql);
-    if($result3==TRUE && mysql_num_rows($result3)!=0){
-        $sql= "INSERT INTO SUPPLIES VALUES($pid,$cid,NULL);";
-        $result = $conn->query($sql);
-        if ($result == TRUE) {
-            $stuff[]="Succesfully added!";
-            echo json_encode($stuff);
-        } else {
-            $stuff[]="Add not successful.";
-            echo json_encode($stuff);
-        }
-    }
-    else{
-        $stuff[]="PROJ_ID present. Either delete project from supplies table and re-assign or update entry.";
-        echo json_encode($stuff);
 
-    }
-
-}
-else{
-    $string=["NA"];
-
-    echo json_encode($string);
-}
 $conn->close();
 ?>

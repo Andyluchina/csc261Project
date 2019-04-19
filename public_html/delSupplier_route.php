@@ -18,26 +18,35 @@ $check = $result2->fetch_assoc();
 
 $pid=$data->pid;
 
-
-if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
+if($pid==''){
+  $stuff[]="Value entered empty. Please re-enter.";
+  echo json_encode($stuff);
+}
+else{
+  if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
     $sql= "DELETE FROM SUPPLIES WHERE PROJ_ID=$pid;";
 
     $result = $conn->query($sql);
-    if ($result === TRUE) {
-        $stuff[]="Succesfuly deleted!";
-        echo json_encode($stuff);
+    if ($result === TRUE && ($conn->affected_rows > 0)) {
+      $stuff[]="Succesfuly deleted!";
+      echo json_encode($stuff);
     } else {
-        $stuff[]="Error with deletion.";
-        echo json_encode($stuff);
+      $stuff[]="Error with deletion.";
+      echo json_encode($stuff);
     }
 
 
 
-}
-else{
-  $string=["NA"];
+  }
+  else{
+    $string=["NA"];
 
-  echo json_encode($string);
+    echo json_encode($string);
+  }
+
 }
+
+
+
 $conn->close();
 ?>

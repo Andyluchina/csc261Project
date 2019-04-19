@@ -18,25 +18,32 @@ $check = $result2->fetch_assoc();
 
 $workid=$data->workid1;
 
-
-if($check['TITLE']=='Administrator'){
-	$sql= "DELETE FROM EMPLOYEE WHERE WORK_ID=$workid;";
-
-	$result = $conn->query($sql);
-	if ($result === TRUE) {
-        $stuff[]="Succesfuly deleted!";
-        echo json_encode($stuff);
-    } else {
-        $stuff[]="Error with deletion.";
-        echo json_encode($stuff);
-    }
-
+if($workid==''){
+  $stuff[]="Value entered empty. Please re-enter.";
+  echo json_encode($stuff);
 
 }
 else{
-	$string=["NA"];
+    if($check['TITLE']=='Administrator'){
+        $sql= "DELETE FROM EMPLOYEE WHERE WORK_ID=$workid;";
 
-	echo json_encode($string);
+        $result = $conn->query($sql);
+        if ($result === TRUE && ($conn->affected_rows > 0)) {
+            $stuff[]="Succesfuly deleted!";
+            echo json_encode($stuff);
+        } else {
+            $stuff[]="Error with deletion.";
+            echo json_encode($stuff);
+        }
+
+    }
+    else{
+        $string=["NA"];
+
+        echo json_encode($string);
+    }
+
 }
+
 $conn->close();
 ?>

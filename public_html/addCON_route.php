@@ -17,29 +17,34 @@ $result2 = $conn->query($sql);
 $check = $result2->fetch_assoc();
 
 $cname=$data->cname;
-
-
-
-if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
-  $sql="SELECT MAX(CONTRACTOR_ID) FROM CONTRACTOR;";
-  $result3 = $conn->query($sql);
-  $row=$result3->fetch_assoc();
-  $num=$row['MAX(CONTRACTOR_ID)']+1;
-  $sql= "INSERT INTO CONTRACTOR values('$cname',$num);";
-
-  $result = $conn->query($sql);
-  if ($result === TRUE) {
-    $stuff[]="Succesfully added!";
-    echo json_encode($stuff);
-} else {
-    $stuff[]="Add not successful.";
-    echo json_encode($stuff);
+if($cname==''){
+  $stuff[]="Contractor name cannot be empty. Please re-enter value.";
+  echo json_encode($stuff);
 }
 else{
-  $string=["NA"];
+  if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
+    $sql="SELECT MAX(CONTRACTOR_ID) FROM CONTRACTOR;";
+    $result3 = $conn->query($sql);
+    $row=$result3->fetch_assoc();
+    $num=$row['MAX(CONTRACTOR_ID)']+1;
+    $sql= "INSERT INTO CONTRACTOR values('$cname',$num);";
 
-  echo json_encode($string);
+    $result = $conn->query($sql);
+    if ($result === TRUE && ($conn->affected_rows > 0)) {
+      $stuff[]="Succesfully added!";
+      echo json_encode($stuff);
+    } else {
+      $stuff[]="Add not successful.";
+      echo json_encode($stuff);
+    }
+  }
+  else{
+    $string=["NA"];
+    echo json_encode($string);
+  }
+
 }
+
 $conn->close();
 ?>
 
