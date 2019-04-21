@@ -2,17 +2,12 @@
 //empty values will get default
 
 
-function traverseArray($sqlString,$curData1,$prevData2){
+function traverseArray($sqlString,$data1){
 	$string1="";
 	foreach($curData1 as $key=>$value){
-		if($value==$prevData2[$key]){
-			$string1=$sqlString.$key."=".$prevData2[$key].",";
-		}
-		else{
-			$string1=$sqlString.$key."=".$value.",";
-		}
-
+		$string1=$string1.$key."=".$value.",";
 	}
+
 	return $sqlString.$string1;
 
 }
@@ -31,16 +26,19 @@ $stuff=array();
 $data=json_decode($json);
 $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result1 = $conn->query($sql);
+
 $check = $result1->fetch_assoc();
+
 
 $tablename=$data->tableName;
 $payload=$data->payload;
+$stuff[]=$payload->FNAME;
+echo json_encode($stuff);
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload,$payload).";";
-	$stuff[]=$sql;
-	echo json_encode($stuff);
+	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload).";";
+	
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully deleted!";
