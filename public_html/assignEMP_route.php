@@ -25,7 +25,7 @@ if($wrkid==''||$pid==''){
 }
 else{
     if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
-        $sql="SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE EMPLOYEE_ID=$wrkid;";
+        $sql="SELECT EMPLOYEE_ID FROM WORKS_ON WHERE EMPLOYEE_ID=$wrkid;";
         $result3 = $conn->query($sql);
         if($result3==TRUE && mysql_num_rows($result3)!=0){
             $sql= "INSERT INTO WORKS_ON VALUES($wrkid,$pid);";
