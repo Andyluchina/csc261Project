@@ -58,8 +58,6 @@ $cur=$data->payload->cur;
 if($check['TITLE']=='Administrator'){
 	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev)." ".traverseArray(1,"WHERE ",$prev,$prev).";";
 
-	$stuff[]=$sql;
-	echo json_encode($stuff);
 
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
