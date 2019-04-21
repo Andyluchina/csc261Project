@@ -4,16 +4,25 @@
 
 function traverseArray($sqlString,$curData1,$prevData2){
 
+	$string1="";
+	$num=1;
+
 	foreach($curData1 as $key=>$value){
-		if($value==$prevData2[$key]){
-			$sqlString=$sqlString.$key."=".$prevData2[$key].",";
+		if($value==$prevData2['$key']){
+			$value=$prevData2['$key'];
+		}
+		if($num==1){
+			$string1=$string1."$key = '$value'";
+			$num=0;
 		}
 		else{
-			$sqlString=$sqlString.$key."=".$value.",";
+			$string1=$string1." AND ";
+			$string1=$string1."$key = '$value'";
 		}
-
+		
 	}
-	return $sqlString;
+
+	return $sqlString.$string1;
 
 }
 
@@ -34,7 +43,7 @@ $result1 = $conn->query($sql);
 $check = $result1->fetch_assoc();
 
 $tablename=$data->tableName;
-$prev=$data->payload->prev;
+$prev=$data->payload->pre;
 $cur=$data->payload->cur;
 
 
