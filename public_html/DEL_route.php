@@ -4,7 +4,7 @@
 
 function traverseArray($sqlString,$data1){
 	$string1="";
-	foreach($curData1 as $key=>$value){
+	foreach($data1 as $key=>$value){
 		$string1=$string1."'$key' = $value,";
 	}
 
