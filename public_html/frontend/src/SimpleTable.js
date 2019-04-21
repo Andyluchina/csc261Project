@@ -7,6 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   root: {
@@ -16,6 +17,9 @@ const styles = theme => ({
   },
   table: {
     minWidth: 700
+  },
+  button: {
+    marginRight: 5
   }
 });
 
@@ -40,6 +44,18 @@ class SimpleTable extends React.Component {
     });
   };
 
+  renderButtons = row => {
+    return (
+      <TableCell align="right">
+        <Button variant="contained" color="primary" className={classes.button}>
+          Update
+        </Button>
+        <Button variant="contained" color="secondary">
+          Delete
+        </Button>
+      </TableCell>
+    );
+  };
   render() {
     const { classes } = this.props;
     const data = this.props.data;
@@ -64,7 +80,10 @@ class SimpleTable extends React.Component {
           <TableBody>
             {data.map(row => {
               return (
-                <TableRow>{this.renderElements(Object.values(row))}</TableRow>
+                <TableRow>
+                  {this.renderElements(Object.values(row))}
+                  {this.renderButtons(row)}
+                </TableRow>
               );
             })}
           </TableBody>
