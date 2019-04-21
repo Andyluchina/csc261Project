@@ -11,7 +11,6 @@ import {
   DropdownItem
 } from "reactstrap";
 import ViewPage from "./ViewPage";
-import DeletePage from "./DeletePage";
 import AddPage from "./AddPage";
 const styles = {
   root: {
