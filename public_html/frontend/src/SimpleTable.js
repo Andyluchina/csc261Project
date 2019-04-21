@@ -14,6 +14,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import FilledInput from "@material-ui/core/FilledInput";
+import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
 const styles = theme => ({
@@ -90,6 +92,7 @@ class SimpleTable extends React.Component {
     this.setState({ open: false });
     //requestBackend
   };
+  renderUpdateRow = key => {};
 
   render() {
     const { classes } = this.props;
@@ -135,14 +138,31 @@ class SimpleTable extends React.Component {
             <DialogContentText>
               Update you things here. Click Cancel if you want to quit
             </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-            />
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell align="right">Attribute Name</TableCell>
+                  <TableCell align="right">Current Value</TableCell>
+                  <TableCell align="right">Update Value</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {Object.keys(this.state.pre).map((key, index) => {
+                  return (
+                    <TableRow>
+                      <TableCell align="right">{key}</TableCell>
+                      <TableCell align="right">{this.state.pre[key]}</TableCell>
+                      <TableCell align="right">
+                        <FilledInput
+                          id="component-filled"
+                          value={this.state.pre[key]}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
