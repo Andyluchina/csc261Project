@@ -59,6 +59,16 @@ class ViewPage extends Component {
     console.log(data);
   };
 
+  onUpdateData = async tableName => {
+    //  console.log(this.state.tablename);
+    // console.log(this.props.workid);
+    const data = await this.requestBackend(tableName);
+    this.setState({
+      data
+    });
+    console.log(data);
+  };
+
   requestBackend = async tablename => {
     console.log({
       workid: this.props.workid,
@@ -99,7 +109,7 @@ class ViewPage extends Component {
           data={this.state.data}
           workid={this.props.workid}
           tableName={this.state.tablename}
-          onUpdateData={this.onClick}
+          onUpdateData={this.onUpdateData}
         />
       </Grid>
     );
