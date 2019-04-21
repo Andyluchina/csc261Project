@@ -2,7 +2,7 @@
 //empty values will get default
 
 
-function traverseArray($sqlString,$curData1,$prevData2){
+function traverseArray($num2,$sqlString,$curData1,$prevData2){
 
 	$string1="";
 	$num=1;
@@ -16,7 +16,14 @@ function traverseArray($sqlString,$curData1,$prevData2){
 			$num=0;
 		}
 		else{
-			$string1=$string1." AND ";
+			if($num2=1){
+				$string1=$string1." AND ";
+			}
+			else{
+				$string1=$string1." , ";
+			}
+
+			
 			$string1=$string1."$key = '$value'";
 		}
 		
@@ -49,7 +56,7 @@ $cur=$data->payload->cur;
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="UPDATE $tablename ".traverseArray("SET ",$cur,$prev)." ".traverseArray("WHERE ",$prev,$prev).";";
+	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev)." ".traverseArray(1,"WHERE ",$prev,$prev).";";
 
 	$stuff[]=$sql;
 	echo json_encode($stuff);
