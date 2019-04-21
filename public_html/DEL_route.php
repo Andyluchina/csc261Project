@@ -12,7 +12,7 @@ function traverseArray($sqlString,$data1){
 		}
 		else{
 			$string1=$string1.",";
-			$string1=$string1."$key = $value";
+			$string1=$string1."'$key' = $value";
 		}
 		
 	}
