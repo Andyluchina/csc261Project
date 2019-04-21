@@ -11,10 +11,11 @@ function traverseArray($sqlString,$curData1,$prevData2){
 		else{
 			$string1=$string1.$key."=".$value.",";
 		}
-		print($string1);
+
 
 
 	}
+	print($string1);
 	return $sqlString.$string1;
 
 }
