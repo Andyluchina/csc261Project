@@ -4,8 +4,17 @@
 
 function traverseArray($sqlString,$data1){
 	$string1="";
-	foreach($curData1 as $key=>$value){
-		$string1=$string1.$key."=".$value.",";
+	$num=1;
+	foreach($data1 as $key=>$value){
+		if($num==1){
+			$string1=$string1."'$key' = $value";
+			$num=0;
+		}
+		else{
+			$string1=$string1." AND ";
+			$string1=$string1."'$key' = $value";
+		}
+		
 	}
 
 	return $sqlString.$string1;
@@ -32,12 +41,13 @@ $check = $result1->fetch_assoc();
 
 $tablename=$data->tableName;
 $payload=$data->payload;
-$stuff[]=$payload->FNAME;
-echo json_encode($stuff);
+
 
 
 if($check['TITLE']=='Administrator'){
 	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload).";";
+	$stuff[]=$sql;
+	echo json_encode($stuff);
 	
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
