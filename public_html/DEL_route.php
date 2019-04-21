@@ -8,7 +8,7 @@ function traverseArray($sqlString,$data1){
 		$string1=$string1."'$key' = $value,";
 	}
 
-	return $sqlString.$string1;
+	return $string1;
 
 }
 
