@@ -30,6 +30,14 @@ $stuff=array();
 $data=json_decode($json);
 $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result1 = $conn->query($sql);
+if($result1==TRUE){
+	$stuff[]="Succesfully!";
+	echo json_encode($stuff);
+}
+else{
+	$stuff[]="crap!";
+	echo json_encode($stuff);
+}
 
 $check = $result1->fetch_assoc();
 
