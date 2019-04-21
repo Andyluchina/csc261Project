@@ -88,11 +88,36 @@ class SimpleTable extends React.Component {
   handleClose = () => {
     this.setState({ open: false, pre: {}, cur: {} });
   };
-  submitUpdate = () => {
+  submitUpdate = async () => {
     this.setState({ open: false });
     //requestBackend
+    console.log({
+      workid: this.props.workid,
+      tableName: this.props.tableName,
+      payload: {
+        pre: this.state.pre,
+        cur: this.state.cur
+      }
+    });
+    const res = await axios.post("/~mswanso2/UPD_route.php", {
+      workid: this.props.workid,
+      tableName: this.props.tableName,
+      payload: {
+        pre: this.state.pre,
+        cur: this.state.cur
+      }
+    });
+    console.log(res);
+    alert(res.data);
+    this.props.onUpdateData(this.props.tableName);
   };
-  renderUpdateRow = key => {};
+  onChangeCur = (event, key) => {
+    console.log(event.target.value);
+    console.log(key);
+    var current = { ...this.state.cur };
+    current[key] = event.target.value;
+    this.setState({ cur: current });
+  };
 
   render() {
     const { classes } = this.props;
@@ -156,7 +181,10 @@ class SimpleTable extends React.Component {
                       <TableCell align="right">
                         <FilledInput
                           id="component-filled"
-                          value={this.state.pre[key]}
+                          value={this.state.cur[key]}
+                          onChange={event => {
+                            this.onChangeCur(event, key);
+                          }}
                         />
                       </TableCell>
                     </TableRow>
