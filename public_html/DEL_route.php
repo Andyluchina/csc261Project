@@ -2,19 +2,13 @@
 //empty values will get default
 
 
-function traverseArray($sqlString,$curData1,$prevData2){
+function traverseArray($sqlString,$data1){
 	$string1="";
 	foreach($curData1 as $key=>$value){
-		if($value==$prevData2[$key]){
-			$string1=$string1.$key."=".$prevData2[$key].",";
-		}
-		else{
-			$string1=$string1.$key."=".$value.",";
-		}
-
-	$stuff[]=$string1;
+		$string1=$string1.$key."=".$value.",";
+		
+	$stuff[]=$key;
 	echo json_encode($stuff);
-
 	}
 
 	return $sqlString.$string1;
@@ -44,7 +38,7 @@ $payload=$data->payload;
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload,$payload).";";
+	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload).";";
 	
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
