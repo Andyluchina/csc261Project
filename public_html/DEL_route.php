@@ -11,6 +11,8 @@ function traverseArray($sqlString,$curData1,$prevData2){
 		else{
 			$string1=$string1.$key."=".$value.",";
 		}
+		print($string1);
+
 
 	}
 	return $sqlString.$string1;
@@ -31,7 +33,9 @@ $stuff=array();
 $data=json_decode($json);
 $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result1 = $conn->query($sql);
+
 $check = $result1->fetch_assoc();
+
 
 $tablename=$data->tableName;
 $payload=$data->payload;
