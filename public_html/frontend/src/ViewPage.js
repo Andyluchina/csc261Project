@@ -95,7 +95,12 @@ class ViewPage extends Component {
             <DropdownItem onClick={this.onClick}>Supplies</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        <SimpleTable data={this.state.data} workid={this.props.workid} />
+        <SimpleTable
+          data={this.state.data}
+          workid={this.props.workid}
+          tableName={this.state.tablename}
+          onUpdateData={this.onClick}
+        />
       </Grid>
     );
   }
