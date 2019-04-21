@@ -11,7 +11,7 @@ function traverseArray($sqlString,$data1){
 			$num=0;
 		}
 		else{
-			$string1=$string1.",";
+			$string1=$string1." AND ";
 			$string1=$string1."'$key' = $value";
 		}
 		
