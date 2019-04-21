@@ -16,7 +16,7 @@ function traverseArray($num2,$sqlString,$curData1,$prevData2){
 			$num=0;
 		}
 		else{
-			if($num2=1){
+			if($num2==1){
 				$string1=$string1." AND ";
 			}
 			else{
