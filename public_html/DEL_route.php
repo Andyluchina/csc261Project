@@ -6,11 +6,7 @@ function traverseArray($sqlString,$data1){
 	$string1="";
 	foreach($curData1 as $key=>$value){
 		$string1=$string1.$key."=".$value.",";
-		
-	
 	}
-	$stuff[]=$string1;
-	echo json_encode($stuff);
 
 	return $sqlString.$string1;
 
@@ -30,21 +26,13 @@ $stuff=array();
 $data=json_decode($json);
 $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result1 = $conn->query($sql);
-if($result1==TRUE){
-	$stuff[]="Succesfully!";
-	echo json_encode($stuff);
-}
-else{
-	$stuff[]="crap!";
-	echo json_encode($stuff);
-}
 
 $check = $result1->fetch_assoc();
 
 
 $tablename=$data->tableName;
 $payload=$data->payload;
-$stuff[]=$payload["FNAME"];
+$stuff[]=$payload->FNAME;
 echo json_encode($stuff);
 
 
