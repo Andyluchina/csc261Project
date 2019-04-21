@@ -54,7 +54,11 @@ class SimpleTable extends React.Component {
   };
 
   onClickDelete = async row => {
-    console.log(row);
+    console.log({
+      workid: this.props.workid,
+      tableName: this.props.tableName,
+      payload: row
+    });
     const res = await axios.post("/~mswanso2/DEL_route.php", {
       workid: this.props.workid,
       tableName: this.props.tableName,
