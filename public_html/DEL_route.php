@@ -38,7 +38,7 @@ $payload=$data->payload;
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$prev,$prev).";";
+	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload,$payload).";";
 	$stuff[]=$sql;
 	echo json_encode($stuff);
 	$result3 = $conn->query($sql);
