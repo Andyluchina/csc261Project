@@ -132,6 +132,7 @@ class SimpleTable extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
+          fullWidth
         >
           <DialogTitle id="form-dialog-title">Update</DialogTitle>
           <DialogContent>
