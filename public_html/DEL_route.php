@@ -3,17 +3,17 @@
 
 
 function traverseArray($sqlString,$curData1,$prevData2){
-
+	$string1="";
 	foreach($curData1 as $key=>$value){
 		if($value==$prevData2[$key]){
-			$sqlString=$sqlString.$key."=".$prevData2[$key].",";
+			$string1=$sqlString.$key."=".$prevData2[$key].",";
 		}
 		else{
-			$sqlString=$sqlString.$key."=".$value.",";
+			$string1=$sqlString.$key."=".$value.",";
 		}
 
 	}
-	return $sqlString;
+	return $sqlString.$string1;
 
 }
 
