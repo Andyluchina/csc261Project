@@ -39,13 +39,14 @@ $payload=$data->payload;
 
 if($check['TITLE']=='Administrator'){
 	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$prev,$prev).";";
-
+	$stuff[]=$sql;
+	echo json_encode($stuff);
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully deleted!";
 		echo json_encode($stuff);
 	} else {
-		$stuff[]="Update not successful.";
+		$stuff[]="Delete not successful.";
 		echo json_encode($stuff);
 	}
 
