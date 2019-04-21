@@ -12,10 +12,11 @@ function traverseArray($sqlString,$curData1,$prevData2){
 			$string1=$string1.$key."=".$value.",";
 		}
 
-
+	$stuff[]=$string1;
+	echo json_encode($stuff);
 
 	}
-	print($string1);
+
 	return $sqlString.$string1;
 
 }
@@ -44,8 +45,7 @@ $payload=$data->payload;
 
 if($check['TITLE']=='Administrator'){
 	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload,$payload).";";
-	$stuff[]=$sql;
-	echo json_encode($stuff);
+	
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully deleted!";
