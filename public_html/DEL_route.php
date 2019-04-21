@@ -8,7 +8,7 @@ function traverseArray($sqlString,$data1){
 	foreach($data1 as $key=>$value){
 		if($num==1){
 			$string1=$string1."'$key' = $value";
-			$num=0
+			$num=0;
 		}
 		else{
 			$string1=$string1.",";
