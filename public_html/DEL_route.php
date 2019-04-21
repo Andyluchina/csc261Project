@@ -7,9 +7,10 @@ function traverseArray($sqlString,$data1){
 	foreach($curData1 as $key=>$value){
 		$string1=$string1.$key."=".$value.",";
 		
-	$stuff[]=$key;
-	echo json_encode($stuff);
+	
 	}
+	$stuff[]=$string1;
+	echo json_encode($stuff);
 
 	return $sqlString.$string1;
 
@@ -35,6 +36,8 @@ $check = $result1->fetch_assoc();
 
 $tablename=$data->tableName;
 $payload=$data->payload;
+$stuff[]=$payload["FNAME"];
+echo json_encode($stuff);
 
 
 if($check['TITLE']=='Administrator'){
