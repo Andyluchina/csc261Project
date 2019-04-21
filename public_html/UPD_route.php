@@ -8,8 +8,8 @@ function traverseArray($sqlString,$curData1,$prevData2){
 	$num=1;
 
 	foreach($curData1 as $key=>$value){
-		if($value==$prevData2['$key']){
-			$value=$prevData2['$key'];
+		if($value==$prevData2->{$key}){
+			$value=$prevData2->{$key};
 		}
 		if($num==1){
 			$string1=$string1."$key = '$value'";
