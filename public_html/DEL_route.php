@@ -8,7 +8,7 @@ function traverseArray($sqlString,$data1){
 		$string1=$string1."'$key' = $value,";
 	}
 
-	return $string1;
+	return $sqlString.$string1;
 
 }
 
@@ -32,8 +32,7 @@ $check = $result1->fetch_assoc();
 
 $tablename=$data->tableName;
 $payload=$data->payload;
-$stuff[]=$payload->FNAME;
-echo json_encode($stuff);
+
 
 
 if($check['TITLE']=='Administrator'){
