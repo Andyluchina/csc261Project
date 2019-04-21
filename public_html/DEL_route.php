@@ -6,10 +6,10 @@ function traverseArray($sqlString,$curData1,$prevData2){
 	$string1="";
 	foreach($curData1 as $key=>$value){
 		if($value==$prevData2[$key]){
-			$string1=$sqlString.$key."=".$prevData2[$key].",";
+			$string1=$string1.$key."=".$prevData2[$key].",";
 		}
 		else{
-			$string1=$sqlString.$key."=".$value.",";
+			$string1=$string1.$key."=".$value.",";
 		}
 
 	}
