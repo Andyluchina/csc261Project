@@ -77,7 +77,7 @@ class SimpleTable extends React.Component {
       tableName: this.props.tableName,
       payload: row
     });
-    console.log(res);
+    // console.log(res);
     alert(res.data);
     this.props.onUpdateData(this.props.tableName);
   };
@@ -107,13 +107,11 @@ class SimpleTable extends React.Component {
         cur: this.state.cur
       }
     });
-    console.log(res);
+    // console.log(res);
     alert(res.data);
     this.props.onUpdateData(this.props.tableName);
   };
   onChangeCur = (event, key) => {
-    console.log(event.target.value);
-    console.log(key);
     var current = { ...this.state.cur };
     current[key] = event.target.value;
     this.setState({ cur: current });
