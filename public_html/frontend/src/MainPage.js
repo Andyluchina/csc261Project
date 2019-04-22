@@ -11,7 +11,6 @@ import {
   DropdownItem
 } from "reactstrap";
 import ViewPage from "./ViewPage";
-import DeletePage from "./DeletePage";
 import AddPage from "./AddPage";
 const styles = {
   root: {
@@ -68,10 +67,6 @@ class MainPage extends React.Component {
       return <ViewPage workid={this.state.workid} />;
     } else if (this.state.viewStatus === "Add") {
       return <AddPage workid={this.state.workid} />;
-    } else if (this.state.viewStatus === "Delete") {
-      return <DeletePage workid={this.state.workid} />;
-    } else if (this.state.viewStatus === "Update") {
-      return <p>This is Update page</p>;
     }
   };
 
@@ -98,20 +93,6 @@ class MainPage extends React.Component {
                 onClick={this.onClickFunc}
               >
                 Add
-              </Button>
-              <Button
-                color="inherit"
-                style={styles.Button}
-                onClick={this.onClickFunc}
-              >
-                Delete
-              </Button>
-              <Button
-                color="inherit"
-                style={styles.Button}
-                onClick={this.onClickFunc}
-              >
-                Update
               </Button>
               <Button
                 color="inherit"
