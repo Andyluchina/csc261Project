@@ -19,7 +19,7 @@ $check = $result2->fetch_assoc();
 $tablename=$data->tablename;
 
 if($check['TITLE']=='Administrator'){
-    $sql="select column_name from information_schema.columns where table_name='$tablename';";
+    $sql="select column_name from information_schema.columns where table_name=".$tablename.";";
     if($tablename==''){
         $stuff[]=[];
         echo json_encode($stuff);
