@@ -12,9 +12,9 @@ if ($conn->query($sql) === TRUE) {
 $json=file_get_contents('php://input');
 $stuff=array();
 $data=json_decode($json);
-$sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
-$result2 = $conn->query($sql);
-$check = $result2->fetch_assoc();
+//$sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
+//$result2 = $conn->query($sql);
+//$check = $result2->fetch_assoc();
 
 $tablename=$data->tablename;
 
