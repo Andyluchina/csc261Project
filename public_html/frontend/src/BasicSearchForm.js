@@ -28,6 +28,9 @@ class BasicSearchForm extends React.Component {
   };
 
   async componentWillMount() {
+    if (this.props.tablename === "") {
+      return;
+    }
     console.log({
       tablename: this.props.tablename
     });
