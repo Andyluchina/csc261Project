@@ -66,7 +66,7 @@ class AddProjectForm extends React.Component {
     return (
       <Grid>
         <h3 style={{ marginTop: "30px" }}>
-          Please enter the information of the Mission you want to add
+          Please enter the information of the Project you want to add
         </h3>
         <div className={classes.container}>
           <FormControl className={classes.formControl} variant="filled">
