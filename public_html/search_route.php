@@ -57,8 +57,9 @@ if($check['TITLE']=='Administrator'){
 
 
 	if ($result3 == TRUE ) {
-		$row=$result3->fetch_assoc();
-        $stuff[]=$row;
+		while($row=$result3->fetch_assoc()){
+ 			$stuff[]=$row;
+		}
         echo json_encode($stuff);
 	} else {
 		$stuff[]="Data not available.";
