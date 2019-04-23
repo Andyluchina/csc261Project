@@ -27,8 +27,9 @@ if($check['TITLE']=='Administrator'){
     else{
         $result = $conn->query($sql);
         if($result==TRUE){
-          $row=$result3->fetch_assoc();
-          $stuff[]=$row;
+          while($row=$result3->fetch_assoc()){
+            $stuff[]=$row;
+            }
           echo json_encode($stuff);
       }
       else{
