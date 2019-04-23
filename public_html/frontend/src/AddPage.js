@@ -14,6 +14,7 @@ import AddMissionForm from "./AddForms/AddMissionForm";
 import AddContractorForm from "./AddForms/AddContractorForm";
 import AddProjectForm from "./AddForms/AddProjectForm";
 import AddWorksOnForm from "./AddForms/AddWorksOnForm";
+import AddSuppliesForm from "./AddForms/AddSuppliesForm";
 const styles = {
   dropdown: {
     marginTop: "30px"
@@ -74,7 +75,7 @@ class AddPage extends Component {
     } else if (this.state.formToShow == "PROJECT") {
       return <AddProjectForm workid={this.props.workid} />;
     } else if (this.state.formToShow == "SUPPLIES") {
-      return <p>This is Add Supplies Form</p>;
+      return <AddSuppliesForm workid={this.props.workid} />;
     } else if (this.state.formToShow == "CONTRACTOR") {
       return <AddContractorForm workid={this.props.workid} />;
     } else {

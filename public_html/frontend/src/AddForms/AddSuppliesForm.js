@@ -21,33 +21,40 @@ const styles = theme => ({
   }
 });
 
-class AddMissionForm extends React.Component {
+class AddSuppliesForm extends React.Component {
   state = {
-    mname: "",
-    mlid: ""
+    pid: "",
+    cid: "",
+    budget: ""
   };
 
   componentDidMount() {
     this.forceUpdate();
   }
 
-  handleChangemname = event => {
-    this.setState({ mname: event.target.value });
+  handleChangepid = event => {
+    this.setState({ pid: event.target.value });
   };
 
-  handleChangemlid = event => {
-    this.setState({ mlid: event.target.value });
+  handleChangecid = event => {
+    this.setState({ cid: event.target.value });
+  };
+
+  handleChangebudget = event => {
+    this.setState({ budget: event.target.value });
   };
 
   onClick = async () => {
     console.log({
-      mname: this.state.mname,
-      mlid: this.state.mlid,
+      cid: this.state.cid,
+      pid: this.state.pid,
+      budget: this.state.budget,
       workid: this.props.workid
     });
-    const res = await axios.post("/~mswanso2/addMIS_route.php", {
-      mname: this.state.mname,
-      mlid: this.state.mlid,
+    const res = await axios.post("/~mswanso2/assignCON_route.php", {
+      cid: this.state.cid,
+      pid: this.state.pid,
+      budget: this.state.budget,
       workid: this.props.workid
     });
     console.log(res);
@@ -59,26 +66,33 @@ class AddMissionForm extends React.Component {
     return (
       <Grid>
         <h3 style={{ marginTop: "30px" }}>
-          Please enter the information of the Mission you want to add
+          Please enter the information of the Supplies you want to add
         </h3>
         <div className={classes.container}>
           <FormControl className={classes.formControl} variant="filled">
-            <InputLabel htmlFor="component-filled">Mission Name</InputLabel>
+            <InputLabel htmlFor="component-filled">Contractor id</InputLabel>
             <FilledInput
               id="component-filled"
-              value={this.state.mname}
-              onChange={this.handleChangemname}
+              value={this.state.cid}
+              onChange={this.handleChangecid}
             />
           </FormControl>
           <br />
           <FormControl className={classes.formControl} variant="filled">
-            <InputLabel htmlFor="component-filled">
-              Mission Leader Id
-            </InputLabel>
+            <InputLabel htmlFor="component-filled">Project id</InputLabel>
             <FilledInput
               id="component-filled"
-              value={this.state.mlid}
-              onChange={this.handleChangemlid}
+              value={this.state.pid}
+              onChange={this.handleChangepid}
+            />
+          </FormControl>
+          <br />
+          <FormControl className={classes.formControl} variant="filled">
+            <InputLabel htmlFor="component-filled">budget</InputLabel>
+            <FilledInput
+              id="component-filled"
+              value={this.state.budget}
+              onChange={this.handleChangebudget}
             />
           </FormControl>
           <br />
@@ -96,8 +110,8 @@ class AddMissionForm extends React.Component {
   }
 }
 
-AddMissionForm.propTypes = {
+AddSuppliesForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AddMissionForm);
+export default withStyles(styles)(AddSuppliesForm);
