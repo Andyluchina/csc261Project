@@ -20,16 +20,24 @@ $tablename=$data->tablename;
 
 if($check['TITLE']=='Administrator'){
     $sql="select column_name from information_schema.columns where table_name='$tablename';";
-    $result = $conn->query($sql);
-    if($result==TRUE){
-        $row=$result3->fetch_assoc();
-        $stuff[]=$row;
+    if($tablename==''){
+        $stuff[]=[];
         echo json_encode($stuff);
     }
     else{
+        $result = $conn->query($sql);
+        if($result==TRUE){
+          $row=$result3->fetch_assoc();
+          $stuff[]=$row;
+          echo json_encode($stuff);
+      }
+      else{
         $stuff[]="Error";
         echo json_encode($stuff);
     }
+
+}
+
 }
 
 
