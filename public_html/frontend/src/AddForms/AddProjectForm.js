@@ -21,33 +21,40 @@ const styles = theme => ({
   }
 });
 
-class AddMissionForm extends React.Component {
+class AddProjectForm extends React.Component {
   state = {
-    mname: "",
-    mlid: ""
+    pname: "",
+    mid: "",
+    plid: ""
   };
 
   componentDidMount() {
     this.forceUpdate();
   }
 
-  handleChangemname = event => {
-    this.setState({ mname: event.target.value });
+  handleChangepname = event => {
+    this.setState({ pname: event.target.value });
   };
 
-  handleChangemlid = event => {
-    this.setState({ mlid: event.target.value });
+  handleChangemid = event => {
+    this.setState({ mid: event.target.value });
+  };
+
+  handleChangeplid = event => {
+    this.setState({ plid: event.target.value });
   };
 
   onClick = async () => {
     console.log({
-      mname: this.state.mname,
-      mlid: this.state.mlid,
+      pname: this.state.pname,
+      mid: this.state.mid,
+      plid: this.state.plid,
       workid: this.props.workid
     });
-    const res = await axios.post("/~mswanso2/addMIS_route.php", {
-      mname: this.state.mname,
-      mlid: this.state.mlid,
+    const res = await axios.post("/~mswanso2/addPRJ_route.php", {
+      pname: this.state.pname,
+      mid: this.state.mid,
+      plid: this.state.plid,
       workid: this.props.workid
     });
     console.log(res);
@@ -63,22 +70,31 @@ class AddMissionForm extends React.Component {
         </h3>
         <div className={classes.container}>
           <FormControl className={classes.formControl} variant="filled">
-            <InputLabel htmlFor="component-filled">Mission Name</InputLabel>
+            <InputLabel htmlFor="component-filled">Project Name</InputLabel>
             <FilledInput
               id="component-filled"
-              value={this.state.mname}
-              onChange={this.handleChangemname}
+              value={this.state.pname}
+              onChange={this.handleChangepname}
+            />
+          </FormControl>
+          <br />
+          <FormControl className={classes.formControl} variant="filled">
+            <InputLabel htmlFor="component-filled">Mission Id</InputLabel>
+            <FilledInput
+              id="component-filled"
+              value={this.state.mid}
+              onChange={this.handleChangemid}
             />
           </FormControl>
           <br />
           <FormControl className={classes.formControl} variant="filled">
             <InputLabel htmlFor="component-filled">
-              Mission Leader Id
+              Project Leader Id
             </InputLabel>
             <FilledInput
               id="component-filled"
-              value={this.state.mlid}
-              onChange={this.handleChangemlid}
+              value={this.state.plid}
+              onChange={this.handleChangeplid}
             />
           </FormControl>
           <br />
@@ -96,8 +112,8 @@ class AddMissionForm extends React.Component {
   }
 }
 
-AddMissionForm.propTypes = {
+AddProjectForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AddMissionForm);
+export default withStyles(styles)(AddProjectForm);
