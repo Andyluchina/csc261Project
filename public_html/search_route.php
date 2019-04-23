@@ -5,6 +5,7 @@
 function traverseArray($attributes){
 	$string1="";
 	$num=1;
+	$num2=0;
 
 	foreach($attributes as $key=>$value){
 		
@@ -12,12 +13,21 @@ function traverseArray($attributes){
 			if($value!=''||$value!=NULL){
 				$string1=$string1."$key = '$value'";
 			}
+			else{
+				$num2=1;
+			}
 			$num=0;
 		}
 		else{
 			if($value!=''||$value!=NULL){
-				$string1=$string1." AND ";
-				$string1=$string1."$key = '$value'";
+				if($num2==1){
+					$string1=$string1."$key = '$value'";
+					$num2=0;
+				}
+				else{
+					$string1=$string1." AND ";
+					$string1=$string1."$key = '$value'";
+				}
 			}
 			
 		}
@@ -51,8 +61,6 @@ $attributes=$data->payload;
 
 if($check['TITLE']=='Administrator'){
 	$sql="SELECT * FROM $tablename WHERE ".traverseArray($attributes).";";
-
-
 	$result3 = $conn->query($sql);
 
 
