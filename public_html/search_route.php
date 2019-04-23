@@ -4,6 +4,7 @@
 
 function traverseArray($string,$attributes){
 	$string1="";
+	$check=1;
 	$num=1;
 	$num2=0;
 
@@ -12,6 +13,7 @@ function traverseArray($string,$attributes){
 		if($num==1){
 			if($value!=''||$value!=NULL){
 				$string1=$string1."$key = '$value'";
+				$check=0
 			}
 			else{
 				$num2=1;
@@ -28,12 +30,15 @@ function traverseArray($string,$attributes){
 					$string1=$string1." AND ";
 					$string1=$string1."$key = '$value'";
 				}
+				$check=0
 			}
 			
 		}
 		
 	}
-
+	if($check==1){
+		return "";
+	}
 	return $string.$string1;
 
 }
