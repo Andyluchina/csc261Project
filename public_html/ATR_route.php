@@ -22,21 +22,21 @@ if($check['TITLE']=='Administrator'){
     $sql="select column_name from information_schema.columns where table_name='$tablename';";
 
     echo json_encode($sql);
-    if($tablename==''){
+    /*if($tablename==''){
         echo json_encode($stuff);
     }
     else{
         $result = $conn->query($sql);
         if($result==TRUE){
             $stuff[]=$row;
-          echo json_encode($stuff);
-      }
-      else{
-        $stuff[]="Error";
-        echo json_encode($stuff);
-    }
+            echo json_encode($stuff);
+        }
+        else{
+            $stuff[]="Error";
+            echo json_encode($stuff);
+        }
 
-}
+    }*/
 
 }
 
