@@ -29,7 +29,7 @@ else{
     $result3 = $conn->query($sql);
     $row=$result3->fetch_assoc();
     $num=$row['MAX(PROJ_ID)']+1;
-    $sql= "INSERT INTO PROJECT values('$pname',$num,$mid,$plid);";
+    $sql= "INSERT INTO PROJECT VALUES('$pname',$num,$mid,$plid);";
 
     $result = $conn->query($sql);
     if ($result === TRUE && ($conn->affected_rows > 0)) {
