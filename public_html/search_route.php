@@ -10,10 +10,12 @@ function traverseArray($string,$attributes){
 
 	foreach($attributes as $key=>$value){
 		
+		if($value!=''||$value!=NULL){
+			$check=0;
+		}
 		if($num==1){
 			if($value!=''||$value!=NULL){
 				$string1=$string1."$key = '$value'";
-				$check=0
 			}
 			else{
 				$num2=1;
@@ -30,7 +32,6 @@ function traverseArray($string,$attributes){
 					$string1=$string1." AND ";
 					$string1=$string1."$key = '$value'";
 				}
-				$check=0
 			}
 			
 		}
