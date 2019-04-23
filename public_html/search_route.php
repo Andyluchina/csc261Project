@@ -2,7 +2,7 @@
 //empty values will get default
 
 
-function traverseArray($attributes){
+function traverseArray($string,$attributes){
 	$string1="";
 	$num=1;
 	$num2=0;
@@ -34,7 +34,7 @@ function traverseArray($attributes){
 		
 	}
 
-	return $string1;
+	return $string.$string1;
 
 }
 
@@ -60,7 +60,7 @@ $attributes=$data->payload;
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="SELECT * FROM $tablename WHERE ".traverseArray($attributes).";";
+	$sql="SELECT * FROM $tablename ".traverseArray("WHERE",$attributes).";";
 	$result3 = $conn->query($sql);
 
 
