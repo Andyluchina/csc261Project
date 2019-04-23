@@ -18,9 +18,9 @@ $data=json_decode($json);
 
 $tablename=$data->tablename;
 
-if($check['TITLE']=='Administrator'){
+//if($check['TITLE']=='Administrator'){
     $sql="select column_name from information_schema.columns where table_name='$tablename';";
-
+    $stuff[]=$sql;
     echo json_encode($sql);
     /*if($tablename==''){
         echo json_encode($stuff);
@@ -38,7 +38,7 @@ if($check['TITLE']=='Administrator'){
 
     }*/
 
-}
+//}
 
 
 $conn->close();
