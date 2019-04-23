@@ -44,8 +44,8 @@ $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result1 = $conn->query($sql);
 $check = $result1->fetch_assoc();
 
-$tablename=$data->tableName;
-$attributes=$data->payload->attributes;
+$tablename=$data->tablename;
+$attributes=$data->payload;
 
 
 
