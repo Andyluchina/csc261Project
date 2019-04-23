@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import SimpleTable from "./SimpleTable.js";
+import BasicSearchForm from "./BasicSearchForm";
 const styles = {
   dropdown: {
     marginTop: "30px"
@@ -85,6 +86,10 @@ class ViewPage extends Component {
     }
     return res.data;
   };
+
+  updateSearch = data => {
+    this.setState({ data });
+  };
   render() {
     return (
       <Grid>
@@ -105,6 +110,11 @@ class ViewPage extends Component {
             <DropdownItem onClick={this.onClick}>Supplies</DropdownItem>
           </DropdownMenu>
         </Dropdown>
+        <BasicSearchForm
+          tablename={this.state.tablename}
+          workid={this.props.workid}
+          updateSearch={this.updateSearch}
+        />
         <SimpleTable
           data={this.state.data}
           workid={this.props.workid}
