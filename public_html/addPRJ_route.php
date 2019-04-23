@@ -39,15 +39,16 @@ else{
       $stuff[]="Add not successful.";
       echo json_encode($stuff);
     }
-    else{
-      $string=["NA"];
+  }
+  else{
+    $string=["NA"];
 
-      echo json_encode($string);
-    }
-
+    echo json_encode($string);
   }
 
+}
 
 
-  $conn->close();
-  ?>
+
+$conn->close();
+?>
