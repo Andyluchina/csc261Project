@@ -70,10 +70,11 @@ if($check['TITLE']=='Administrator'){
 	$result3 = $conn->query($sql);
 
 
-	if ($result3 == TRUE ) {
+	if ($result3 == TRUE && (mysql_num_rows($result)!=0)) {
 		while($row=$result3->fetch_assoc()){
  			$stuff[]=$row;
 		}
+
         echo json_encode($stuff);
 	} else {
 		$stuff[]="Data not available.";
