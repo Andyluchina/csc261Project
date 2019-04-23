@@ -28,7 +28,13 @@ else{
         $sql="SELECT PROJ_ID FROM SUPPLIES WHERE PROJ_ID=$pid;";
         $result3 = $conn->query($sql);
         if($result3==TRUE){
-            $sql= "INSERT INTO SUPPLIES VALUES($pid,$cid,NULL);";
+            if($budget==''){
+                $sql= "INSERT INTO SUPPLIES VALUES($pid,$cid,NULL);";
+            }
+            else{
+                $sql= "INSERT INTO SUPPLIES VALUES($pid,$cid,$budget);";
+            }
+            
             $result = $conn->query($sql);
             if ($result == TRUE && ($conn->affected_rows > 0)) {
                 $stuff[]="Succesfully added!";
