@@ -32,7 +32,7 @@ else{
     $sql= "INSERT INTO PROJECT VALUES('$pname',$num,$mid,$plid);";
 
     $result = $conn->query($sql);
-    if ($result === TRUE && ($conn->affected_rows > 0)) {
+    if ($result == TRUE && ($conn->affected_rows > 0)) {
       $stuff[]="Succesfully added!";
       echo json_encode($stuff);
     } else {

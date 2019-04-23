@@ -17,7 +17,7 @@ $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result2 = $conn->query($sql);
 $check = $result2->fetch_assoc();
 
-$wrkid=$data->emp_wrkid;
+$wrkid=$data->emp_id;
 $pid=$data->pid;
 if($wrkid==''||$pid==''){
     $stuff[]="Work_ID and/or project id cannot be empty. Please re-enter.";
