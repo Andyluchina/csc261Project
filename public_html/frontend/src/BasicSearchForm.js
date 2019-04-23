@@ -22,53 +22,46 @@ const styles = theme => ({
 });
 
 class BasicSearchForm extends React.Component {
-  state = {};
+  state = {
+    initialData: {}
+  };
 
-  async componentDidMount() {
-    // if (this.props.tablename === "") {
-    //   return;
-    // }
-    // console.log({
-    //   tablename: this.props.tablename
-    // });
-    // const res = await axios.post("/~mswanso2/ATR_route.php", {
-    //   tablename: this.props.tablename
-    // });
-    // console.log(res.data);
-    // this.setState({
-    //   attributes: res.data
-    // });
-    // var initialData = {};
-    // res.data.forEach(function(element) {
-    //   initialData[element] = "";
-    // });
-    // this.setState({
-    //   args: initialData
-    // });
-    // console.log(this.state);
+  async componentWillMount() {
+    const res = await axios.post("/~mswanso2/ATR_route.php", {
+      tablename: this.state.tablename
+    });
+    console.log(res.data);
+    var initialData = {};
+    res.data.forEach(function(element) {
+      initialData[element] = "";
+    });
+    this.setState({
+      initialData
+    });
   }
 
   handleChange = (item, event) => {
-    var cur = this.props.initialData;
+    var cur = this.state.initialData;
     cur[item] = event.target.value;
-    this.props.setData(cur);
+    this.setState({
+      initialData: cur
+    });
   };
 
   onClick = async () => {
     console.log({
       tablename: this.props.tablename,
       workid: this.props.workid,
-      payload: this.props.initialData
+      payload: this.state.initialData
     });
     const res = await axios.post("/~mswanso2/search_route.php", {
       tablename: this.props.tablename,
       workid: this.props.workid,
-      payload: this.props.initialData
+      payload: this.state.initialData
     });
 
     //alert(res.data);
     console.log("searching");
-    console.log(this.state.args);
     console.log(res);
     this.props.updateSearch(res.data);
   };
@@ -95,7 +88,7 @@ class BasicSearchForm extends React.Component {
                 <InputLabel htmlFor="component-filled">{item}</InputLabel>
                 <FilledInput
                   id="component-filled"
-                  value={this.props.initialData[item]}
+                  value={this.state.initialData[item]}
                   onChange={e => this.handleChange(item, e)}
                 />
               </FormControl>
