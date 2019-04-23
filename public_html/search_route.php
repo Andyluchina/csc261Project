@@ -60,7 +60,7 @@ $attributes=$data->payload;
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="SELECT * FROM $tablename ".traverseArray("WHERE",$attributes).";";
+	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).";";
 	$result3 = $conn->query($sql);
 
 
