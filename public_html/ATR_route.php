@@ -25,7 +25,7 @@ if($tablename==''){
 else{
     $result = $conn->query($sql);
     if($result==TRUE){
-        while($row = $result->fetch_assoc())){
+        while($row = $result->fetch_assoc()){
     $stuff[]=$row;
 }
 
