@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import AddEmployeeForm from "./AddForms/AddEmployeeForm";
 import AddMissionForm from "./AddForms/AddMissionForm";
+import AddContractorForm from "./AddForms/AddContractorForm";
 const styles = {
   dropdown: {
     marginTop: "30px"
@@ -73,7 +74,7 @@ class AddPage extends Component {
     } else if (this.state.formToShow == "SUPPLIES") {
       return <p>This is Add Supplies Form</p>;
     } else if (this.state.formToShow == "CONTRACTOR") {
-      return <p>This is Add Contractor Form</p>;
+      return <AddContractorForm workid={this.props.workid} />;
     } else {
       return <h2>Please Select the category you want to Add</h2>;
     }
