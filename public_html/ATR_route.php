@@ -27,7 +27,8 @@ if($check['TITLE']=='Administrator'){
         echo json_encode($stuff);
     }
     else{
-        print("Error");
+        $stuff[]="Error";
+        echo json_encode($stuff);
     }
 }
 
