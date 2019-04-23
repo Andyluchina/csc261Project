@@ -22,51 +22,48 @@ const styles = theme => ({
 });
 
 class BasicSearchForm extends React.Component {
-  state = {
-    args: {},
-    attributes: []
-  };
+  state = {};
 
-  async componentWillMount() {
-    if (this.props.tablename === "") {
-      return;
-    }
-    console.log({
-      tablename: this.props.tablename
-    });
-    const res = await axios.post("/~mswanso2/ATR_route.php", {
-      tablename: this.props.tablename
-    });
-    console.log(res.data);
-    this.setState({
-      attributes: res.data
-    });
-    var initialData = {};
-    res.data.forEach(function(element) {
-      initialData[element] = "";
-    });
-    this.setState({
-      args: initialData
-    });
-    console.log(this.state);
+  async componentDidMount() {
+    // if (this.props.tablename === "") {
+    //   return;
+    // }
+    // console.log({
+    //   tablename: this.props.tablename
+    // });
+    // const res = await axios.post("/~mswanso2/ATR_route.php", {
+    //   tablename: this.props.tablename
+    // });
+    // console.log(res.data);
+    // this.setState({
+    //   attributes: res.data
+    // });
+    // var initialData = {};
+    // res.data.forEach(function(element) {
+    //   initialData[element] = "";
+    // });
+    // this.setState({
+    //   args: initialData
+    // });
+    // console.log(this.state);
   }
 
   handleChange = (item, event) => {
-    var cur = this.state.args;
+    var cur = this.props.initialData;
     cur[item] = event.target.value;
-    this.setState({ args: cur });
+    this.props.setData(cur);
   };
 
   onClick = async () => {
     console.log({
       tablename: this.props.tablename,
       workid: this.props.workid,
-      payload: this.state.args
+      payload: this.props.initialData
     });
     const res = await axios.post("/~mswanso2/search_route.php", {
       tablename: this.props.tablename,
       workid: this.props.workid,
-      payload: this.state.args
+      payload: this.props.initialData
     });
 
     //alert(res.data);
@@ -88,7 +85,7 @@ class BasicSearchForm extends React.Component {
           Search the {this.props.tablename} Table
         </h3>
         <div className={classes.container}>
-          {this.state.attributes.map(item => {
+          {this.props.attributes.map(item => {
             return (
               <FormControl
                 className={classes.formControl}
@@ -98,7 +95,7 @@ class BasicSearchForm extends React.Component {
                 <InputLabel htmlFor="component-filled">{item}</InputLabel>
                 <FilledInput
                   id="component-filled"
-                  value={this.state.args[item]}
+                  value={this.props.initialData[item]}
                   onChange={e => this.handleChange(item, e)}
                 />
               </FormControl>

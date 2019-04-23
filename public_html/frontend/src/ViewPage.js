@@ -34,7 +34,9 @@ class ViewPage extends Component {
     this.state = {
       dropdownOpen: false,
       tablename: "",
-      data: ["NA"]
+      data: ["NA"],
+      attributes: [],
+      initialData: {}
     };
   }
 
@@ -56,8 +58,26 @@ class ViewPage extends Component {
     this.setState({
       data
     });
-    console.log("the state of the data: ");
-    console.log(data);
+
+    //getting attributes
+    console.log({
+      tablename: this.state.tablename
+    });
+    const res = await axios.post("/~mswanso2/ATR_route.php", {
+      tablename: this.state.tablename
+    });
+    console.log(res.data);
+    this.setState({
+      attributes: res.data
+    });
+    var initialData = {};
+    res.data.forEach(function(element) {
+      initialData[element] = "";
+    });
+    this.setState({
+      initialData
+    });
+    console.log(this.state);
   };
 
   onUpdateData = async tableName => {
@@ -86,7 +106,11 @@ class ViewPage extends Component {
     }
     return res.data;
   };
-
+  setData = data => {
+    this.setState({
+      initialData: data
+    });
+  };
   updateSearch = data => {
     this.setState({ data });
   };
@@ -114,6 +138,9 @@ class ViewPage extends Component {
           tablename={this.state.tablename}
           workid={this.props.workid}
           updateSearch={this.updateSearch}
+          attributes={this.state.attributes}
+          initialData={this.state.initialData}
+          setData={this.setData}
         />
         <SimpleTable
           data={this.state.data}
