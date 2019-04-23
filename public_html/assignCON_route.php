@@ -27,7 +27,7 @@ else{
     if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
         $sql="SELECT PROJ_ID FROM SUPPLIES WHERE PROJ_ID=$pid;";
         $result3 = $conn->query($sql);
-        if($result3!=TRUE && mysql_num_rows($result3)==0){
+        if($result3!=TRUE){
             $sql= "INSERT INTO SUPPLIES VALUES($pid,$cid,NULL);";
             $result = $conn->query($sql);
             if ($result == TRUE && ($conn->affected_rows > 0)) {
