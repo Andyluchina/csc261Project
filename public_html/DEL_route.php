@@ -7,12 +7,17 @@ function traverseArray($sqlString,$data1){
 	$num=1;
 	foreach($data1 as $key=>$value){
 		if($num==1){
-			$string1=$string1."$key = '$value'";
+			if($value!=''||$value!=NULL){
+				$string1=$string1."$key = '$value'";
+			}
 			$num=0;
 		}
 		else{
-			$string1=$string1." AND ";
-			$string1=$string1."$key = '$value'";
+			if($value!=''||$value!=NULL){
+				$string1=$string1." AND ";
+				$string1=$string1."$key = '$value'";
+			}
+			
 		}
 		
 	}
@@ -46,7 +51,6 @@ $payload=$data->payload;
 
 if($check['TITLE']=='Administrator'){
 	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload).";";
-	
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully deleted!";
