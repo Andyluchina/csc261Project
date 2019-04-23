@@ -2,29 +2,45 @@
 //empty values will get default
 
 
-function traverseArray($attributes){
+function traverseArray($string,$attributes){
 	$string1="";
+	$check=1;
 	$num=1;
+	$num2=0;
 
 	foreach($attributes as $key=>$value){
 		
+		if($value!=''||$value!=NULL){
+			$check=0;
+		}
 		if($num==1){
 			if($value!=''||$value!=NULL){
 				$string1=$string1."$key = '$value'";
+			}
+			else{
+				$num2=1;
 			}
 			$num=0;
 		}
 		else{
 			if($value!=''||$value!=NULL){
-				$string1=$string1." AND ";
-				$string1=$string1."$key = '$value'";
+				if($num2==1){
+					$string1=$string1."$key = '$value'";
+					$num2=0;
+				}
+				else{
+					$string1=$string1." AND ";
+					$string1=$string1."$key = '$value'";
+				}
 			}
 			
 		}
 		
 	}
-
-	return $string1;
+	if($check==1){
+		return "";
+	}
+	return $string.$string1;
 
 }
 
@@ -50,16 +66,15 @@ $attributes=$data->payload;
 
 
 if($check['TITLE']=='Administrator'){
-	$sql="SELECT * FROM $tablename WHERE ".traverseArray($attributes).";";
-
-
+	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).";";
 	$result3 = $conn->query($sql);
 
 
-	if ($result3 == TRUE ) {
+	if ($result3 == TRUE && (mysql_num_rows($result3)!=0)) {
 		while($row=$result3->fetch_assoc()){
  			$stuff[]=$row;
 		}
+
         echo json_encode($stuff);
 	} else {
 		$stuff[]="Data not available.";
