@@ -12,17 +12,14 @@ if ($conn->query($sql) === TRUE) {
 $json=file_get_contents('php://input');
 $stuff=array();
 $data=json_decode($json);
-$sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
-$result2 = $conn->query($sql);
-$check = $result2->fetch_assoc();
+
 
 $tablename=$data->tablename;
 
-//if($check['TITLE']=='Administrator'){
     $sql="select column_name from information_schema.columns where table_name='$tablename';";
     $stuff[]=$sql;
     echo json_encode($sql);
-    /*if($tablename==''){
+    if($tablename==''){
         echo json_encode($stuff);
     }
     else{
@@ -36,9 +33,9 @@ $tablename=$data->tablename;
             echo json_encode($stuff);
         }
 
-    }*/
+    }
 
-//}
+
 
 
 $conn->close();
