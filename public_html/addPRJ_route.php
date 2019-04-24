@@ -45,7 +45,7 @@ else{
       }
     }
     else{
-      $stuff[]="Employee not project leader. Either update employee title or use a different employee.";
+      $stuff[]="Add not successful.";
       echo json_encode($stuff);
     }
     
