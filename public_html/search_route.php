@@ -48,13 +48,13 @@ function givePrivaleges($title, $tablename){
 	if($title=='Administrator'){
 		return 1;
 	}
-	else if($title=="Mission Leader" && $tablename!="EMPLOYEE" && $tablename!="WORKS_ON"){
+	else if($title=='Mission Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON'){
 		return 1;
 	}
-	else if($title =="Project Leader" && $tablename!="EMPLOYEE" && $tablename!="WORKS_ON" && $tablename!="MISSION"){
+	else if($title =='Project Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON' && $tablename!='MISSION'){
 		return 1;
 	}
-	else if($title=="Engineer" && $tablename=="EMPLOYEE"){
+	else if(($title=='Engineer' || $title=='Mission Leader'|| $title=='Project Leader') && $tablename=='EMPLOYEE' &&){
 		return 2;
 	}
 	else{
