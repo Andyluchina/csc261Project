@@ -1,7 +1,7 @@
 <?php
 //empty values will get default
 
-
+//god I hate this function
 function traverseArray($num2,$sqlString,$curData1,$prevData2){
 
 	$string1="";
@@ -16,7 +16,15 @@ function traverseArray($num2,$sqlString,$curData1,$prevData2){
 			$value=$prevData2->{'$key'};
 		}
 		if($num==1){
-			$string1=$string1."$key = $value";
+			if($value=='0'){
+				$string1=$string1."$key = 0";
+			}
+			else if($value=='1'){
+				$string1=$string1."$key = 1";
+			}
+			else{
+				$string1=$string1."$key = '$value'";
+			}
 			$num=0;
 		}
 		else{
@@ -26,9 +34,15 @@ function traverseArray($num2,$sqlString,$curData1,$prevData2){
 			else{
 				$string1=$string1." , ";
 			}
-
-			
-			$string1=$string1."$key = $value";
+			if($value=='0'){
+				$string1=$string1."$key = 0";
+			}
+			else if($value=='1'){
+				$string1=$string1."$key = 1";
+			}
+			else{
+				$string1=$string1."$key = '$value'";
+			}
 		}
 		
 	}
