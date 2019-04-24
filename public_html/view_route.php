@@ -7,10 +7,10 @@ function givePrivaleges($title, $tablename){
   else if(($title=='Engineer' || $title=='Mission Leader'|| $title=='Project Leader') && $tablename=='EMPLOYEE' &&){
     return 2;
   }
-  else if($title=='Mission Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON'){
+  else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
     return 1;
   }
-  else if($title =='Project Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON' && $tablename!='MISSION'){
+  else if($title =='Project Leader'&& $tablename!='WORKS_ON' && $tablename!='MISSION'){
     return 1;
   }
   else{
@@ -34,6 +34,7 @@ $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 $result2 = $conn->query($sql);
 $check = $result2->fetch_assoc();
 $tablename=$data->tablename;
+$wrkid=$data->workid;
 
 $privalege=givePrivaleges($check['TITLE'],$tablename);
 
@@ -58,7 +59,7 @@ if($privalege==2){
 }
 elseif($check['TITLE']=='Project Leader'){
 	$sql= "SELECT * FROM ".$data->tablename;
-	if($data->tablename=="MISSION" || $data->tablename=="EMPLOYEE"||$data->tablename=="WORKS_ON"){
+	if($data->tablename=="MISSION" ||$data->tablename=="WORKS_ON"){
        $string=["NA"];
 
        echo json_encode($string);
@@ -76,7 +77,7 @@ elseif($check['TITLE']=='Project Leader'){
 }
 elseif($check['TITLE']=='Mission Leader'){
     $sql= "SELECT * FROM ".$data->tablename;
-    if($data->tablename=="EMPLOYEE"||$data->tablename=="WORKS_ON"){
+    if($data->tablename=="WORKS_ON"){
         $string=["NA"];
 
         echo json_encode($string);
