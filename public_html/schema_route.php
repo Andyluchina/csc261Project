@@ -28,17 +28,14 @@ if ($conn->query($sql) === TRUE) {
 $json=file_get_contents('php://input');
 $schema=array();
 
-$schema[0]=getAttributes("EMPLOYEE")
-$schema[1]=getAttributes("MISSION")
-$schema[2]=getAttributes("PROJECT")
-$schema[3]=getAttributes("WORKS_ON")
-$schema[4]=getAttributes("CONTRACTOR")
-$schema[5]=getAttributes("SUPPLIES")
+$schema["EMPLOYEE"]=getAttributes("EMPLOYEE")
+$schema["MISSION"]=getAttributes("MISSION")
+$schema["PROJECT"]=getAttributes("PROJECT")
+$schema["WORKS_ON"]=getAttributes("WORKS_ON")
+$schema["CONTRACTOR"]=getAttributes("CONTRACTOR")
+$schema["SUPPLIES"]=getAttributes("SUPPLIES")
 
 echo json_encode($schema);
-
-
-
 
 $conn->close();
 ?>
