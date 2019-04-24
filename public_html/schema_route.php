@@ -26,16 +26,15 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $json=file_get_contents('php://input');
-$schema=array();
+$shemaObj->EMPLOYEE=getAttributes("EMPLOYEE");
+$shemaObj->MISSION=getAttributes("MISSION")
+$shemaObj->PROJECT=getAttributes("PROJECT")
+$shemaObj->WORKS_ON=getAttributes("WORKS_ON")
+$shemaObj->CONTRACTOR=getAttributes("CONTRACTOR")
+$shemaObj->SUPPLIES=getAttributes("SUPPLIES")
 
-$schema["EMPLOYEE"]=getAttributes("EMPLOYEE")
-$schema["MISSION"]=getAttributes("MISSION")
-$schema["PROJECT"]=getAttributes("PROJECT")
-$schema["WORKS_ON"]=getAttributes("WORKS_ON")
-$schema["CONTRACTOR"]=getAttributes("CONTRACTOR")
-$schema["SUPPLIES"]=getAttributes("SUPPLIES")
 
-echo json_encode($schema);
+echo json_encode($schemaObj);
 
 $conn->close();
 ?>
