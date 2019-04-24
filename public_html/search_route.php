@@ -70,7 +70,7 @@ if($check['TITLE']=='Administrator'){
 	$result3 = $conn->query($sql);
 
 
-	if ($result3 == TRUE && (mysql_num_rows($result3)!=0)) {
+	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
  			$stuff[]=$row;
 		}
