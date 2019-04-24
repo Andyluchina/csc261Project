@@ -69,7 +69,6 @@ if($check['TITLE']=='Administrator'){
 	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).";";
 	$result3 = $conn->query($sql);
 
-
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
  			$stuff[]=$row;
