@@ -55,10 +55,6 @@ if($privalege==2){
     $stuff[]="Data not available.";
     echo json_encode($stuff);
   }
-
-  $string=["NA"];
-
-  echo json_encode($string);
 }
 elseif($check['TITLE']=='Project Leader'){
 	$sql= "SELECT * FROM ".$data->tablename;
