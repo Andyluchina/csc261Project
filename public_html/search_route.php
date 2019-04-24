@@ -100,7 +100,7 @@ if($privalege==1){
 	}
 }
 else if($privalege==2){
-	$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=$workid;";
+	$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
 	$result3 = $conn->query($sql);
 
 	if ($result3 == TRUE) {
