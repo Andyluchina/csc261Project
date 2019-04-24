@@ -52,7 +52,7 @@ function givePrivaleges($title, $tablename){
 		return 1;
 	}
 	else if($title =="Project Leader" && $tablename!="EMPLOYEE" && $tablename!="WORKS_ON" && $tablename!="MISSION"){
-		return 1
+		return 1;
 	}
 	else if($title=="Engineer" && $tablename=="EMPLOYEE"){
 		return 2;
