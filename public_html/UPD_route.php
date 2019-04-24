@@ -8,8 +8,6 @@ function traverseArray($num2,$sqlString,$curData1,$prevData2){
 	$num=1;
 
 	foreach($curData1 as $key=>$value){
-		$value=checkIfID('$key',$value,$prevData2->{'$key'});
-
 		if($num2==1&&($value==''||$value==NULL)){
 			continue;
 		}
@@ -50,13 +48,6 @@ function traverseArray($num2,$sqlString,$curData1,$prevData2){
 	}
 
 	return $sqlString.$string1;
-
-}
-function checkIfID($string1,$value,$newVal){
-	if($string1=='PROJ_ID'||$string1=='WORK_ID'||$string1=='CONTRACTOR_ID'||$string1=='MISSION_ID'||$string1=='PROJ_ID'){
-		return $value;
-	}
-	return $newVal;
 
 }
 
