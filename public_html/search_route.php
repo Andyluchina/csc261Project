@@ -45,7 +45,7 @@ function traverseArray($string,$attributes){
 
 }
 function givePrivaleges($title, $tablename){
-	if($title=="Administrator"){
+	if($title=='Administrator'){
 		return 1;
 	}
 	else if($title=="Mission Leader" && $tablename!="EMPLOYEE" && $tablename!="WORKS_ON"){
