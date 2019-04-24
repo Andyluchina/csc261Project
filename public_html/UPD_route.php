@@ -90,7 +90,7 @@ $prev=$data->payload->pre;
 $cur=$data->payload->cur;
 $privilages=givePrivaleges($check['TITLE'],$tablename);
 
-if($privilages==1){}
+if($privilages==1){
 	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev)." ".traverseArray(1,"WHERE ",$prev,$prev).";";
 
 
