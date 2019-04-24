@@ -25,7 +25,7 @@ if($pname==''||$mid==''||$plid==''){
 }
 else{
   if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
-    $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=$mlid;";
+    $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=$plid;";
     $result3 = $conn->query($sql);
     $title=$result3->fetch_assoc();
     if($title['TITLE']=="Project Leader"){
