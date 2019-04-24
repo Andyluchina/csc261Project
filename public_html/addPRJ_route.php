@@ -25,20 +25,30 @@ if($pname==''||$mid==''||$plid==''){
 }
 else{
   if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
-    $sql="SELECT MAX(PROJ_ID) FROM PROJECT;";
+    $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=$mlid;";
     $result3 = $conn->query($sql);
-    $row=$result3->fetch_assoc();
-    $num=$row['MAX(PROJ_ID)']+1;
-    $sql= "INSERT INTO PROJECT VALUES('$pname',$num,$mid,$plid);";
+    $title=$result3->fetch_assoc();
+    if($title['TITLE']=="Mission Leader"){
+      $sql="SELECT MAX(PROJ_ID) FROM PROJECT;";
+      $result3 = $conn->query($sql);
+      $row=$result3->fetch_assoc();
+      $num=$row['MAX(PROJ_ID)']+1;
+      $sql= "INSERT INTO PROJECT VALUES('$pname',$num,$mid,$plid);";
 
-    $result = $conn->query($sql);
-    if ($result == TRUE && ($conn->affected_rows > 0)) {
-      $stuff[]="Succesfully added!";
-      echo json_encode($stuff);
-    } else {
-      $stuff[]="Add not successful.";
+      $result = $conn->query($sql);
+      if ($result == TRUE && ($conn->affected_rows > 0)) {
+        $stuff[]="Succesfully added!";
+        echo json_encode($stuff);
+      } else {
+        $stuff[]="Add not successful.";
+        echo json_encode($stuff);
+      }
+    }
+    else{
+      $stuff[]="Employee not project leader. Either update employee title or use a different employee.";
       echo json_encode($stuff);
     }
+    
   }
   else{
     $string=["NA"];
