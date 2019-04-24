@@ -60,8 +60,10 @@ if($check['TITLE']=='Administrator'){
 		echo json_encode($stuff);
 	}
 
-	
-
+}
+else{
+	$stuff[]="NA";
+	echo json_encode($stuff);
 
 }
 
