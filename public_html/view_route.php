@@ -57,43 +57,8 @@ if($privalege==2){
     echo json_encode($stuff);
   }
 }
-elseif($check['TITLE']=='Project Leader'){
+elseif($privalege==1){
 	$sql= "SELECT * FROM ".$data->tablename;
-	if($data->tablename=="MISSION" ||$data->tablename=="WORKS_ON"){
-       $string=["NA"];
-
-       echo json_encode($string);
-   }
-   else{
-
-    $result = $conn->query($sql);
-    while($row = $result->fetch_assoc()){
-        $stuff[]=$row;
-    }
-
-    echo json_encode($stuff);
-}
-
-}
-elseif($check['TITLE']=='Mission Leader'){
-    $sql= "SELECT * FROM ".$data->tablename;
-    if($data->tablename=="WORKS_ON"){
-        $string=["NA"];
-
-        echo json_encode($string);
-    }
-    else{
-
-        $result = $conn->query($sql);
-        while($row = $result->fetch_assoc()){
-            $stuff[]=$row;
-        }
-
-        echo json_encode($stuff);
-    }
-}
-else{
-    $sql= "SELECT * FROM ".$data->tablename;
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()){
        $stuff[]=$row;
@@ -101,6 +66,11 @@ else{
 
    echo json_encode($stuff);
 
+}
+elseif($privalege==0){
+        $string=["NA"];
+
+        echo json_encode($string);
 }
 
 
