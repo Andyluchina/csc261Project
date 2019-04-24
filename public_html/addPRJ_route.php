@@ -28,7 +28,7 @@ else{
     $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=$mlid;";
     $result3 = $conn->query($sql);
     $title=$result3->fetch_assoc();
-    if($title['TITLE']=="Mission Leader"){
+    if($title['TITLE']=="Project Leader"){
       $sql="SELECT MAX(PROJ_ID) FROM PROJECT;";
       $result3 = $conn->query($sql);
       $row=$result3->fetch_assoc();
