@@ -1,14 +1,5 @@
 <?php
-	class schema{
-		$EMPLOYEE=array();
-		function set_employee($array){
-			$this->EMPLOYEE=$array;
-		}
-		function get_employee($array){
-			return $this->EMPLOYEE;
-		}
 
-	}
 
 
 
@@ -47,16 +38,20 @@ $data=json_decode($json);
 
 $shemaObj= new schema();
 
-$tablenames=array();
+$tablenames=array(
+	"EMPLOYEE"=>array()
+
+);
 $tablename='EMPLOYEE';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
 	while($row = $result->fetch_assoc()){
-		$tablenames[]=$row["column_name"];
+		$tablenames["EMPLOYEE"]=$row["column_name"];
 	}
-	$shemaObj->set_employee($tablenames);
-	echo json_encode($shemaObj);
+	
+
+	echo json_encode($tablenames);
 }
 else{
 	$stuff[]="Error";
