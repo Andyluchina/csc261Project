@@ -1,4 +1,17 @@
 <?php
+	class schema{
+		$EMPLOYEE=array();
+		function set_employee($array){
+			$this->EMPLOYEE=$array;
+		}
+		function get_employee($array){
+			return $this->EMPLOYEE;
+		}
+
+	}
+
+
+
 function getAttributes($tablename){
 	$tablenames=array();
 	$sql="select column_name from information_schema.columns where table_name=".$tablename;
@@ -29,6 +42,11 @@ if ($conn->query($sql) === TRUE) {
 $json=file_get_contents('php://input');
 $data=json_decode($json);
 
+
+
+
+$shemaObj= new schema();
+
 $tablenames=array();
 $tablename='EMPLOYEE';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
@@ -37,14 +55,15 @@ if($result==TRUE){
 	while($row = $result->fetch_assoc()){
 		$tablenames[]=$row["column_name"];
 	}
-	echo json_encode("hello");
+	$shemaObj->set_employee($tablenames);
+	echo json_encode($shemaObj);
 }
 else{
 	$stuff[]="Error";
 	echo json_encode($stuff);
 }
 
-$shemaObj->EMPLOYEE=$tablenames;
+
 
 
 
