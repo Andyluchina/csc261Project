@@ -106,11 +106,11 @@ class MainPage extends React.Component {
         </AppBar>
         <Grid>
           <h3>Your info: </h3>
-          <p>{this.props.workerinfo.WORK_ID}</p>
+          <p> Workid: {this.props.workerinfo.WORK_ID}</p>
           <p>
-            {this.props.workerinfo.FNAME} {this.props.workerinfo.LNAME}
+            Name: {this.props.workerinfo.FNAME} {this.props.workerinfo.LNAME}
           </p>
-          <p>{this.props.workerinfo.PHONE_NUM}</p>
+          <p>Phone: {this.props.workerinfo.PHONE_NUM}</p>
         </Grid>
         <Grid container style={styles.content}>
           {this.renderContent()}
