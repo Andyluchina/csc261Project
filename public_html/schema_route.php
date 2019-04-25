@@ -37,6 +37,7 @@ if($result==TRUE){
 	while($row = $result->fetch_assoc()){
 		$tablenames[]=$row["column_name"];
 	}
+	echo json_encode("hello");
 }
 else{
 	$stuff[]="Error";
@@ -55,7 +56,7 @@ $shemaObj->CONTRACTOR=getAttributes('CONTRACTOR');
 $shemaObj->SUPPLIES=getAttributes('SUPPLIES');*/
 
 
-echo json_encode($schemaObj);
+
 
 $conn->close();
 ?>
