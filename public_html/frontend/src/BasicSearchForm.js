@@ -56,7 +56,8 @@ class BasicSearchForm extends React.Component {
     console.log({
       tablename: this.props.tablename,
       workid: this.props.workid,
-      payload: this.state.initialData
+      payload: this.state.initialData,
+      assignable: this.state.assignable
     });
     const res = await axios.post("/~mswanso2/search_route.php", {
       tablename: this.props.tablename,
