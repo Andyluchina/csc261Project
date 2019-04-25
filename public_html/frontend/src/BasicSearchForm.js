@@ -78,6 +78,10 @@ class BasicSearchForm extends React.Component {
     ) {
     } else {
       this.setState({
+        initialData: null,
+        referenceData: null
+      });
+      this.setState({
         initialData: this.props.initialData,
         referenceData: this.props.initialData
       });
