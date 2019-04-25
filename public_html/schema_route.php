@@ -36,21 +36,17 @@ $data=json_decode($json);
 
 
 
-$shemaObj= new schema();
-
-$tablenames=array(
-	"EMPLOYEE"=>array()
-
-);
+$attributes=array();
+$tablenames=array('EMPLOYEE'=>array());
 $tablename='EMPLOYEE';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
 	while($row = $result->fetch_assoc()){
-		$tablenames["EMPLOYEE"]=$row["column_name"];
+		$attributes[]=$row["column_name"]);
 	}
+	$tablenames['EMPLOYEE']=$attributes;
 	
-
 	echo json_encode($tablenames);
 }
 else{
