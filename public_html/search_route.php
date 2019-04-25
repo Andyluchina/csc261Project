@@ -48,7 +48,7 @@ function traverseArray($string,$attributes){
 function checkAssignable($boolean,$tablename){
 	$sqlStr=';'
 	if($boolean && $tablename=='EMPLOYEE'){
-		$sqlStr="AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+		$sqlStr=" AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
 		return $sqlStr;
 	}
 	else{
