@@ -2,6 +2,7 @@
 //empty values will get default
 
 
+
 function traverseArray($string,$attributes){
 	$string1="";
 	$check=1;
@@ -43,6 +44,23 @@ function traverseArray($string,$attributes){
 	return $string.$string1;
 
 }
+function givePrivaleges($title, $tablename){
+	if($title=='Administrator'){
+		return 1;
+	}
+	else if($title=='Mission Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON'){
+		return 1;
+	}
+	else if($title =='Project Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON' && $tablename!='MISSION'){
+		return 1;
+	}
+	else if(($title=='Engineer' || $title=='Mission Leader'|| $title=='Project Leader') && $tablename=='EMPLOYEE'){
+		return 2;
+	}
+	else{
+		return 0;
+	}
+}
 
 require_once('db_setup.php');
 
@@ -62,27 +80,47 @@ $check = $result1->fetch_assoc();
 
 $tablename=$data->tablename;
 $attributes=$data->payload;
+$privalege=givePrivaleges($check['TITLE'],$tablename);
 
-
-
-if($check['TITLE']=='Administrator'){
+if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).";";
 	$result3 = $conn->query($sql);
-
-
-	if ($result3 == TRUE && (mysql_num_rows($result3)!=0)) {
+	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
- 			$stuff[]=$row;
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
 		}
 
-        echo json_encode($stuff);
+		echo json_encode($stuff);
+	} else {
+		$stuff[]="Data not available.";
+		echo json_encode($stuff);
+	}
+}
+else if($privalege==2){
+	$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
+	$result3 = $conn->query($sql);
+
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
+
+		echo json_encode($stuff);
 	} else {
 		$stuff[]="Data not available.";
 		echo json_encode($stuff);
 	}
 
-	
-
+}
+else{
+	$stuff[]="NA";
+	echo json_encode($stuff);
 
 }
 

@@ -27,21 +27,29 @@ if($mlid==''||$mname==''){
 }
 else{
     if($check['TITLE']=='Administrator'){
-        $sql="SELECT MAX(MISSION_ID) FROM MISSION;";
+        $sql="SELECT TITLE FROM EMPLOYEE WHERE WORK_ID=$mlid;";
         $result3 = $conn->query($sql);
-        $row=$result3->fetch_assoc();
-        $num=$row['MAX(MISSION_ID)']+1;
-        $sql= "INSERT INTO MISSION VALUES('$mname',$num,$mlid,TRUE);";
+        $title=$result3->fetch_assoc();
+        if($title['TITLE']=="Mission Leader"){
+            $sql="SELECT MAX(MISSION_ID) FROM MISSION;";
+            $result3 = $conn->query($sql);
+            $row=$result3->fetch_assoc();
+            $num=$row['MAX(MISSION_ID)']+1;
+            $sql= "INSERT INTO MISSION VALUES('$mname',$num,$mlid,TRUE);";
 
-        $result = $conn->query($sql);
-        if ($result == TRUE && ($conn->affected_rows > 0)) {
-            $stuff[]="Succesfully added!";
-            echo json_encode($stuff);
-        } else {
+            $result = $conn->query($sql);
+            if ($result == TRUE && ($conn->affected_rows > 0)) {
+                $stuff[]="Succesfully added!";
+                echo json_encode($stuff);
+            } else {
+                $stuff[]="Add not successful.";
+                echo json_encode($stuff);
+            }
+        }
+        else{
             $stuff[]="Add not successful.";
             echo json_encode($stuff);
         }
-
 
     }
     else{
