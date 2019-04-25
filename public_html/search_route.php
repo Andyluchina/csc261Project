@@ -41,7 +41,7 @@ function traverseArray($string,$attributes,$boolean,$tablename){
 	if($check==1){
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
-	return $string.$string1.checkAssignable($check,$boolean,$tablename);
+	return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
 
 }
 
