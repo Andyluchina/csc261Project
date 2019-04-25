@@ -17,16 +17,14 @@ const styles = {
   }
 };
 class ViewPage extends Component {
-  // async componentWillMount() {
-  //   const res = await axios.post(
-  //     "http://betaweb.csug.rochester.edu/~mswanso2/view_route.php",
-  //     {
-  //       workid: this.props.workid,
-  //       tablename: "MISSION"
-  //     }
-  //   );
-  //   console.log(JSON.parse(res.data));
-  // }
+  async componentWillMount() {
+    const res = await axios.post("/~mswanso2/schema_route.php");
+    console.log(res.data);
+
+    this.setState({
+      schema: res.data
+    });
+  }
   constructor(props) {
     super(props);
 
@@ -36,7 +34,8 @@ class ViewPage extends Component {
       tablename: "",
       data: ["NA"],
       attributes: [],
-      initialData: {}
+      initialData: {},
+      schema: {}
     };
   }
 
@@ -60,21 +59,13 @@ class ViewPage extends Component {
     });
 
     //getting attributes
-    console.log({
-      tablename: this.state.tablename
-    });
-    const res = await axios.post("/~mswanso2/ATR_route.php", {
-      tablename: this.state.tablename
-    });
-    console.log(res.data);
-    this.setState({
-      attributes: res.data
-    });
+    var attr = this.state.schema[this.state.tablename];
     var initialData = {};
-    res.data.forEach(function(element) {
+    attr.forEach(function(element) {
       initialData[element] = "";
     });
     this.setState({
+      attributes: attr,
       initialData
     });
     console.log(this.state);

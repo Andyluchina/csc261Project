@@ -23,20 +23,21 @@ const styles = theme => ({
 
 class BasicSearchForm extends React.Component {
   state = {
-    initialData: {}
+    initialData: {},
+    referenceData: {}
   };
 
-  async componentWillMount() {
-    const res = await axios.post("/~mswanso2/ATR_route.php", {
-      tablename: this.props.tablename
-    });
-    console.log(res.data);
-    var initialData = {};
-    res.data.forEach(function(element) {
-      initialData[element] = "";
-    });
+  componentWillMount() {
+    // console.log(res.data);
+    // var initialData = {};
+    // res.data.forEach(function(element) {
+    //   initialData[element] = "";
+    // });
+    // this.setState({
+    //   initialData
+    // });
     this.setState({
-      initialData
+      referenceData: this.props.initialData
     });
   }
 
@@ -70,6 +71,16 @@ class BasicSearchForm extends React.Component {
 
     if (this.props.tablename === "") {
       return <Grid />;
+    }
+    if (
+      JSON.stringify(this.state.referenceData) ===
+      JSON.stringify(this.props.initialData)
+    ) {
+    } else {
+      this.setState({
+        initialData: this.props.initialData,
+        referenceData: this.props.initialData
+      });
     }
 
     return (
