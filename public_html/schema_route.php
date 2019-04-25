@@ -3,24 +3,6 @@
 
 
 
-function getAttributes($tablename){
-	$tablenames=array();
-	$sql="select column_name from information_schema.columns where table_name=".$tablename;
-	$result = $conn->query($sql);
-	if($result==TRUE){
-		while($row = $result->fetch_assoc()){
-			$tablenames[]=$row["column_name"];
-		}
-	}
-	else{
-		$stuff[]="Error";
-		echo json_encode($stuff);
-	}
-	$conn->close();
-	return $tablenames;
-
-}
-
 require_once('db_setup.php');
 
 $sql = "USE mswanso2_1;";
@@ -36,36 +18,99 @@ $data=json_decode($json);
 
 
 
-$attributes=array();
-$tablenames=array('EMPLOYEE'=>array());
+$tablenames=array('EMPLOYEE'=>array(),'CONTRACTOR'=>array(),'PROJECT'=>array(),'MISSION'=>array(),'WORKS_ON'=>array(),'SUPPLIES'=>array());
 $tablename='EMPLOYEE';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['EMPLOYEE']=$attributes;
-	
-	echo json_encode($tablenames);
+	$tablenames[$tablename]=$attributes;
 }
 else{
 	$stuff[]="Error";
 	echo json_encode($stuff);
 }
 
+$tablename='CONTRACTOR';
+$sql="select column_name from information_schema.columns where table_name='$tablename';";
+$result = $conn->query($sql);
+if($result==TRUE){
+	$attributes=array();
+	while($row = $result->fetch_assoc()){
+		$attributes[]=$row["column_name"];
+	}
+	$tablenames[$tablename]=$attributes;
+	
+}
+else{
+	$stuff[]="Error";
+	echo json_encode($stuff);
+}
+$tablename='PROJECT';
+$sql="select column_name from information_schema.columns where table_name='$tablename';";
+$result = $conn->query($sql);
+if($result==TRUE){
+	$attributes=array();
+	while($row = $result->fetch_assoc()){
+		$attributes[]=$row["column_name"];
+	}
+	$tablenames[$tablename]=$attributes;
+	
+}
+else{
+	$stuff[]="Error";
+	echo json_encode($stuff);
+}
+$tablename='MISSION';
+$sql="select column_name from information_schema.columns where table_name='$tablename';";
+$result = $conn->query($sql);
+if($result==TRUE){
+	$attributes=array();
+	while($row = $result->fetch_assoc()){
+		$attributes[]=$row["column_name"];
+	}
+	$tablenames[$tablename]=$attributes;
+	
+}
+else{
+	$stuff[]="Error";
+	echo json_encode($stuff);
+}
+$tablename='WORKS_ON';
+$sql="select column_name from information_schema.columns where table_name='$tablename';";
+$result = $conn->query($sql);
+if($result==TRUE){
+	$attributes=array();
+	while($row = $result->fetch_assoc()){
+		$attributes[]=$row["column_name"];
+	}
+	$tablenames[$tablename]=$attributes;
+	
+}
+else{
+	$stuff[]="Error";
+	echo json_encode($stuff);
+}
+$tablename='SUPPLIES';
 
-
-
-
-
-/*$shemaObj->MISSION=getAttributes('MISSION');
-$shemaObj->PROJECT=getAttributes('PROJECT');
-$shemaObj->WORKS_ON=getAttributes('WORKS_ON');
-$shemaObj->CONTRACTOR=getAttributes('CONTRACTOR');
-$shemaObj->SUPPLIES=getAttributes('SUPPLIES');*/
-
-
+$sql="select column_name from information_schema.columns where table_name='$tablename';";
+$result = $conn->query($sql);
+if($result==TRUE){
+	$attributes=array();
+	while($row = $result->fetch_assoc()){
+		$attributes[]=$row["column_name"];
+	}
+	$tablenames[$tablename]=$attributes;
+	
+}
+else{
+	$stuff[]="Error";
+	echo json_encode($stuff);
+}
+echo json_encode($tablenames);
 
 
 $conn->close();
