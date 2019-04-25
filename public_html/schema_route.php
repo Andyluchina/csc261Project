@@ -18,16 +18,16 @@ $data=json_decode($json);
 
 
 
-$attributes=array();
 $tablenames=array('EMPLOYEE'=>array(),'CONTRACTOR'=>array(),'PROJECT'=>array(),'MISSION'=>array(),'WORKS_ON'=>array(),'SUPPLIES'=>array());
 $tablename='EMPLOYEE';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['$tablename']=$attributes;
+	$tablenames[$tablename]=$attributes;
 }
 else{
 	$stuff[]="Error";
@@ -38,10 +38,11 @@ $tablename='CONTRACTOR';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['$tablename']=$attributes;
+	$tablenames[$tablename]=$attributes;
 	
 }
 else{
@@ -52,10 +53,11 @@ $tablename='PROJECT';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['$tablename']=$attributes;
+	$tablenames[$tablename]=$attributes;
 	
 }
 else{
@@ -66,10 +68,11 @@ $tablename='MISSION';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['$tablename']=$attributes;
+	$tablenames[$tablename]=$attributes;
 	
 }
 else{
@@ -80,10 +83,11 @@ $tablename='WORKS_ON';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['$tablename']=$attributes;
+	$tablenames[$tablename]=$attributes;
 	
 }
 else{
@@ -95,10 +99,11 @@ $tablename='SUPPLIES';
 $sql="select column_name from information_schema.columns where table_name='$tablename';";
 $result = $conn->query($sql);
 if($result==TRUE){
+	$attributes=array();
 	while($row = $result->fetch_assoc()){
 		$attributes[]=$row["column_name"];
 	}
-	$tablenames['$tablename']=$attributes;
+	$tablenames[$tablename]=$attributes;
 	
 }
 else{
