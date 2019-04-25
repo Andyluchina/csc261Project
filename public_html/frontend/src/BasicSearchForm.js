@@ -10,6 +10,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import axios from "axios";
 const styles = theme => ({
   container: {},
@@ -24,7 +26,8 @@ const styles = theme => ({
 class BasicSearchForm extends React.Component {
   state = {
     initialData: {},
-    referenceData: {}
+    referenceData: {},
+    assignable: false
   };
 
   componentWillMount() {
@@ -58,13 +61,17 @@ class BasicSearchForm extends React.Component {
     const res = await axios.post("/~mswanso2/search_route.php", {
       tablename: this.props.tablename,
       workid: this.props.workid,
-      payload: this.state.initialData
+      payload: this.state.initialData,
+      assignable: this.state.assignable
     });
 
     //alert(res.data);
     console.log("searching");
     console.log(res);
     this.props.updateSearch(res.data);
+  };
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
   };
   render() {
     const { classes } = this.props;
@@ -109,6 +116,16 @@ class BasicSearchForm extends React.Component {
               </FormControl>
             );
           })}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={this.state.assignable}
+                onChange={this.handleChange("assignable")}
+                value="assignable"
+              />
+            }
+            label="assignable"
+          />
           <Button
             variant="outlined"
             color="primary"
