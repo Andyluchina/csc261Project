@@ -1,7 +1,7 @@
 <?php
 function getAttributes($tablename){
 	$tablenames=array();
-	sql="select column_name from information_schema.columns where table_name='$tablename';";
+	sql="select column_name from information_schema.columns where table_name=".$tablename;
 	$result = $conn->query($sql);
 	if($result==TRUE){
 		while($row = $result->fetch_assoc()){
@@ -12,6 +12,7 @@ function getAttributes($tablename){
 		$stuff[]="Error";
 		echo json_encode($stuff);
 	}
+	$conn->close();
 	return $tablenames;
 
 }
