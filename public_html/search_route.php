@@ -39,17 +39,17 @@ function traverseArray($string,$attributes,$boolean,$tablename){
 		
 	}
 	if($check==1){
-		return "".checkAssignable($check,$boolean,$tablename);
+		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	return $string.$string1.checkAssignable($check,$boolean,$tablename);
 
 }
 
-function checkAssignable($boolean,$tablename){
+function checkAssignable($string,$check,$boolean,$tablename){
 	$sqlStr=';';
 	if($boolean && $tablename=='EMPLOYEE'){
 		if($check==1){
-			$sqlStr=" WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+			$sqlStr=$string." WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
 			return $sqlStr;
 		}
 		else{
