@@ -28,7 +28,7 @@ class BasicSearchForm extends React.Component {
 
   async componentWillMount() {
     const res = await axios.post("/~mswanso2/ATR_route.php", {
-      tablename: this.state.tablename
+      tablename: this.props.tablename
     });
     console.log(res.data);
     var initialData = {};
