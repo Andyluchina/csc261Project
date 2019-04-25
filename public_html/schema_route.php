@@ -29,6 +29,7 @@ if ($conn->query($sql) === TRUE) {
 $json=file_get_contents('php://input');
 
 $tablenames=array();
+$tablename='EMPLOYEE';
 $sql="select column_name from information_schema.columns where table_name=".$tablename;
 $result = $conn->query($sql);
 if($result==TRUE){
