@@ -43,7 +43,7 @@ $sql="select column_name from information_schema.columns where table_name='$tabl
 $result = $conn->query($sql);
 if($result==TRUE){
 	while($row = $result->fetch_assoc()){
-		$attributes[]=$row["column_name"]);
+		$attributes[]=$row["column_name"];
 	}
 	$tablenames['EMPLOYEE']=$attributes;
 	
