@@ -3,7 +3,7 @@
 
 
 
-function traverseArray($string,$attributes){
+function traverseArray($string,$attributes,$boolean,$tablename){
 	$string1="";
 	$check=1;
 	$num=1;
@@ -39,17 +39,23 @@ function traverseArray($string,$attributes){
 		
 	}
 	if($check==1){
-		return "";
+		return "".checkAssignable($check,$boolean,$tablename);
 	}
-	return $string.$string1;
+	return $string.$string1.checkAssignable($check,$boolean,$tablename);
 
 }
 
 function checkAssignable($boolean,$tablename){
 	$sqlStr=';';
 	if($boolean && $tablename=='EMPLOYEE'){
-		$sqlStr=" AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
-		return $sqlStr;
+		if($check==1){
+			$sqlStr=" WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+			return $sqlStr;
+		}
+		else{
+			$sqlStr=" AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+			return $sqlStr;
+		}
 	}
 	else{
 		return $sqlStr;
@@ -100,7 +106,7 @@ $boolean=$data->assignable;
 $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
-	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).checkAssignable($boolean,$tablename);
+	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes,$boolean,$tablename);
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
