@@ -71,7 +71,7 @@ class BasicSearchForm extends React.Component {
     console.log(res);
     this.props.updateSearch(res.data);
   };
-  handleChange = name => event => {
+  handleChangecheck = name => event => {
     this.setState({ [name]: event.target.checked });
   };
   render() {
@@ -121,7 +121,7 @@ class BasicSearchForm extends React.Component {
             control={
               <Checkbox
                 checked={this.state.assignable}
-                onChange={this.handleChange("assignable")}
+                onChange={this.handleChangecheck("assignable")}
                 value="assignable"
               />
             }
