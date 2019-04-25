@@ -44,6 +44,24 @@ function traverseArray($string,$attributes){
 	return $string.$string1;
 
 }
+
+function checkAssignable($boolean,$tablename){
+	$sqlStr=';'
+	if($boolean && $tablename=='EMPLOYEE'){
+		$sqlStr="AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+		return $sqlStr;
+	}
+	else{
+		return $sqlStr;
+	}
+
+
+}
+
+
+
+
+
 function givePrivaleges($title, $tablename){
 	if($title=='Administrator'){
 		return 1;
@@ -80,10 +98,11 @@ $check = $result1->fetch_assoc();
 
 $tablename=$data->tablename;
 $attributes=$data->payload;
+$boolean=$data->assignable;
 $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
-	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).";";
+	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes).checkAssignable($boolean,$tablename);
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
