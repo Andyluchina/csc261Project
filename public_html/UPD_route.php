@@ -52,7 +52,7 @@ function canUpdTitle($curStr,$prevStr,$title){
 		return FALSE;
 	}
 	if($title=='Mission Leader' &&(($prevStr=='Engineer'&&$curStr=='Project Leader')||($curStr=='Engineer'&&$prevStr=='Project Leader'))){
-		return TRUE
+		return TRUE;
 	}
 	if($title=='Administrator'){
 		return TRUE;
