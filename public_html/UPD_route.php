@@ -51,7 +51,7 @@ function canUpdTitle($curStr,$prevStr,$title){
 	if($title=='Engineer'||$title=='Project Leader'){
 		return FALSE;
 	}
-	if($title=='Mission Leader' &&(($prevStr=='Engineer'&&$curStr=='Project Leader')||($curStr=='Engineer'&&$prevStr=='Project Leader'))){
+	if($title=='Mission Leader' &&(($prevStr=='Engineer'&& $curStr=='Project Leader')||($curStr=='Engineer'&&$prevStr=='Project Leader'))){
 		return TRUE;
 	}
 	if($title=='Administrator'){
@@ -114,7 +114,7 @@ $privilages=givePrivaleges($check['TITLE'],$tablename);
 
 if($privilages==1){
 	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev,$tablename,$check['TITLE'])." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename,$check['TITLE']).";";
-
+	echo json_encode($sql);
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully updated!";
