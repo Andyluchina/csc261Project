@@ -27,13 +27,13 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 		
 	}
 	if($check==1){
-		if($privalege==3||$privalege==4||$privalege==5){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7){
 			return "".$string.checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	else{
-		if($privalege==3||$privalege==4||$privalege==5){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7){
 		return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
@@ -193,6 +193,42 @@ else if($privalege==4){
 }
 else if($privalege==5){
 	$sql="SELECT * from PROJECT ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
+	$result3 = $conn->query($sql);
+
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
+
+		echo json_encode($stuff);
+	} else {
+		$stuff[]="Data not available.";
+		echo json_encode($stuff);
+	}
+}
+else if($privalege==6){
+	$sql="SELECT * from MISSION where MLEADER_ID=".$data->workid;
+	$result3 = $conn->query($sql);
+
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
+
+		echo json_encode($stuff);
+	} else {
+		$stuff[]="Data not available.";
+		echo json_encode($stuff);
+	}
+}
+else if($privalege==7){
+	$sql="SELECT * from PROJECT WHERE PLEADER_ID=".$data->workid;
 	$result3 = $conn->query($sql);
 
 	if ($result3 == TRUE) {
