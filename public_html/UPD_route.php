@@ -12,8 +12,6 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename){
 			continue;
 		}
 		else if(!isID($key,$tablename)){
-			$stuff[]="Not able to update $sqlString";
-			echo json_encode($stuff);
 			continue;
 		}
 		if($isFirst==1){
