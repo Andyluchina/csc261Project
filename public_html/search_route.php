@@ -154,7 +154,7 @@ else if($privalege==2){
 
 }
 else if($privalege==3){
-	$sql="(SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
+	$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
 	$result3 = $conn->query($sql);
 	echo json_encode($sql);
 
