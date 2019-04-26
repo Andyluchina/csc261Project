@@ -17,10 +17,13 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 		if($isFirst==1){
 			$string1=$string1."$key = '$value'";
 			$isFirst==0;
+			$check=0;
 		}
 		else{
 			$string1=$string1." AND ";
 			$string1=$string1."$key = '$value'";
+			$check=0;
+
 
 
 		}
@@ -133,6 +136,8 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
+	echo json_encode($sql);
+
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
