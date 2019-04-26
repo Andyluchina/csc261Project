@@ -3,7 +3,7 @@
 
 
 
-function traverseArray($string,$attributes,$boolean,$tablename){
+function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 	$string1="";
 	$check=1;
 	$num=1;
@@ -118,7 +118,7 @@ $boolean=$data->assignable;
 $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
-	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes,$boolean,$tablename).';';
+	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
