@@ -80,8 +80,6 @@ function getSQLString($privalege,$wrkID){
   else{
     return $sql;
   }
-
-
 }
 require_once('db_setup.php');
 

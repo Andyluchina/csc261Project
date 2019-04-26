@@ -101,6 +101,58 @@ function givePrivaleges($title, $tablename){
   }
 }
 
+
+function getSQLString($privalege,$srchSTR,$wrkID){
+  $sql='';
+  if($privalege==2){
+    $sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$wrkID;
+    return $sql;
+
+  }
+  else if($privalege==3){
+    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".$srchSTR." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$wrkID.")));";
+    return $sql;
+
+  }
+  else if($privalege==4){
+    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".$srchSTR." WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$wrkID."));";
+    return $sql;
+
+  }
+  else if($privalege==5){
+    $sql="SELECT * from PROJECT ".$srchSTR." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.");";
+    return $sql;
+  }
+  else if($privalege==6){
+    $sql="SELECT * from MISSION WHERE MLEADER_ID=".$wrkID;
+    return $sql;
+  }
+  else if($privalege==7){
+    $sql="SELECT * from PROJECT WHERE PLEADER_ID=".$wrkID;
+    return $sql;
+  }
+  else if($privalege==8){
+    $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$wrkID."));";
+    return $sql;
+  }
+  else if($privalege==9){
+    $sql="SELECT * from CONTRACTOR ".$srchSTR." CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.")));";
+    return $sql;
+
+  }
+  else{
+    return $sql;
+  }
+
+
+}
+
+
+
+
+
+
+
 require_once('db_setup.php');
 
 $sql = "USE mswanso2_1;";
@@ -125,172 +177,27 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
 	//echo json_encode($sql);
-
-	$result3 = $conn->query($sql);
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
 }
-else if($privalege==2){
-	$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$data->workid.';';
-	$result3 = $conn->query($sql);
-
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
-
-}
-else if($privalege==3){
-	$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
-	$result3 = $conn->query($sql);
-
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
-
-}
-else if($privalege==4){
-	$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$data->workid."));";
-	$result3 = $conn->query($sql);
-
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
-}
-else if($privalege==5){
-	$sql="SELECT * from PROJECT ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
-	$result3 = $conn->query($sql);
-
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
-}
-else if($privalege==6){
-	$sql="SELECT * from MISSION where MLEADER_ID=".$data->workid;
-	$result3 = $conn->query($sql);
-
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
-}
-else if($privalege==7){
-	$sql="SELECT * from PROJECT WHERE PLEADER_ID=".$data->workid;
-	$result3 = $conn->query($sql);
-
-	if ($result3 == TRUE) {
-		while($row=$result3->fetch_assoc()){
-			$stuff[]=$row;
-		}
-		if(empty($stuff)){
-			$stuff[]="Data not available.";
-		}
-
-		echo json_encode($stuff);
-	} else {
-		$stuff[]="Data not available.";
-		echo json_encode($stuff);
-	}
-}
-else if($privalege==9){
-  $sql="SELECT * from CONTRACTOR ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.")));";
-  $result3 = $conn->query($sql);
-  if ($result3 == TRUE) {
-    while($row=$result3->fetch_assoc()){
-      $stuff[]=$row;
-    }
-    if(empty($stuff)){
-      $stuff[]="Data not available.";
-    }
-
-    echo json_encode($stuff);
-  } else {
-    $stuff[]="Data not available.";
-    echo json_encode($stuff);
-  }
-}
-else if($privalege==8){
-  $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$data->workid."));";
-  $result3 = $conn->query($sql);
-  if ($result3 == TRUE) {
-    while($row=$result3->fetch_assoc()){
-      $stuff[]=$row;
-    }
-    if(empty($stuff)){
-      $stuff[]="Data not available.";
-    }
-
-    echo json_encode($stuff);
-  } else {
-    $stuff[]="Data not available.";
-    echo json_encode($stuff);
-  }
-}
-else{
+else if($privalege==0){
 	$stuff[]="Data not available.";
 	echo json_encode($stuff);
-
 }
+$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
 
+$result3 = $conn->query($sql);
+if ($result3 == TRUE) {
+	while($row=$result3->fetch_assoc()){
+		$stuff[]=$row;
+	}
+	if(empty($stuff)){
+		$stuff[]="Data not available.";
+	}
+
+	echo json_encode($stuff);
+} else {
+	$stuff[]="Data not available.";
+	echo json_encode($stuff);
+}
 
 
 $conn->close();
