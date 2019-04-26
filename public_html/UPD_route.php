@@ -14,9 +14,9 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename,$titl
 		else if(!isID($key,$tablename)){
 			continue;
 		}
-		/*else if(!canUpdTitle($curData1['TITLE'],$prevData2['TITLE'],$title)){
+		else if(!canUpdTitle($value,$prevData2->{'$key'},$title)){
 			continue;
-		}*/
+		}
 		if($isFirst==1){
 			$string1=$string1."$key = "."'".returnBool($value)."'";
 			$isFirst=0;
@@ -51,13 +51,10 @@ function canUpdTitle($curStr,$prevStr,$title){
 	if($title=='Engineer'||$title=='Project Leader'){
 		return FALSE;
 	}
-	if($title=='Mission Leader' &&(($prevStr=='Engineer'&& $curStr=='Project Leader')||($curStr=='Engineer'&&$prevStr=='Project Leader'))){
-		return TRUE;
+	if($title=='Mission Leader' && ((($prevStr=='Administrator'||$prevStr=='Mission Leader')||($curStr=='Administrator'||$curStr=='Mission Leader'))){
+		return FALSE;
 	}
-	if($title=='Administrator'){
-		return TRUE;
-	}
-	return FALSE;
+	return TRUE;
 
 }
 //if string is 0 or 1 it returns the int value of those for database. If its neither it just returns the given string.
