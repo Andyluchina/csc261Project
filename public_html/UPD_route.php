@@ -11,7 +11,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename){
 		if($isWhere==1 &&($value==''||$value==NULL)){
 			continue;
 		}
-		else if(!isID($sqlString,$tablename)){
+		else if(!isID($key,$tablename)){
 			$stuff[]="Not able to update $sqlString";
 			echo json_encode($stuff);
 			continue;
@@ -35,11 +35,11 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename){
 	return $sqlString.$string1;
 }
 
-function isID($sqlStr,$tablename){
-	if($sqlStr=='MISSION_ID'&&$tablename=='PROJECT'){
+function isID($atrStr,$tablename){
+	if($atrStr=='MISSION_ID'&&$tablename=='PROJECT'){
 		return TRUE;
 	}
-	if($sqlStr=='WORK_ID'||$sqlStr=='PROJ_ID'||$sqlStr=='MISSION_ID'||$sqlStr=='CONTRACTOR_ID'){
+	if($atrStr=='WORK_ID'||$atrStr=='PROJ_ID'||$atrStr=='MISSION_ID'||$atrStr=='CONTRACTOR_ID'){
 		return FALSE;
 	}
 	return TRUE;
