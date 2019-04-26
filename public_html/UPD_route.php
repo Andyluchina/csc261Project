@@ -2,7 +2,7 @@
 //empty values will get default
 
 //god I hate this function
-function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename){
+function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename,$title){
 
 	$string1="";
 	$isFirst=1;
@@ -12,6 +12,9 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename){
 			continue;
 		}
 		else if(!isID($key,$tablename)){
+			continue;
+		}
+		else if(!canUpdTitle($curData1['TITLE'],$prevData2['TITLE'],$title)){
 			continue;
 		}
 		if($isFirst==1){
@@ -43,9 +46,20 @@ function isID($atrStr,$tablename){
 	return TRUE;
 
 }
-//function checkTitle(){
+function canUpdTitle($curStr,$prevStr,$title){
 
-//}
+	if($title=='Engineer'||$title=='Project Leader'){
+		return FALSE;
+	}
+	if($title=='Mission Leader' &&(($prevStr=='Engineer'&&$curStr=='Project Leader')||($curStr=='Engineer'&&$prevStr=='Project Leader'))){
+		return TRUE
+	}
+	if($title=='Administrator'){
+		return TRUE;
+	}
+	return FALSE;
+
+}
 //if string is 0 or 1 it returns the int value of those for database. If its neither it just returns the given string.
 function returnBool($numStr){
 	if($numStr=='0'){
@@ -99,7 +113,7 @@ $cur=$data->payload->cur;
 $privilages=givePrivaleges($check['TITLE'],$tablename);
 
 if($privilages==1){
-	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev,$tablename)." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename).";";
+	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev,$tablename,$check['TITLE'])." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename,$check['TITLE']).";";
 
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
