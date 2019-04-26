@@ -45,7 +45,7 @@ function traverseArray($string,$attributes,$boolean,$tablename){
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	if($privalege==3){
-		return $string.$string1." AND "checkAssignable($string,$check,$boolean,$tablename);
+		return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
 
