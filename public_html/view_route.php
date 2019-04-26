@@ -13,6 +13,15 @@ function givePrivaleges($title, $tablename){
   else if($title=='Project Leader' && $tablename=='EMPLOYEE'){
     return 4;
   }
+  else if($title=='Project Leader' && $tablename=='PROJECT'){
+    return 7;
+  }
+  else if($title=='Mission Leader' && $tablename=='PROJECT'){
+    return 5;
+  }
+  else if($title=='Mission Leader' && $tablename=='MISSION'){
+    return 6;
+  }
   else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
     return 1;
   }
@@ -98,6 +107,57 @@ else if($privalege==4){
     echo json_encode($stuff);
   }
 
+}
+else if($privalege==5){
+  $sql="SELECT * from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid;
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
+}
+else if($privalege==6){
+  $sql="SELECT * from MISSION WHERE MLEADER_ID=".$data->workid;
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
+}
+else if($privalege==7){
+  $sql="SELECT * from PROJECT WHERE PLEADER_ID=".$data->workid;
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
 }
 else if($privalege==1){
 	$sql= "SELECT * FROM ".$data->tablename;
