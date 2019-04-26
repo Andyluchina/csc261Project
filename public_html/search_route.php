@@ -27,13 +27,13 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 		
 	}
 	if($check==1){
-		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
 			return "".$string.checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	else{
-		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
 		return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
@@ -61,7 +61,7 @@ function checkAssignable($string,$check,$boolean,$tablename){
 
 
 
-
+//I hate this
 function givePrivaleges($title, $tablename){
   if($title=='Administrator'){
     return 1;
@@ -78,11 +78,17 @@ function givePrivaleges($title, $tablename){
   else if($title=='Project Leader' && $tablename=='PROJECT'){
     return 7;
   }
+  else if($title=='Project Leader' && $tablename=='CONTRACTOR'){
+    return 8;
+  }
   else if($title=='Mission Leader' && $tablename=='PROJECT'){
     return 5;
   }
   else if($title=='Mission Leader' && $tablename=='MISSION'){
     return 6;
+  }
+  else if($title=='Mission Leader' && $tablename=='CONTRACTOR'){
+    return 9;
   }
   else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
     return 1;
@@ -244,6 +250,40 @@ else if($privalege==7){
 		$stuff[]="Data not available.";
 		echo json_encode($stuff);
 	}
+}
+else if($privalege==9){
+  $sql="SELECT * from CONTRACTOR ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");"
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
+}
+else if($privalege==8){
+  $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$data->workid.");".$data->workid;
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
 }
 else{
 	$stuff[]="NA";
