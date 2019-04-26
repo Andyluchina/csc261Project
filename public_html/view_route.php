@@ -109,7 +109,8 @@ else if($privalege==4){
 
 }
 else if($privalege==5){
-  $sql="SELECT * from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid;
+  $sql="SELECT * from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
+  echo json_encode($sql);
   $result3 = $conn->query($sql);
   if ($result3 == TRUE) {
     while($row=$result3->fetch_assoc()){
