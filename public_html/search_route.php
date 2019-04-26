@@ -6,15 +6,29 @@
 function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 	$string1="";
 	$check=1;
-	$num=1;
+	$isFirst=1;
 	$num2=0;
 
 	foreach($attributes as $key=>$value){
+		if($value==''||$value==NULL){
+			continue;
+		}
+
+		if($isFirst==1){
+			$string1=$string1."$key = '$value'";
+			$isFirst==0;
+		}
+		else{
+			$string1=$string1." AND ";
+			$string1=$string1."$key = '$value'";
+
+
+		}
 		
-		if($value!=''||$value!=NULL){
+		/*if($value!=''||$value!=NULL){
 			$check=0;
 		}
-		if($num==1){
+		if($isFirst==1){
 			if($value!=''||$value!=NULL){
 				$string1=$string1."$key = '$value'";
 			}
@@ -35,7 +49,7 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 				}
 			}
 			
-		}
+		}*/
 		
 	}
 	if($check==1){
