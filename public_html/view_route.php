@@ -167,7 +167,7 @@ else if($privalege==7){
   }
 }
 else if($privalege==9){
-  $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
+  $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.")));";
   $result3 = $conn->query($sql);
   if ($result3 == TRUE) {
     while($row=$result3->fetch_assoc()){
@@ -184,7 +184,7 @@ else if($privalege==9){
   }
 }
 else if($privalege==8){
-  $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$data->workid.");";
+  $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$data->workid."));";
   $result3 = $conn->query($sql);
   if ($result3 == TRUE) {
     while($row=$result3->fetch_assoc()){
