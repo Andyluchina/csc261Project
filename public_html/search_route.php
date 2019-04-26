@@ -67,21 +67,27 @@ function checkAssignable($string,$check,$boolean,$tablename){
 
 
 function givePrivaleges($title, $tablename){
-	if($title=='Administrator'){
-		return 1;
-	}
-	else if($title=='Mission Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON'){
-		return 1;
-	}
-	else if($title =='Project Leader' && $tablename!='EMPLOYEE' && $tablename!='WORKS_ON' && $tablename!='MISSION'){
-		return 1;
-	}
-	else if(($title=='Engineer' || $title=='Mission Leader'|| $title=='Project Leader') && $tablename=='EMPLOYEE'){
-		return 2;
-	}
-	else{
-		return 0;
-	}
+  if($title=='Administrator'){
+    return 1;
+  }
+  else if($title=='Engineer' && $tablename=='EMPLOYEE'){
+    return 2;
+  }
+  else if($title=='Mission Leader' && $tablename=='EMPLOYEE'){
+    return 3;
+  }
+  else if($title=='Project Leader' && $tablename=='EMPLOYEE'){
+    return 4;
+  }
+  else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
+    return 1;
+  }
+  else if($title =='Project Leader'&& $tablename!='WORKS_ON' && $tablename!='MISSION'){
+    return 1;
+  }
+  else{
+    return 0;
+  }
 }
 
 require_once('db_setup.php');

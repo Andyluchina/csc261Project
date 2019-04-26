@@ -64,6 +64,21 @@ if($privalege==2){
   }
 }
 else if($privalege==3){
+  $sql="SELECT FNAME,MI,LNAME FROM EMPLOYEE WHERE WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
+
 
 }
 else if($privalege==4){
