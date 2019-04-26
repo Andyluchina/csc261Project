@@ -2,13 +2,18 @@
 //empty values will get default
 
 //god I hate this function
-function traverseArray($isWhere,$sqlString,$curData1,$prevData2){
+function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename){
 
 	$string1="";
 	$isFirst=1;
 
 	foreach($curData1 as $key=>$value){
 		if($isWhere==1 &&($value==''||$value==NULL)){
+			continue;
+		}
+		else if(!isID($sqlString,$tablename)){
+			$stuff[]="Not able to update $sqlString";
+			echo json_encode($stuff);
 			continue;
 		}
 		if($isFirst==1){
@@ -28,8 +33,21 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2){
 	}
 
 	return $sqlString.$string1;
+}
+
+function isID($sqlStr,$tablename){
+	if($sqlStr=='MISSION_ID'&&$tablename=='PROJECT'){
+		return TRUE;
+	}
+	if($sqlStr=='WORK_ID'||$sqlStr=='PROJ_ID'||$sqlStr=='MISSION_ID'||$sqlStr=='CONTRACTOR_ID'){
+		return FALSE;
+	}
+	return TRUE;
 
 }
+//function checkTitle(){
+
+//}
 //if string is 0 or 1 it returns the int value of those for database. If its neither it just returns the given string.
 function returnBool($numStr){
 	if($numStr=='0'){
@@ -83,7 +101,7 @@ $cur=$data->payload->cur;
 $privilages=givePrivaleges($check['TITLE'],$tablename);
 
 if($privilages==1){
-	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev)." ".traverseArray(1,"WHERE ",$prev,$prev).";";
+	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev,$tablename)." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename).";";
 
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
@@ -96,7 +114,7 @@ if($privilages==1){
 
 }
 else if($privilages==2){
-	$sql="UPDATE EMPLOYEE ".traverseArray(0,"SET ",$cur,$prev)." ".traverseArray(1,"WHERE ",$prev,$prev).";";
+	$sql="UPDATE EMPLOYEE ".traverseArray(0,"SET ",$cur,$prev,$tablename)." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename).";";
 
 
 	$result3 = $conn->query($sql);
