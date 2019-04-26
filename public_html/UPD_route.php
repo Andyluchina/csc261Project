@@ -13,7 +13,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2){
 		}
 
 		//if($value==$prevData2->{'$key'}){
-			//$value=$prevData2->{'$key'};
+		//	$value=$prevData2->{'$key'};
 		//}
 		if($isFirst==1){
 			$string1=$string1."$key = ".returnBool($value);
@@ -88,7 +88,7 @@ $privilages=givePrivaleges($check['TITLE'],$tablename);
 
 if($privilages==1){
 	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev)." ".traverseArray(1,"WHERE ",$prev,$prev).";";
-
+	echo json_encode($sql);
 
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
