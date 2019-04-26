@@ -46,14 +46,14 @@ function traverseArray($string,$attributes,$boolean,$tablename){
 }
 
 function checkAssignable($string,$check,$boolean,$tablename){
-	$sqlStr=';';
+	$sqlStr='';
 	if($boolean && $tablename=='EMPLOYEE'){
 		if($check==1){
-			$sqlStr=$string." WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+			$sqlStr=$string." WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON)";
 			return $sqlStr;
 		}
 		else{
-			$sqlStr=" AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON);";
+			$sqlStr=" AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON)";
 			return $sqlStr;
 		}
 	}
@@ -112,7 +112,7 @@ $boolean=$data->assignable;
 $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
-	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes,$boolean,$tablename);
+	$sql="SELECT * FROM $tablename ".traverseArray("WHERE ",$attributes,$boolean,$tablename).';';
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
@@ -129,7 +129,7 @@ if($privalege==1){
 	}
 }
 else if($privalege==2){
-	$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
+	$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$data->workid.';';
 	$result3 = $conn->query($sql);
 
 	if ($result3 == TRUE) {
@@ -145,6 +145,28 @@ else if($privalege==2){
 		$stuff[]="Data not available.";
 		echo json_encode($stuff);
 	}
+
+}
+else if($privalege==3){
+	"SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID ".traverseArray("WHERE ",$attributes,FALSE,$tablename)." in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));"
+	$result3 = $conn->query($sql);
+
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
+
+		echo json_encode($stuff);
+	} else {
+		$stuff[]="Data not available.";
+		echo json_encode($stuff);
+	}
+
+}
+else if($privalege==4){
 
 }
 else{
