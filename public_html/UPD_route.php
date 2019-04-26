@@ -14,9 +14,9 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename,$titl
 		else if(!isID($key,$tablename)){
 			continue;
 		}
-		else if(!canUpdTitle($curData1['TITLE'],$prevData2['TITLE'],$title)){
+		/*else if(!canUpdTitle($curData1['TITLE'],$prevData2['TITLE'],$title)){
 			continue;
-		}
+		}*/
 		if($isFirst==1){
 			$string1=$string1."$key = "."'".returnBool($value)."'";
 			$isFirst=0;
