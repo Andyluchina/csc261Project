@@ -39,12 +39,12 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 		
 	}
 	if($check==1){
-		if($privalege==3){
+		if($privalege==3||$privalege==4){
 			return "".$string.checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
-	if($privalege==3){
+	if($privalege==3||$privalege==4){
 		return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
@@ -174,6 +174,23 @@ else if($privalege==3){
 
 }
 else if($privalege==4){
+	$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$data->workid."));";
+	$result3 = $conn->query($sql);
+	//echo json_encode($sql);
+
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
+
+		echo json_encode($stuff);
+	} else {
+		$stuff[]="Data not available.";
+		echo json_encode($stuff);
+	}
 
 }
 else{
