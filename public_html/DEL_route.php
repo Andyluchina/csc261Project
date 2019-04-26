@@ -62,7 +62,7 @@ if($check['TITLE']=='Administrator'){
 
 }
 else{
-	$stuff[]="NA";
+	$stuff[]="Delete not successful.";
 	echo json_encode($stuff);
 
 }

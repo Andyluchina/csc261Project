@@ -286,7 +286,7 @@ else if($privalege==8){
   }
 }
 else{
-	$stuff[]="NA";
+	$stuff[]="Data not available.";
 	echo json_encode($stuff);
 
 }

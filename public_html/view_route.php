@@ -39,6 +39,25 @@ function givePrivaleges($title, $tablename){
   }
 }
 
+function getData($sql){
+  $result3 = $conn->query($sql);
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
+}
+
+
+
 require_once('db_setup.php');
 
 $sql = "USE mswanso2_1;";
@@ -62,7 +81,8 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==2){
   $sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$data->workid;
-  $result3 = $conn->query($sql);
+  getData($sql);
+  /*$result3 = $conn->query($sql);
 
   if ($result3 == TRUE) {
     while($row=$result3->fetch_assoc()){
@@ -76,7 +96,7 @@ if($privalege==2){
   } else {
     $stuff[]="Data not available.";
     echo json_encode($stuff);
-  }
+  }*/
 }
 else if($privalege==3){
   $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
@@ -211,7 +231,7 @@ else if($privalege==1){
 
 }
 else if($privalege==0){
-        $string=["NA"];
+        $string=["Data not available."];
 
         echo json_encode($string);
 }

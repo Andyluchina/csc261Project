@@ -137,7 +137,7 @@ else if($privilages==2){
 
 }
 else{
-	$stuff[]="NA";
+	$stuff[]="Update not successful.";
 	echo json_encode($stuff);
 
 }
