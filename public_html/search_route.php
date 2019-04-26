@@ -148,8 +148,9 @@ else if($privalege==2){
 
 }
 else if($privalege==3){
-	"SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE ".traverseArray("WHERE ",$attributes,FALSE,$tablename)." in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
+	$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE ".traverseArray("WHERE ",$attributes,FALSE,$tablename)." in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$data->workid.")));";
 	$result3 = $conn->query($sql);
+	echo json_encode($sql);
 
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
