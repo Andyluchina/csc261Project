@@ -16,7 +16,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2){
 		//	$value=$prevData2->{'$key'};
 		//}
 		if($isFirst==1){
-			$string1=$string1."$key = ".returnBool($value);
+			$string1=$string1."$key = "."'".returnBool($value)."'";
 			$isFirst=0;
 		}
 		else{
