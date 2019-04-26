@@ -26,7 +26,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2){
 			else{
 				$string1=$string1." , "; 
 			}
-			$string1=$string1."$key = ".returnBool($value);
+			$string1=$string1."$key = "."'".returnBool($value)."'";
 		}
 		
 	}
