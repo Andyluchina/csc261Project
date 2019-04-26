@@ -2,53 +2,49 @@
 //empty values will get default
 
 //god I hate this function
-function traverseArray($num2,$sqlString,$curData1,$prevData2){
+function traverseArray($isWhere,$sqlString,$curData1,$prevData2){
 
 	$string1="";
-	$num=1;
+	$isFirst=1;
 
 	foreach($curData1 as $key=>$value){
-		if($num2==1&&($value==''||$value==NULL)){
+		if($isWhere==1 &&($value==''||$value==NULL)){
 			continue;
 		}
 
-		if($value==$prevData2->{'$key'}){
-			$value=$prevData2->{'$key'};
-		}
-		if($num==1){
-			if($value=='0'){
-				$string1=$string1."$key = 0";
-			}
-			else if($value=='1'){
-				$string1=$string1."$key = 1";
-			}
-			else{
-				$string1=$string1."$key = '$value'";
-			}
-			$num=0;
+		//if($value==$prevData2->{'$key'}){
+			//$value=$prevData2->{'$key'};
+		//}
+		if($isFirst==1){
+			$string1=$string1."$key = ".returnBool($value);
+			$isFirst=0;
 		}
 		else{
-			if($num2==1){
+			if($isWhere==1){
 				$string1=$string1." AND ";
 			}
 			else{
-				$string1=$string1." , ";
+				$string1=$string1." , "; 
 			}
-			if($value=='0'){
-				$string1=$string1."$key = 0";
-			}
-			else if($value=='1'){
-				$string1=$string1."$key = 1";
-			}
-			else{
-				$string1=$string1."$key = '$value'";
-			}
+			$string1=$string1."$key = ".returnBool($value);
 		}
 		
 	}
 
 	return $sqlString.$string1;
 
+}
+//if string is 0 or 1 it returns the int value of those for database. If its neither it just returns the given string.
+function returnBool($numStr){
+	if($numStr=='0'){
+		return 0;
+	}
+	else if($numStr=='1'){
+		return 1;
+	}
+	else{
+		return $numStr;
+	}
 }
 
 function givePrivaleges($title, $tablename){
