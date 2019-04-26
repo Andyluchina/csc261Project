@@ -75,6 +75,15 @@ function givePrivaleges($title, $tablename){
   else if($title=='Project Leader' && $tablename=='EMPLOYEE'){
     return 4;
   }
+  else if($title=='Project Leader' && $tablename=='PROJECT'){
+    return 7;
+  }
+  else if($title=='Mission Leader' && $tablename=='PROJECT'){
+    return 5;
+  }
+  else if($title=='Mission Leader' && $tablename=='MISSION'){
+    return 6;
+  }
   else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
     return 1;
   }
@@ -166,6 +175,24 @@ else if($privalege==3){
 }
 else if($privalege==4){
 	$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$data->workid."));";
+	$result3 = $conn->query($sql);
+
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
+
+		echo json_encode($stuff);
+	} else {
+		$stuff[]="Data not available.";
+		echo json_encode($stuff);
+	}
+}
+else if($privalege==5){
+	$sql="SELECT * from PROJECT where".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
 	$result3 = $conn->query($sql);
 
 	if ($result3 == TRUE) {
