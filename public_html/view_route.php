@@ -4,8 +4,14 @@ function givePrivaleges($title, $tablename){
   if($title=='Administrator'){
     return 1;
   }
-  else if(($title=='Engineer' || $title=='Mission Leader'|| $title=='Project Leader') && $tablename=='EMPLOYEE'){
+  else if($title=='Engineer' && $tablename=='EMPLOYEE'){
     return 2;
+  }
+  else if($title=='Mission Leader' && $tablename=='EMPLOYEE'){
+    return 3;
+  }
+  else if($title=='Project Leader' && $tablename=='EMPLOYEE'){
+    return 4;
   }
   else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
     return 1;
@@ -57,7 +63,27 @@ if($privalege==2){
     echo json_encode($stuff);
   }
 }
-elseif($privalege==1){
+else if($privalege==3){
+
+}
+else if($privalege==4){
+  $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=$data->workid));"
+  if ($result3 == TRUE) {
+    while($row=$result3->fetch_assoc()){
+      $stuff[]=$row;
+    }
+    if(empty($stuff)){
+      $stuff[]="Data not available.";
+    }
+
+    echo json_encode($stuff);
+  } else {
+    $stuff[]="Data not available.";
+    echo json_encode($stuff);
+  }
+
+}
+else if($privalege==1){
 	$sql= "SELECT * FROM ".$data->tablename;
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()){
@@ -67,7 +93,7 @@ elseif($privalege==1){
    echo json_encode($stuff);
 
 }
-elseif($privalege==0){
+else if($privalege==0){
         $string=["NA"];
 
         echo json_encode($string);
