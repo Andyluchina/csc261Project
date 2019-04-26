@@ -192,7 +192,7 @@ else if($privalege==4){
 	}
 }
 else if($privalege==5){
-	$sql="SELECT * from PROJECT where".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
+	$sql="SELECT * from PROJECT ".traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename)." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$data->workid.");";
 	$result3 = $conn->query($sql);
 
 	if ($result3 == TRUE) {

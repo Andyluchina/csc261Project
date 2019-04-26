@@ -37,7 +37,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename,$titl
 }
 
 function isID($atrStr,$tablename){
-	if($atrStr=='MISSION_ID'&&$tablename=='PROJECT'){
+	if(($atrStr=='MISSION_ID'&& $tablename=='PROJECT') || ($atrStr=='PROJ_ID'&& $tablename=='WORKS_ON') || (($atrStr=='PROJ_ID'||$atrStr=='CONTRACTOR_ID')&& $tablename=='SUPPLIES')){
 		return TRUE;
 	}
 	if($atrStr=='WORK_ID'||$atrStr=='PROJ_ID'||$atrStr=='MISSION_ID'||$atrStr=='CONTRACTOR_ID'){
