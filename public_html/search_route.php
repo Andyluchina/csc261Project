@@ -176,25 +176,29 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
-	//echo json_encode($sql);
 }
-else if($privalege==0){
-	$stuff[]="Data not available.";
-	echo json_encode($stuff);
+else{
+	$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
 }
-$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
+if($privalege!=0){
+	$result3 = $conn->query($sql);
+	if ($result3 == TRUE) {
+		while($row=$result3->fetch_assoc()){
+			$stuff[]=$row;
+		}
+		if(empty($stuff)){
+			$stuff[]="Data not available.";
+		}
 
-$result3 = $conn->query($sql);
-if ($result3 == TRUE) {
-	while($row=$result3->fetch_assoc()){
-		$stuff[]=$row;
-	}
-	if(empty($stuff)){
+		echo json_encode($stuff);
+	} else {
 		$stuff[]="Data not available.";
+		echo json_encode($stuff);
 	}
 
-	echo json_encode($stuff);
-} else {
+
+}
+else{
 	$stuff[]="Data not available.";
 	echo json_encode($stuff);
 }
