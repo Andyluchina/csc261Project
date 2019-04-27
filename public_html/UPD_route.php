@@ -14,7 +14,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename,$titl
 		if(!isID($key,$tablename)){
 			continue;
 		}
-		if(canUpdTitle($value,$prevData2->{'$key'},$title)){
+		if(!canUpdTitle($value,$prevData2->{'$key'},$title)){
 			continue;
 		}
 		if($isFirst==1){
