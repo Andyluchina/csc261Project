@@ -104,17 +104,17 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
   $sql= "SELECT * FROM ".$data->tablename;
-    $result = $conn->query($sql);
-    while($row = $result->fetch_assoc()){
-       $stuff[]=$row;
-   }
+  $result = $conn->query($sql);
+  while($row = $result->fetch_assoc()){
+   $stuff[]=$row;
+ }
 
-   echo json_encode($stuff);
+ echo json_encode($stuff);
 }
 else if($privalege==0){
-   $string=["Data not available."];
+ $string=["Data not available."];
 
-    echo json_encode($string);
+ echo json_encode($string);
 
 }
 else{

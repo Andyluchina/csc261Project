@@ -34,9 +34,9 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 	}
 	else{
 		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
-		return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
-	}
-	return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
+			return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
+		}
+		return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
 	}
 
 }
@@ -63,86 +63,86 @@ function checkAssignable($string,$check,$boolean,$tablename){
 
 //I hate this
 function givePrivaleges($title, $tablename){
-  if($title=='Administrator'){
-    return 1;
-  }
-  else if($title=='Engineer' && $tablename=='EMPLOYEE'){
-    return 2;
-  }
-  else if($title=='Mission Leader' && $tablename=='EMPLOYEE'){
-    return 3;
-  }
-  else if($title=='Project Leader' && $tablename=='EMPLOYEE'){
-    return 4;
-  }
-  else if($title=='Project Leader' && $tablename=='PROJECT'){
-    return 7;
-  }
-  else if($title=='Project Leader' && $tablename=='CONTRACTOR'){
-    return 8;
-  }
-  else if($title=='Mission Leader' && $tablename=='PROJECT'){
-    return 5;
-  }
-  else if($title=='Mission Leader' && $tablename=='MISSION'){
-    return 6;
-  }
-  else if($title=='Mission Leader' && $tablename=='CONTRACTOR'){
-    return 9;
-  }
-  else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
-    return 1;
-  }
-  else if($title =='Project Leader'&& $tablename!='WORKS_ON' && $tablename!='MISSION'){
-    return 1;
-  }
-  else{
-    return 0;
-  }
+	if($title=='Administrator'){
+		return 1;
+	}
+	else if($title=='Engineer' && $tablename=='EMPLOYEE'){
+		return 2;
+	}
+	else if($title=='Mission Leader' && $tablename=='EMPLOYEE'){
+		return 3;
+	}
+	else if($title=='Project Leader' && $tablename=='EMPLOYEE'){
+		return 4;
+	}
+	else if($title=='Project Leader' && $tablename=='PROJECT'){
+		return 7;
+	}
+	else if($title=='Project Leader' && $tablename=='CONTRACTOR'){
+		return 8;
+	}
+	else if($title=='Mission Leader' && $tablename=='PROJECT'){
+		return 5;
+	}
+	else if($title=='Mission Leader' && $tablename=='MISSION'){
+		return 6;
+	}
+	else if($title=='Mission Leader' && $tablename=='CONTRACTOR'){
+		return 9;
+	}
+	else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
+		return 1;
+	}
+	else if($title =='Project Leader'&& $tablename!='WORKS_ON' && $tablename!='MISSION'){
+		return 1;
+	}
+	else{
+		return 0;
+	}
 }
 
 
 function getSQLString($privalege,$srchSTR,$wrkID){
-  $sql='';
-  if($privalege==2){
-    $sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$wrkID;
-    return $sql;
+	$sql='';
+	if($privalege==2){
+		$sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$wrkID;
+		return $sql;
 
-  }
-  else if($privalege==3){
-    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".$srchSTR." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$wrkID.")));";
-    return $sql;
+	}
+	else if($privalege==3){
+		$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".$srchSTR." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$wrkID.")));";
+		return $sql;
 
-  }
-  else if($privalege==4){
-    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".$srchSTR." WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$wrkID."));";
-    return $sql;
+	}
+	else if($privalege==4){
+		$sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE ".$srchSTR." WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$wrkID."));";
+		return $sql;
 
-  }
-  else if($privalege==5){
-    $sql="SELECT * from PROJECT ".$srchSTR." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.");";
-    return $sql;
-  }
-  else if($privalege==6){
-    $sql="SELECT * from MISSION WHERE MLEADER_ID=".$wrkID;
-    return $sql;
-  }
-  else if($privalege==7){
-    $sql="SELECT * from PROJECT WHERE PLEADER_ID=".$wrkID;
-    return $sql;
-  }
-  else if($privalege==8){
-    $sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$wrkID."));";
-    return $sql;
-  }
-  else if($privalege==9){
-    $sql="SELECT * from CONTRACTOR ".$srchSTR." CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.")));";
-    return $sql;
+	}
+	else if($privalege==5){
+		$sql="SELECT * from PROJECT ".$srchSTR." MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.");";
+		return $sql;
+	}
+	else if($privalege==6){
+		$sql="SELECT * from MISSION WHERE MLEADER_ID=".$wrkID;
+		return $sql;
+	}
+	else if($privalege==7){
+		$sql="SELECT * from PROJECT WHERE PLEADER_ID=".$wrkID;
+		return $sql;
+	}
+	else if($privalege==8){
+		$sql="SELECT * from CONTRACTOR WHERE CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where PLEADER_ID=".$wrkID."));";
+		return $sql;
+	}
+	else if($privalege==9){
+		$sql="SELECT * from CONTRACTOR ".$srchSTR." CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.")));";
+		return $sql;
 
-  }
-  else{
-    return $sql;
-  }
+	}
+	else{
+		return $sql;
+	}
 
 
 }
