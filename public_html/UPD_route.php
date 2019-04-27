@@ -14,7 +14,7 @@ function traverseArray($isWhere,$sqlString,$curData1,$prevData2,$tablename,$titl
 		if(!isID($key,$tablename)){
 			continue;
 		}
-		if(!canUpdTitle($value,$prevData2->{'$key'},$title)){
+		if(!canUpdTitle($key,$value,$prevData2->{'$key'},$title)){
 			continue;
 		}
 		if($isFirst==1){
@@ -46,9 +46,9 @@ function isID($atrStr,$tablename){
 	return TRUE;
 
 }
-function canUpdTitle($curStr,$prevStr,$title){
+function canUpdTitle($key,$curStr,$prevStr,$title){
 
-	if(($title=='Engineer' && ($prevStr=='Engineer'&&$curStr!='Engineer')) ||($title=='Project Leader'&& ($prevStr=='Project Leader'&&$curStr!='Project Leader'))){
+	if(($title=='Engineer' && $key=='TITLE') ||($title=='Project Leader'&& $key=='TITLE')){
 		return FALSE;
 	}
 	if($title=='Mission Leader' && (($prevStr=='Administrator'||$prevStr=='Mission Leader')||($curStr=='Administrator'||$curStr=='Mission Leader'))){
