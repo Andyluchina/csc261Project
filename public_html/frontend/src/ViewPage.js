@@ -112,21 +112,24 @@ class ViewPage extends Component {
     this.setState({ data });
   };
   onClickMassAssign = async () => {
-    this.setState(prevState => {
-      console.log(prevState);
-      if (prevState.showMassAssign === "showMassAssign") {
-        return {
-          showMassAssign: "hideMassAssign"
-        };
-      } else {
-        return {
-          showMassAssign: "showMassAssign"
-        };
-      }
-    });
-    console.log("after");
-    console.log(this.state.showMassAssign);
-    if (this.state.showMassAssign === "hideMassAssign") {
+    // this.setState(prevState => {
+    //   console.log(prevState);
+    //   if (prevState.showMassAssign === "showMassAssign") {
+    //     return {
+    //       showMassAssign: "hideMassAssign"
+    //     };
+    //   } else {
+    //     return {
+    //       showMassAssign: "showMassAssign"
+    //     };
+    //   }
+    // });
+    // console.log("after");
+    // console.log(this.state.showMassAssign);
+    if (this.state.showMassAssign === "showMassAssign") {
+      this.setState({
+        showMassAssign: "hideMassAssign"
+      });
       const res = await axios.post("/~mswanso2/search_route.php", {
         tablename: "EMPLOYEE",
         workid: this.props.workid,
@@ -138,6 +141,9 @@ class ViewPage extends Component {
         data: res.data
       });
     } else {
+      this.setState({
+        showMassAssign: "showMassAssign"
+      });
       const res = await this.requestBackend("EMPLOYEE");
       this.setState({
         data: res.data
