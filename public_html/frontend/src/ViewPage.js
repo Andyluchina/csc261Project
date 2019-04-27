@@ -113,6 +113,7 @@ class ViewPage extends Component {
   };
   onClickMassAssign = async () => {
     this.setState(prevState => {
+      console.log(prevState);
       if (prevState.showMassAssign === "showMassAssign") {
         return {
           showMassAssign: "hideMassAssign"
@@ -123,6 +124,8 @@ class ViewPage extends Component {
         };
       }
     });
+    console.log("after");
+    console.log(this.state.showMassAssign);
     if (this.state.showMassAssign === "hideMassAssign") {
       const res = await axios.post("/~mswanso2/search_route.php", {
         tablename: "EMPLOYEE",
