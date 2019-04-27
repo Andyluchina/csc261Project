@@ -185,6 +185,7 @@ if($privalege==1){
 }
 else{
 	$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
+	echo json_encode(($sql));
 }
 if($privalege!=0){
 	$result3 = $conn->query($sql);
