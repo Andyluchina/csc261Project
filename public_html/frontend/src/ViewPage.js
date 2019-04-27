@@ -130,6 +130,7 @@ class ViewPage extends Component {
         payload: this.state.initialData,
         assignable: true
       });
+      console.log(res.data);
       this.setState({
         data: res.data
       });
