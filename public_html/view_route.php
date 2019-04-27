@@ -42,7 +42,7 @@ function givePrivaleges($title, $tablename){
 function getSQLString($privalege,$wrkID){
   $sql='';
   if($privalege==2){
-    $sql="SELECT * FROM EMPLOYEE WHERE WORK_ID=".$wrkID;
+    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID=".$wrkID;
     return $sql;
 
   }
@@ -52,7 +52,7 @@ function getSQLString($privalege,$wrkID){
 
   }
   else if($privalege==4){
-    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$wrkID."));";
+    $sql="SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID=".$wrkID." UNION SELECT FNAME,MI,LNAME,PHONE_NUM,TITLE FROM EMPLOYEE WHERE WORK_ID IN (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID IN (SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$wrkID."));";
     return $sql;
 
   }
