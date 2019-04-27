@@ -74,6 +74,24 @@ class BasicSearchForm extends React.Component {
   handleChangecheck = name => event => {
     this.setState({ [name]: event.target.checked });
   };
+
+  renderAssignable = () => {
+    if (this.props.tablename === "EMPLOYEE") {
+      return (
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.assignable}
+              onChange={this.handleChangecheck("assignable")}
+              value="assignable"
+            />
+          }
+          label="assignable"
+        />
+      );
+    }
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -117,16 +135,7 @@ class BasicSearchForm extends React.Component {
               </FormControl>
             );
           })}
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.assignable}
-                onChange={this.handleChangecheck("assignable")}
-                value="assignable"
-              />
-            }
-            label="assignable"
-          />
+          {this.renderAssignable()}
           <Button
             variant="outlined"
             color="primary"

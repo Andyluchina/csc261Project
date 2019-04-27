@@ -16,6 +16,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import FilledInput from "@material-ui/core/FilledInput";
 import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import axios from "axios";
 
 const styles = theme => ({
@@ -117,6 +119,42 @@ class SimpleTable extends React.Component {
     this.setState({ cur: current });
   };
 
+  containsObject = (obj, list) => {
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i] === obj) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+  getValue = row => {
+    const res = this.containsObject(row, this.props.AssignedEmployees);
+    return res;
+  };
+  handleChangecheck = (row, event) => {
+    console.log(event.target.checked);
+  };
+
+  renderCheckBox = row => {
+    if (this.props.showMassAssign === "hideMassAssign") {
+      return (
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={() => this.getValue(row)}
+              onChange={event => this.handleChangecheck(row, event)}
+              value="assignable"
+            />
+          }
+        />
+      );
+    } else {
+      return;
+    }
+  };
+
   render() {
     const { classes } = this.props;
     const data = this.props.data;
@@ -143,6 +181,7 @@ class SimpleTable extends React.Component {
               {data.map(row => {
                 return (
                   <TableRow>
+                    {this.renderCheckBox(row)}
                     {this.renderElements(Object.values(row))}
                     {this.renderButtons(row)}
                   </TableRow>

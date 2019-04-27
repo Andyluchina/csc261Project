@@ -11,6 +11,9 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import SimpleTable from "./SimpleTable.js";
 import BasicSearchForm from "./BasicSearchForm";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FilledInput from "@material-ui/core/FilledInput";
 const styles = {
   dropdown: {
     marginTop: "30px"
@@ -35,7 +38,10 @@ class ViewPage extends Component {
       data: ["NA"],
       attributes: [],
       initialData: {},
-      schema: {}
+      schema: {},
+      showMassAssign: "showMassAssign",
+      MassAssignPid: "",
+      AssignedEmployees: []
     };
   }
 
@@ -105,6 +111,81 @@ class ViewPage extends Component {
   updateSearch = data => {
     this.setState({ data });
   };
+  onClickMassAssign = async () => {
+    this.setState(prevState => {
+      if (prevState.showMassAssign === "showMassAssign") {
+        return {
+          showMassAssign: "hideMassAssign"
+        };
+      } else {
+        return {
+          showMassAssign: "showMassAssign"
+        };
+      }
+    });
+    if (this.state.showMassAssign === "hideMassAssign") {
+      const res = await axios.post("/~mswanso2/search_route.php", {
+        tablename: "EMPLOYEE",
+        workid: this.props.workid,
+        payload: this.state.initialData,
+        assignable: true
+      });
+      this.setState({
+        data: res.data
+      });
+    } else {
+      const res = await this.requestBackend("EMPLOYEE");
+      this.setState({
+        data: res.data
+      });
+    }
+  };
+
+  onClickSubmitMassAssign = () => {};
+  handleChangeMassAssignPid = event => {
+    this.setState({ MassAssignPid: event.target.value });
+  };
+  renderAssignableForm = () => {
+    if (this.state.showMassAssign === "showMassAssign") {
+      return <Grid />;
+    } else {
+      return (
+        <Grid>
+          <FormControl variant="filled">
+            <InputLabel htmlFor="component-filled">Project Id</InputLabel>
+            <FilledInput
+              id="component-filled"
+              value={this.state.MassAssignPid}
+              onChange={this.handleChangeMassAssignPid}
+            />
+          </FormControl>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.onClickSubmitMassAssign}
+          >
+            Submit
+          </Button>
+        </Grid>
+      );
+    }
+  };
+  renderMassAssign = () => {
+    if (this.state.tablename === "EMPLOYEE") {
+      return (
+        <Grid>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.onClickMassAssign}
+          >
+            {this.state.showMassAssign}
+          </Button>
+          {this.renderAssignableForm()}
+        </Grid>
+      );
+    }
+  };
   render() {
     return (
       <Grid>
@@ -133,11 +214,15 @@ class ViewPage extends Component {
           initialData={this.state.initialData}
           setData={this.setData}
         />
+        <br />
+        {this.renderMassAssign()}
         <SimpleTable
           data={this.state.data}
           workid={this.props.workid}
           tableName={this.state.tablename}
           onUpdateData={this.onUpdateData}
+          showMassAssign={this.state.showMassAssign}
+          AssignedEmployees={this.state.AssignedEmployees}
         />
       </Grid>
     );
