@@ -180,7 +180,7 @@ else{
 	$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
 	echo json_encode($sql);
 }
-if($privalege!=0){
+/*if($privalege!=0){
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
@@ -202,7 +202,7 @@ else{
 	$stuff[]="Data not available.";
 	echo json_encode($stuff);
 }
-
+*/
 
 $conn->close();
 
