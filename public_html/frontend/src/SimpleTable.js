@@ -155,6 +155,13 @@ class SimpleTable extends React.Component {
     }
   };
 
+  renderCheckhead = () => {
+    if (this.props.showMassAssign === "hideMassAssign") {
+      return <TableCell align="right">Checkbox</TableCell>;
+    } else {
+      return;
+    }
+  };
   render() {
     const { classes } = this.props;
     const data = this.props.data;
@@ -172,6 +179,7 @@ class SimpleTable extends React.Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
+                {this.renderCheckhead()}
                 {attributes.map(attr => {
                   return <TableCell align="right">{attr}</TableCell>;
                 })}
