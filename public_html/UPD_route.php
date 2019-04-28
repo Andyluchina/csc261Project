@@ -111,7 +111,7 @@ $privilages=givePrivaleges($check['TITLE'],$tablename);
 
 if($privilages==1){
 	$sql="UPDATE $tablename ".traverseArray(0,"SET ",$cur,$prev,$tablename,$check['TITLE'])." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename,$check['TITLE']).";";
-	echo json_encode($sql);
+	//echo json_encode($sql);
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully updated!";
@@ -125,7 +125,7 @@ if($privilages==1){
 else if($privilages==2){
 	$sql="UPDATE EMPLOYEE ".traverseArray(0,"SET ",$cur,$prev,$tablename,$check['TITLE'])." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename,$check['TITLE']).";";
 
-	echo json_encode($sql);
+	//echo json_encode($sql);
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
 		$stuff[]="Succesfully updated!";

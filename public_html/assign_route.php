@@ -34,8 +34,8 @@ $helperArray=array();
 $check==0;
 if($privaleges=1){
     foreach($employees as $employee){
-        $key='TITLE';
-        $sql= "INSERT INTO WORKS_ON VALUES($employee[$key],$pid);";
+        $value=$employee['$key'];
+        $sql= "INSERT INTO WORKS_ON VALUES($value,$pid);";
         $result = $conn->query($sql);
         if ($result == TRUE ) {
             continue;
