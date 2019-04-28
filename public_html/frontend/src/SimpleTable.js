@@ -146,7 +146,7 @@ class SimpleTable extends React.Component {
   renderCheckBox = row => {
     if (
       this.props.showMassAssign === "hideMassAssign" &&
-      this.props.tablename === "EMPLOYEE"
+      this.props.tableName === "EMPLOYEE"
     ) {
       return (
         <FormControlLabel
@@ -167,7 +167,7 @@ class SimpleTable extends React.Component {
   renderCheckhead = () => {
     if (
       this.props.showMassAssign === "hideMassAssign" &&
-      this.props.tablename === "EMPLOYEE"
+      this.props.tableName === "EMPLOYEE"
     ) {
       return <TableCell align="right">Checkbox</TableCell>;
     } else {
