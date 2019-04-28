@@ -31,24 +31,25 @@ $employees=$data->payload->employees;
 $pid=$data->payload->pid;
 $privaleges=givePrivaleges($check['TITLE']);
 $helperArray=array();
-$employee=array();
+$employee=
 $check==0;
 if($privaleges=1){
-    foreach($employees as $employee){
+    foreach($employees as $key=>$value){
 
-        echo json_encode($employee);
-        $value=$employee[4];
-        echo json_encode($value);
-        //$sql= "INSERT INTO WORKS_ON VALUES(".$value.",".$pid.");";
-        /*echo json_encode($sql);
+        $employee=$value->WORK_ID;
+        
+
+        
+        $sql= "INSERT INTO WORKS_ON VALUES(".$employee.",".$pid.");";
         $result = $conn->query($sql);
+
         if ($result == TRUE ) {
             continue;
         } else {
             $check=1;
-            $helperArray[]="Employee:".$employee['FNAME']."ID:".$employee['WORK_ID'];
+            $helperArray[]="Employee:".$value->EMPLOYEE."ID:".$value->WORK_ID;
 
-        }*/
+        }
     }   
     if($check==1){
         $string=["Employees not able to be assigned:"];
