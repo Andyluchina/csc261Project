@@ -112,20 +112,6 @@ class ViewPage extends Component {
     this.setState({ data });
   };
   onClickMassAssign = async () => {
-    // this.setState(prevState => {
-    //   console.log(prevState);
-    //   if (prevState.showMassAssign === "showMassAssign") {
-    //     return {
-    //       showMassAssign: "hideMassAssign"
-    //     };
-    //   } else {
-    //     return {
-    //       showMassAssign: "showMassAssign"
-    //     };
-    //   }
-    // });
-    // console.log("after");
-    // console.log(this.state.showMassAssign);
     if (this.state.showMassAssign === "showMassAssign") {
       this.setState({
         showMassAssign: "hideMassAssign"
@@ -168,7 +154,16 @@ class ViewPage extends Component {
       AssignedEmployees: removed
     });
   };
-  onClickSubmitMassAssign = () => {};
+  onClickSubmitMassAssign = async () => {
+    const res = await axios.post("/~mswanso2/assign_route.php", {
+      workid: this.props.workid,
+      payload: {
+        employees: this.state.AssignedEmployees,
+        pid: this.state.MassAssignPid
+      }
+    });
+    alert(res.data);
+  };
   handleChangeMassAssignPid = event => {
     this.setState({ MassAssignPid: event.target.value });
   };
