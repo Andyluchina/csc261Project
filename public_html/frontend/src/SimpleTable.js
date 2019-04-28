@@ -134,8 +134,9 @@ class SimpleTable extends React.Component {
     return res;
   };
   handleChangecheck = (row, event) => {
-    console.log(event.target);
-    this.prop.appendData(row);
+    console.log(event.target.checked);
+    this.props.appendData(row);
+    console.log(this.props.AssignedEmployees);
   };
 
   renderCheckBox = row => {
