@@ -26,13 +26,13 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 		
 	}
 	if($check==1){
-		if($privalege==1||$privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
 			return "".$string.checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	else{
-		if($privalege==1||$privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
 			return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
