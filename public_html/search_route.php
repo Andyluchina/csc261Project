@@ -108,7 +108,7 @@ function getSQLString($privalege,$srchSTR,$wrkID){
 
 	}
 	else if($privalege==3){
-			$sql="SELECT * FROM EMPLOYEE ".$srchSTR." WORK_ID=$wrkID UNION SELECT * FROM EMPLOYEE ".$srchSTR." WORK_ID in (SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$wrkID.")));";
+			$sql="SELECT * FROM EMPLOYEE ".$srchSTR." WORK_ID=$wrkID UNION SELECT * FROM EMPLOYEE ".$srchSTR." WORK_ID in ((SELECT EMPLOYEE_ID FROM WORKS_ON WHERE PROJ_ID in (SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$wrkID."))) AND WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON) AND TITLE!='Mission Leader' AND TITLE!='Administrator';";
 		return $sql;
 
 	}
@@ -174,13 +174,11 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
 
-
 }
 else{
-	$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename),$data->workid);
-	echo json_encode($sql);
+	$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
 }
-/*if($privalege!=0){
+if($privalege!=0){
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE) {
 		while($row=$result3->fetch_assoc()){
@@ -202,7 +200,7 @@ else{
 	$stuff[]="Data not available.";
 	echo json_encode($stuff);
 }
-*/
+
 
 $conn->close();
 
