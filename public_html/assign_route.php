@@ -34,7 +34,7 @@ $helperArray=array();
 $employee=
 $check==0;
 if($privaleges=1){
-    $string=['$privaleges'];
+    $string=[$privaleges];
     echo json_encode($string);
 
     foreach($employees as $key=>$value){
