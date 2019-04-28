@@ -37,7 +37,7 @@ if($privaleges=1){
     foreach($employees as $employee){
 
         echo json_encode($employee);
-        $value=$employee["WORK_ID"];
+        $value=$employee[4];
         echo json_encode($value);
         //$sql= "INSERT INTO WORKS_ON VALUES(".$value.",".$pid.");";
         /*echo json_encode($sql);
