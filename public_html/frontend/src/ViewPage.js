@@ -254,6 +254,7 @@ class ViewPage extends Component {
           attributes={this.state.attributes}
           initialData={this.state.initialData}
           setData={this.setData}
+          showMassAssign={this.state.showMassAssign}
           AssignedEmployees={this.state.AssignedEmployees}
         />
         <br />
