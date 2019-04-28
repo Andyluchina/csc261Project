@@ -28,14 +28,15 @@ $result2 = $conn->query($sql);
 $check = $result2->fetch_assoc();
 
 $employees=$data->payload->employees;
-$pid=$data->pid;
+$pid=$data->payload->pid;
 $privaleges=givePrivaleges($check['TITLE'],'EMPLOYEE');
 $helperArray=array();
 $check==0;
 if($privaleges=1){
     foreach($employees as $employee){
-        $key='TITLE';
-        $sql= "INSERT INTO WORKS_ON VALUES($employee[$key],$pid);";
+        $value=$employee['WORK_ID'];
+        $sql= "INSERT INTO WORKS_ON VALUES($value,$pid);";
+        echo json_encode($sql);
         $result = $conn->query($sql);
         if ($result == TRUE ) {
             continue;
