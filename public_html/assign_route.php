@@ -28,7 +28,7 @@ $result2 = $conn->query($sql);
 $check = $result2->fetch_assoc();
 
 $employees=$data->payload->employees;
-$pid=$data->pid;
+$pid=$data->payload->pid;
 $privaleges=givePrivaleges($check['TITLE'],'EMPLOYEE');
 $helperArray=array();
 $check==0;
