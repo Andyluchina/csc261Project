@@ -80,7 +80,7 @@ function givePrivaleges($title, $tablename){
 	else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
 		return 1;
 	}
-	else if($title =='Project Leader'&& $tablename!='WORKS_ON' && $tablename!='MISSION'){
+	else if($title =='Project Leader'&& $tablename!='WORKS_ON' && $tablename!='MISSION' && $tablename!='SUPPLIES'){
 		return 1;
 	}
 	else{

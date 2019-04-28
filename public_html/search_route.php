@@ -25,13 +25,13 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 		
 	}
 	if($check==1){
-		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9||$privalege==10||$privalege==11){
 			return "".$string.checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return "".checkAssignable($string,$check,$boolean,$tablename);
 	}
 	else{
-		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9){
+		if($privalege==3||$privalege==4||$privalege==5||$privalege==6||$privalege==7||$privalege==8||$privalege==9||$privalege==10||$privalege==11){
 			return $string.$string1." AND ".checkAssignable($string,$check,$boolean,$tablename);
 		}
 		return $string.$string1.checkAssignable($string,$check,$boolean,$tablename);
@@ -79,6 +79,9 @@ function givePrivaleges($title, $tablename){
 	else if($title=='Project Leader' && $tablename=='CONTRACTOR'){
 		return 8;
 	}
+	else if($title=='Project Leader' && $tablename=='SUPPLIES'){
+    	return 10;
+  	}
 	else if($title=='Mission Leader' && $tablename=='PROJECT'){
 		return 5;
 	}
@@ -88,6 +91,9 @@ function givePrivaleges($title, $tablename){
 	else if($title=='Mission Leader' && $tablename=='CONTRACTOR'){
 		return 9;
 	}
+	 else if($title=='Mission Leader' && $tablename=='SUPPLIES'){
+    	return 11;
+  	}
 	else if($title=='Mission Leader'&& $tablename!='WORKS_ON'){
 		return 1;
 	}
@@ -147,8 +153,17 @@ function getSQLString($privalege,$srchSTR,$wrkID, $boolean){
 	else if($privalege==9){
 		$sql="SELECT * from CONTRACTOR ".$srchSTR." CONTRACTOR_ID in(SELECT CONTRACTOR_ID FROM SUPPLIES WHERE PROJ_ID IN(SELECT PROJ_ID from PROJECT where MISSION_ID in (SELECT MISSION_ID from MISSION WHERE MLEADER_ID=".$wrkID.")));";
 		return $sql;
-
 	}
+	else if($privalege==10){
+    	$sql="SELECT * FROM SUPPLIES ".$srchSTR." PROJ_ID in(SELECT PROJ_ID FROM PROJECT WHERE PLEADER_ID=".$wrkID.");";
+    return $sql;
+ 	}
+ 	else if($privalege==11){
+    	$sql="SELECT * FROM SUPPLIES ".$srchSTR." PROJ_ID in(SELECT PROJ_ID FROM PROJECT WHERE MISSION_ID IN(SELECT MISSION_ID FROM MISSION WHERE MLEADER_ID=".$wrkID."));";
+    return $sql;
+ 	}
+
+
 	else{
 		return $sql;
 	}
