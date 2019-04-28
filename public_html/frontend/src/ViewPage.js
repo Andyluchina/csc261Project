@@ -132,7 +132,9 @@ class ViewPage extends Component {
       });
       const res = await this.requestBackend("EMPLOYEE");
       this.setState({
-        data: res
+        data: res,
+        AssignedEmployees: [],
+        MassAssignPid: ""
       });
     }
   };
@@ -170,6 +172,16 @@ class ViewPage extends Component {
       }
     });
     alert(res.data);
+    const res1 = await axios.post("/~mswanso2/search_route.php", {
+      tablename: "EMPLOYEE",
+      workid: this.props.workid,
+      payload: this.state.initialData,
+      assignable: true
+    });
+    console.log(res1.data);
+    this.setState({
+      data: res1.data
+    });
   };
   handleChangeMassAssignPid = event => {
     this.setState({ MassAssignPid: event.target.value });
