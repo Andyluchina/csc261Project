@@ -176,10 +176,11 @@ $privalege=givePrivaleges($check['TITLE'],$tablename);
 
 if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
+	echo json_encode(($sql));
 }
 else{
 	$sql=getSQLString($privalege,traverseArray($privalege,"WHERE ",$attributes,FALSE,$tablename),$data->workid);
-	//echo json_encode(($sql));
+	echo json_encode(($sql));
 }
 if($privalege!=0){
 	$result3 = $conn->query($sql);
