@@ -24,7 +24,7 @@ if($wrkid==''||$pid==''){
     echo json_encode($stuff);    
 }
 else{
-    if($check['TITLE']=='Administrator'||$check['TITLE']=='Mission Leader'){
+    if($check['TITLE']=='Administrator'){
         $sql="SELECT EMPLOYEE_ID FROM WORKS_ON WHERE EMPLOYEE_ID=$wrkid;";
         $result3 = $conn->query($sql);
         if($result3==TRUE){
