@@ -44,7 +44,7 @@ if($privaleges=1){
             continue;
         } else {
             $check=1;
-            $helperArray[]="Employee:".$employee['FNAME']."ID:".$employee['WORK_ID']."\n";
+            $helperArray[]="Employee:".$employee['FNAME']."ID:".$employee['WORK_ID'];
 
         }
     }   
