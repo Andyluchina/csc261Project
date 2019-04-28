@@ -180,7 +180,9 @@ class ViewPage extends Component {
     });
     console.log(res1.data);
     this.setState({
-      data: res1.data
+      data: res1.data,
+      AssignedEmployees: [],
+      MassAssignPid: ""
     });
   };
   handleChangeMassAssignPid = event => {
