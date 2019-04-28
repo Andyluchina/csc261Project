@@ -173,7 +173,6 @@ $boolean=$data->assignable;
 $privalege=givePrivaleges($check['TITLE'],$tablename);
 if($privalege==1){
 	$sql="SELECT * FROM $tablename ".traverseArray($privalege,"WHERE ",$attributes,$boolean,$tablename).';';
-	echo json_encode($sql);
 
 
 }
