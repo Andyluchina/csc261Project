@@ -134,12 +134,8 @@ class SimpleTable extends React.Component {
     return res;
   };
   handleChangecheck = (row, event) => {
-    console.log(event.target.checked);
-    if (event.target.checked === true) {
-      event.target.checked = false;
-    } else {
-      event.target.checked = true;
-    }
+    console.log(event.target);
+    this.prop.appendData(row);
   };
 
   renderCheckBox = row => {
