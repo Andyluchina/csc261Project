@@ -34,7 +34,7 @@ $helperArray=array();
 $employee=array();
 $check==0;
 if($privaleges=1){
-    foreach($employees as $employee){
+    /*foreach($employees as $employee){
         echo json_encode($employee);
         $value=$employee['WORK_ID'];
         $sql= "INSERT INTO WORKS_ON VALUES(".$value.",".$pid.");";
@@ -47,7 +47,7 @@ if($privaleges=1){
             $helperArray[]="Employee:".$employee['FNAME']."ID:".$employee['WORK_ID'];
 
         }
-    }   
+    }   */
     if($check==1){
         $string=["Employees not able to be assigned:"];
         echo json_encode($string);
