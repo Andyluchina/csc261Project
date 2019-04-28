@@ -15,14 +15,13 @@ function traverseArray($privalege,$string,$attributes,$boolean,$tablename){
 
 		if($isFirst==1){
 			$string1=$string1."$key = '$value'";
-			$isFirst==0;
+			$isFirst=0;
 			$check=0;
 		}
 		else{
 			$string1=$string1." AND $key = '$value'";
 			$check=0;
 		}
-
 		
 	}
 	if($check==1){
