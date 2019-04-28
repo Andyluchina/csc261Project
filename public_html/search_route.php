@@ -45,7 +45,7 @@ function checkAssignable($string,$check,$boolean,$tablename){
 	$sqlStr='';
 	if($boolean && $tablename=='EMPLOYEE'){
 		if($check==1){
-			$sqlStr=$string." WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON) AND TITLE!='Mission Leader'";
+			$sqlStr=$string." WORK_ID NOT IN (SELECT EMPLOYEE_ID FROM WORKS_ON) AND (TITLE!='Mission Leader' OR TITLE!='Administrator'";
 			return $sqlStr;
 		}
 		else{
