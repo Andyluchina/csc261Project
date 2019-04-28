@@ -123,6 +123,7 @@ if($privilages==1){
 
 }
 else if($privilages==2){
+
 	$sql="UPDATE EMPLOYEE ".traverseArray(0,"SET ",$cur,$prev,$tablename,$check['TITLE'])." ".traverseArray(1,"WHERE ",$prev,$prev,$tablename,$check['TITLE'])."AND WORK_ID=".$data->workid.";";
 
 	//echo json_encode($sql);
