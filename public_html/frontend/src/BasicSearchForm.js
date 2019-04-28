@@ -53,15 +53,14 @@ class BasicSearchForm extends React.Component {
   };
 
   onClick = async () => {
-    console.log({
-      tablename: this.props.tablename,
-      workid: this.props.workid,
-      payload: this.state.initialData,
-      assignable: this.state.assignable
-    });
-
     let res;
     if (this.props.showMassAssign === "showMassAssign") {
+      console.log({
+        tablename: this.props.tablename,
+        workid: this.props.workid,
+        payload: this.state.initialData,
+        assignable: this.state.assignable
+      });
       res = await axios.post("/~mswanso2/search_route.php", {
         tablename: this.props.tablename,
         workid: this.props.workid,
@@ -69,6 +68,12 @@ class BasicSearchForm extends React.Component {
         assignable: this.state.assignable
       });
     } else {
+      console.log({
+        tablename: this.props.tablename,
+        workid: this.props.workid,
+        payload: this.state.initialData,
+        assignable: this.state.assignable
+      });
       res = await axios.post("/~mswanso2/search_route.php", {
         tablename: this.props.tablename,
         workid: this.props.workid,
