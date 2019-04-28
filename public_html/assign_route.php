@@ -1,7 +1,7 @@
 <?php
 //adds employee to works on
 function givePrivaleges($title){
-  if($title=='Administrator'){
+  if($title=="Administrator"){
     return 1;
   }
   else{
@@ -34,7 +34,7 @@ $helperArray=array();
 $employee=
 $check==0;
 if($privaleges=1){
-    $string=[$check['TITLE']];
+    $string=[$privaleges];
     echo json_encode($string);
 
     foreach($employees as $key=>$value){
