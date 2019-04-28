@@ -36,7 +36,7 @@ $check==0;
 if($privaleges=1){
     foreach($employees as $key=>$value){
 
-        echo json_encode($value);
+        echo json_encode($value->WORK_ID);
         
 
         
