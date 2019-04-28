@@ -120,9 +120,10 @@ class SimpleTable extends React.Component {
   };
 
   containsObject = (obj, list) => {
+    console.log(list);
     var i;
     for (i = 0; i < list.length; i++) {
-      if (list[i] === obj) {
+      if (JSON.stringify(list[i]) === JSON.stringify(obj)) {
         return true;
       }
     }
@@ -131,6 +132,7 @@ class SimpleTable extends React.Component {
   };
   getValue = row => {
     const res = this.containsObject(row, this.props.AssignedEmployees);
+    console.log(res);
     return res;
   };
   handleChangecheck = (row, event) => {

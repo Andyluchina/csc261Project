@@ -146,7 +146,7 @@ class ViewPage extends Component {
       });
       const res = await this.requestBackend("EMPLOYEE");
       this.setState({
-        data: res.data
+        data: res
       });
     }
   };
