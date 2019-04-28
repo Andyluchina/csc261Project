@@ -1,6 +1,6 @@
 <?php
 //adds employee to works on
-function givePrivaleges($title, $tablename){
+function givePrivaleges($title){
   if($title=='Administrator'){
     return 1;
   }
@@ -29,23 +29,25 @@ $check = $result2->fetch_assoc();
 
 $employees=$data->payload->employees;
 $pid=$data->payload->pid;
-$privaleges=givePrivaleges($check['TITLE'],'EMPLOYEE');
+$privaleges=givePrivaleges($check['TITLE']);
 $helperArray=array();
+$employee=array();
 $check==0;
 if($privaleges=1){
-    foreach($employees as $employee){
+    /*foreach($employees as $employee){
+        echo json_encode($employee);
         $value=$employee['WORK_ID'];
-        $sql= "INSERT INTO WORKS_ON VALUES($value,$pid);";
+        $sql= "INSERT INTO WORKS_ON VALUES(".$value.",".$pid.");";
         echo json_encode($sql);
         $result = $conn->query($sql);
         if ($result == TRUE ) {
             continue;
         } else {
             $check=1;
-            $helperArray[]="Employee:".$employee['FNAME']."ID:".$employee['WORK_ID']."\n";
+            $helperArray[]="Employee:".$employee['FNAME']."ID:".$employee['WORK_ID'];
 
         }
-    }   
+    }   */
     if($check==1){
         $string=["Employees not able to be assigned:"];
         echo json_encode($string);
