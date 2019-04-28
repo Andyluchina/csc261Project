@@ -59,12 +59,23 @@ class BasicSearchForm extends React.Component {
       payload: this.state.initialData,
       assignable: this.state.assignable
     });
-    const res = await axios.post("/~mswanso2/search_route.php", {
-      tablename: this.props.tablename,
-      workid: this.props.workid,
-      payload: this.state.initialData,
-      assignable: this.state.assignable
-    });
+
+    let res;
+    if (this.props.showMassAssign === "showMassAssign") {
+      res = await axios.post("/~mswanso2/search_route.php", {
+        tablename: this.props.tablename,
+        workid: this.props.workid,
+        payload: this.state.initialData,
+        assignable: this.state.assignable
+      });
+    } else {
+      res = await axios.post("/~mswanso2/search_route.php", {
+        tablename: this.props.tablename,
+        workid: this.props.workid,
+        payload: this.state.initialData,
+        assignable: true
+      });
+    }
 
     //alert(res.data);
     console.log("searching");
