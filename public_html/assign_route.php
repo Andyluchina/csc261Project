@@ -37,9 +37,6 @@ if($privaleges=1){
     foreach($employees as $key=>$value){
 
         $employee=$value->WORK_ID;
-        
-
-        
         $sql= "INSERT INTO WORKS_ON VALUES(".$employee.",".$pid.");";
         $result = $conn->query($sql);
 
