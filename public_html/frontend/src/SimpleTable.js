@@ -137,6 +137,9 @@ class SimpleTable extends React.Component {
   };
   handleChangecheck = (row, event) => {
     console.log(event.target.checked);
+    if (event.targer.checked === true) {
+    } else {
+    }
   };
 
   renderCheckBox = row => {
@@ -145,7 +148,7 @@ class SimpleTable extends React.Component {
         <FormControlLabel
           control={
             <Checkbox
-              checked={() => this.getValue(row)}
+              checked={this.getValue(row)}
               onChange={event => this.handleChangecheck(row, event)}
               value="assignable"
             />
