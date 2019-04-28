@@ -148,13 +148,20 @@ class ViewPage extends Component {
   removeData = row => {
     var data = this.state.AssignedEmployees;
     var removed = data.filter(item => {
-      return !JSON.stringify(item) === JSON.stringify(row);
+      return !(JSON.stringify(item) === JSON.stringify(row));
     });
     this.setState({
       AssignedEmployees: removed
     });
   };
   onClickSubmitMassAssign = async () => {
+    console.log({
+      workid: this.props.workid,
+      payload: {
+        employees: this.state.AssignedEmployees,
+        pid: this.state.MassAssignPid
+      }
+    });
     const res = await axios.post("/~mswanso2/assign_route.php", {
       workid: this.props.workid,
       payload: {
