@@ -34,11 +34,12 @@ $helperArray=array();
 $employee=array();
 $check==0;
 if($privaleges=1){
-    foreach($employees as $employee){
+    foreach($employees as $key=>$value){
+        if($key=='WORK_ID'){
+            echo json_encode($value);
+        }
 
-        echo json_encode($employee);
-        $value=$employee[4];
-        echo json_encode($value);
+        
         //$sql= "INSERT INTO WORKS_ON VALUES(".$value.",".$pid.");";
         /*echo json_encode($sql);
         $result = $conn->query($sql);
