@@ -31,6 +31,7 @@ $employees=$data->payload->employees;
 $pid=$data->payload->pid;
 $privaleges=givePrivaleges($check['TITLE']);
 $helperArray=array();
+$employee=array();
 $check==0;
 if($privaleges=1){
     foreach($employees as $employee){
