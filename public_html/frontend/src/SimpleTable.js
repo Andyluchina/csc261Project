@@ -120,7 +120,6 @@ class SimpleTable extends React.Component {
   };
 
   containsObject = (obj, list) => {
-    console.log(list);
     var i;
     for (i = 0; i < list.length; i++) {
       if (JSON.stringify(list[i]) === JSON.stringify(obj)) {
@@ -132,13 +131,14 @@ class SimpleTable extends React.Component {
   };
   getValue = row => {
     const res = this.containsObject(row, this.props.AssignedEmployees);
-    console.log(res);
     return res;
   };
   handleChangecheck = (row, event) => {
     console.log(event.target.checked);
-    if (event.targer.checked === true) {
+    if (event.target.checked === true) {
+      event.target.checked = false;
     } else {
+      event.target.checked = true;
     }
   };
 

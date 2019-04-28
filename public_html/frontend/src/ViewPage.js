@@ -151,6 +151,23 @@ class ViewPage extends Component {
     }
   };
 
+  appendData = row => {
+    var data = this.state.AssignedEmployees;
+    data.push(row);
+    this.setState({
+      AssignedEmployees: data
+    });
+  };
+
+  removeData = row => {
+    var data = this.state.AssignedEmployees;
+    var removed = data.filter(item => {
+      return !JSON.stringify(item) === JSON.stringify(row);
+    });
+    this.setState({
+      AssignedEmployees: removed
+    });
+  };
   onClickSubmitMassAssign = () => {};
   handleChangeMassAssignPid = event => {
     this.setState({ MassAssignPid: event.target.value });
@@ -233,6 +250,8 @@ class ViewPage extends Component {
           onUpdateData={this.onUpdateData}
           showMassAssign={this.state.showMassAssign}
           AssignedEmployees={this.state.AssignedEmployees}
+          appendData={this.appendData}
+          removeData={this.removeData}
         />
       </Grid>
     );
