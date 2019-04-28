@@ -6,6 +6,7 @@ function traverseArray($sqlString,$data1){
 	$string1="";
 	$num=1;
 	foreach($data1 as $key=>$value){
+
 		if($num==1){
 			if($value!=''||$value!=NULL){
 				$string1=$string1."$key = '$value'";
@@ -47,9 +48,13 @@ $check = $result1->fetch_assoc();
 $tablename=$data->tableName;
 $payload=$data->payload;
 
-
-
-if($check['TITLE']=='Administrator'){
+$value=$payload->TITLE;
+if($value=='Administrator'){
+	$stuff[]="Cannot delete Administrator.";
+	echo json_encode($stuff);
+}
+else{
+	if($check['TITLE']=='Administrator'){
 	$sql="DELETE FROM $tablename ".traverseArray("WHERE ",$payload).";";
 	$result3 = $conn->query($sql);
 	if ($result3 == TRUE && ($conn->affected_rows > 0) ) {
@@ -64,6 +69,10 @@ if($check['TITLE']=='Administrator'){
 else{
 	$stuff[]="Delete not successful.";
 	echo json_encode($stuff);
+
+
+}
+
 
 }
 
